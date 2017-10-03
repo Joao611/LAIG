@@ -1421,22 +1421,30 @@ MySceneGraph.generateRandomString = function(length) {
 /**
  * Displays the scene, processing each node, starting in the root node.
  */
-MySceneGraph.prototype.displayScene = function() {
-	// entry point for graph rendering
-	// remove log below to avoid performance issues
-	//this.log("Graph should be rendered here...");
-	
+MySceneGraph.prototype.displayScene = function() {	
 	let rootNode = this.nodes[this.idRoot];
-	this.displayNode(rootNode);
+	this.displayNode(rootNode, "null", "null", false);
 }
 
-MySceneGraph.prototype.displayNode = function(node) {
+MySceneGraph.prototype.displayNode = function(node, materialID, textureID, appliedMaterial) {
     this.scene.pushMatrix();
     this.scene.multMatrix(node.transformMatrix);
+    if (materialID == "null" && node.materialID != "null") {
+        materialID = node.materialID;
+    }
+    if (textureID == "null" && (node.textureID != "null" && node.textureID != "clear")) {
+        textureID = node.textureID;
+    }
+    if (!appliedMaterial && materialID != "null" && textureID != "null" && textureID != "clear") {
+        this.materials[materialID].loadTexture(this.textures[textureID]);
+        this.materials[materialID].apply();
+        appliedMaterial = true;
+    }
+
     for (let i = 0; i < node.children.length; i++) { //missing transformations
         let childName = node.children[i];
         let child = this.nodes[childName];
-        this.displayNode(child);
+        this.displayNode(child, materialID, textureID, appliedMaterial);
 
     }
     for (let i = 0; i < node.leaves.length; i++) {

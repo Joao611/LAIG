@@ -22,6 +22,10 @@ function MyGraphLeaf(graph, xmlelem) {
 }
 
 MyGraphLeaf.prototype.display = function() {
-    if (this.type == "rectangle" || this.type =="cylinder")
+    if (this.type == "rectangle") {// || this.type =="cylinder")
         this.primitive.display();
+    }
+    if (this.type == "cylinder") {
+        this.primitive.display();
+    }
 }
