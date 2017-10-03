@@ -1435,10 +1435,13 @@ MySceneGraph.prototype.displayNode = function(node, materialID, textureID, appli
     if (textureID == "null" && (node.textureID != "null" && node.textureID != "clear")) {
         textureID = node.textureID;
     }
-    if (!appliedMaterial && materialID != "null" && textureID != "null" && textureID != "clear") {
+    if (!appliedMaterial && materialID != "null" && textureID != "null") {
         this.materials[materialID].loadTexture(this.textures[textureID]);
         this.materials[materialID].apply();
         appliedMaterial = true;
+    }
+    if (appliedMaterial && node.textureID == "clear") {
+        appliedMaterial = false;
     }
 
     for (let i = 0; i < node.children.length; i++) { //missing transformations
