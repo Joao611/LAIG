@@ -17,12 +17,13 @@ function MyGraphLeaf(graph, xmlelem) {
         case "sphere":
             break;
         case "triangle":
+        this.primitive = new MyTriangle(graph.scene,  argList[0], argList[1], argList[2], argList[3], argList[4],  argList[5], argList[6], argList[7], argList[8]);
             break;
     }
 }
 
 MyGraphLeaf.prototype.display = function() {
-    if (this.type == "rectangle") {// || this.type =="cylinder")
+    if (this.type == "rectangle" || this.type =="triangle") {
         this.primitive.display();
     }
     if (this.type == "cylinder") {
