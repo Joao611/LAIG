@@ -1431,6 +1431,8 @@ MySceneGraph.prototype.displayScene = function() {
 }
 
 MySceneGraph.prototype.displayNode = function(node) {
+    this.scene.pushMatrix();
+    this.scene.multMatrix(node.transformMatrix);
     for (let i = 0; i < node.children.length; i++) { //missing transformations
         let childName = node.children[i];
         let child = this.nodes[childName];
@@ -1440,4 +1442,5 @@ MySceneGraph.prototype.displayNode = function(node) {
     for (let i = 0; i < node.leaves.length; i++) {
         node.leaves[i].display();
     }
+    this.scene.popMatrix();
 }
