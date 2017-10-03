@@ -12,6 +12,7 @@ function MyGraphLeaf(graph, xmlelem) {
             this.primitive = new MyQuad(graph.scene, argList[0], argList[1], argList[2], argList[3]); //TODO
             break;
         case "cylinder":
+            this.primitive = new MyCylinder(graph.scene, argList[0], argList[1], argList[2], argList[3], argList[4]);
             break;
         case "sphere":
             break;
@@ -21,6 +22,6 @@ function MyGraphLeaf(graph, xmlelem) {
 }
 
 MyGraphLeaf.prototype.display = function() {
-    if (this.type == "rectangle")
+    if (this.type == "rectangle" || this.type =="cylinder")
         this.primitive.display();
 }

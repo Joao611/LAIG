@@ -2,10 +2,11 @@
  * MyCylinder
  * @constructor
  */
-function MyCylinder(scene, slices, stacks) {
+function MyCylinder(scene, topRadius, bottomRadius, slices, stacks) {
 	CGFobject.call(this, scene);
-	MyGraphLeaf.call(this, scene);
 
+	this.topRadius =topRadius;
+	this.bottomRadius = bottomRadius;
 	this.slices = slices;
 	this.stacks = stacks;
 
@@ -31,8 +32,8 @@ MyCylinder.prototype.initBuffers = function () {
 
 	for(j = 0; j <= this.stacks; j++) {
 		for (i = 0; i < this.slices; i++) {
-			this.vertices.push(Math.cos(ang * i), Math.sin(ang * i), j*stack_height);
-			this.texCoords.push(i*1/this.slices, j);
+		this.vertices.push(Math.cos(ang * i)*(this.bottomRadius+(this.topRadius-this.bottomRadius)/(this.stacks-j+1)), Math.sin(ang * i)*(this.bottomRadius+(this.topRadius-this.bottomRadius)/(this.stacks-j+1)), j*stack_height);			this.texCoords.push(i*1/this.slices, j);
+		this.texCoords.push(i*1/this.slices,j);
 		}
 	}
 
