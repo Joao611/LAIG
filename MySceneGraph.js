@@ -1436,7 +1436,7 @@ MySceneGraph.prototype.displayNode = function(node, materialID, textureID, appli
         textureID = node.textureID;
     }
     if (!appliedMaterial && materialID != "null" && textureID != "null") {
-        this.materials[materialID].setTexture(this.textures[textureID].texture);
+        this.materials[materialID].setTexture(this.textures[textureID][0]);
         this.materials[materialID].apply();
         appliedMaterial = true;
     }
