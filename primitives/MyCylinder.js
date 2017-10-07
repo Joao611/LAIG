@@ -38,7 +38,6 @@ MyCylinder.prototype.initBuffers = function () {
 			let y = Math.sin(ang * i)*radius;
 			let z = j*stack_height*this.height;
 			this.vertices.push(x, y, z);
-			//this.vertices.push(Math.cos(ang * i)*(this.bottomRadius+(this.topRadius-this.bottomRadius)/(this.stacks-j+1)), Math.sin(ang * i)*(this.bottomRadius+(this.topRadius-this.bottomRadius)/(this.stacks-j+1)), j*stack_height*this.height);
 			this.texCoords.push(i*1/this.slices,j);
 		}
 	}

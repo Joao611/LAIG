@@ -6,7 +6,8 @@
 function MyGraphLeaf(graph, xmlelem) {
     this.type = graph.reader.getItem(xmlelem, 'type', ['rectangle', 'cylinder', 'sphere', 'triangle']);
     let args = graph.reader.getString(xmlelem, 'args');
-    let argList = args.match(/[+-]?\d+(\.\d+)?/g); //regex magic
+    let regex = /[+-]?\d+(\.\d+)?/g;
+    let argList = args.match(regex).map(function(v) { return parseFloat(v); }); //regex magic
     switch (this.type) {
         case "rectangle":
             this.primitive = new MyQuad(graph.scene, argList[0], argList[1], argList[2], argList[3]); //TODO
