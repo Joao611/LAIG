@@ -23,26 +23,25 @@
 
  MyTriangle.prototype.initBuffers = function() {
  	this.vertices = [
-  this.x1, this.y1, this.z1,
-  this.x2, this.y2, this.z2,
-  this.x3, this.y3, this.z3,
+      this.x1, this.y1, this.z1,
+      this.x2, this.y2, this.z2,
+      this.x3, this.y3, this.z3,
  	];
 
  	this.indices = [
- 	0, 1, 2, 
+ 	  0, 1, 2, 
  	];
 
  	this.normals = [
- 	0, 0, 1,
- 	0, 0, 1,
- 	0, 0, 1,
+ 	  0, 0, 1,
+ 	  0, 0, 1,
+ 	  0, 0, 1,
  	];
 
  	this.texCoords = [
-    this.minS, this.maxT,
-    this.maxS, this.maxT,
-    this.minS, this.minT,
-    this.maxS, this.minT
+      0, 0,
+      1, 0,
+      0.5, 1
  	]
 
  	this.primitiveType = this.scene.gl.TRIANGLES;
