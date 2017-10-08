@@ -16,6 +16,7 @@ function MyGraphLeaf(graph, xmlelem) {
             this.primitive = new MyCylinder(graph.scene, argList[0], argList[1], argList[2], argList[3], argList[4]);
             break;
         case "sphere":
+            this.primitive = new MySphere(graph.scene, argList[0], argList[1], argList[2]);
             break;
         case "triangle":
         this.primitive = new MyTriangle(graph.scene,  argList[0], argList[1], argList[2], argList[3], argList[4],  argList[5], argList[6], argList[7], argList[8]);
