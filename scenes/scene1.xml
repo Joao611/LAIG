@@ -164,16 +164,60 @@
         <TEXTURE id="null" />
 
         <DESCENDANTS>
-
-            <NODEREF id="luzes" />
-            <NODEREF id="piramide" />
-            <NODEREF id="arvores" />
-            <NODEREF id="chao" />
-            <NODEREF id="bancos" />
+            <NODEREF id="PzKpfw_Tiger" />
         </DESCENDANTS>
 
     </NODE>
 
+	
+	<NODE id="PzKpfw_Tiger">
+		<MATERIAL id="null" />
+		<TEXTURE id="null" />
+		
+		<DESCENDANTS><!-- 
+			<NODEREF id="tiger_turret" /> -->
+			<NODEREF id="tiger_hull" />
+        </DESCENDANTS>
+	</NODE>
+	
+	<NODE id="tiger_hull">
+        <MATERIAL id="null" />
+		<TEXTURE id="null" />
+		
+		<DESCENDANTS>
+			<NODEREF id="tiger_upper_hull" /><!-- 
+			<NODEREF id="tiger_lower_hull" /> -->
+        </DESCENDANTS>
+	</NODE>
+
+    <NODE id="tiger_upper_hull">
+        <MATERIAL id="null" />
+		<TEXTURE id="null" />
+		
+		<DESCENDANTS>
+			<NODEREF id="tiger_hull_top" /><!-- 
+			<NODEREF id="tiger_upper_front_plate" />
+			<NODEREF id="tiger_upper_left_plate" />
+			<NODEREF id="tiger_upper_right_plate" />
+			<NODEREF id="tiger_hull_rear_plate" /> -->
+        </DESCENDANTS>
+	</NODE>
+
+    <NODE id="tiger_hull_top">
+        <MATERIAL id="null" />
+		<TEXTURE id="null" />
+        
+        <SCALE sx="6" sy="1" sz="5" />
+        <TRANSLATION x="0" y="0" z="4" />
+        <ROTATION axis="x" angle="-90" />
+
+		<DESCENDANTS>
+			<LEAF  type="rectangle" args="0 4 5 0" />
+        </DESCENDANTS>
+    </NODE>
+	
+	<!-- All nodes below are to be deleted. -->
+	
     <!-- The floor -->
     <NODE id="chao">
         <MATERIAL id="null" />
