@@ -207,12 +207,12 @@
         <MATERIAL id="null" />
 		<TEXTURE id="null" />
         
-        <SCALE sx="6" sy="1" sz="5" />
-        <TRANSLATION x="0" y="0" z="4" />
+        <SCALE sx="3.705" sy="1" sz="1" />
+        <TRANSLATION x="0" y="0" z="1" />
         <ROTATION axis="x" angle="-90" />
 
 		<DESCENDANTS>
-			<LEAF  type="rectangle" args="0 4 5 0" />
+			<LEAF  type="rectangle" args="0 1 1 0" />
         </DESCENDANTS>
     </NODE>
 	
