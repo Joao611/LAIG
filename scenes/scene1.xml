@@ -174,11 +174,31 @@
 		<MATERIAL id="null" />
 		<TEXTURE id="null" />
 
-		<DESCENDANTS><!--
-			<NODEREF id="tiger_turret" /> -->
-			<NODEREF id="tiger_hull" />
+		<DESCENDANTS>
+			<NODEREF id="tiger_turret" />
+			<!-- <NODEREF id="tiger_hull" /> -->
         </DESCENDANTS>
 	</NODE>
+
+    <NODE id="tiger_turret">
+        <MATERIAL id="null" />
+		<TEXTURE id="null" />
+
+		<DESCENDANTS>
+            <NODEREF id="tiger_turret_box" />
+            <!-- <NODEREF id="tiger_barrel" /> -->
+        </DESCENDANTS>
+	</NODE>
+
+    <NODEREF id="tiger_turret_box" />
+    <MATERIAL id="null" />
+    <TEXTURE id="null" />
+
+    <DESCENDANTS>
+        <NODEREF id="tiger_turret_box" />
+        <!-- <NODEREF id="tiger_barrel" /> -->
+    </DESCENDANTS>
+    </NODE>
 
     <NODE id="tiger_hull">
         <MATERIAL id="null" />
@@ -187,8 +207,8 @@
 		<DESCENDANTS>
 			<NODEREF id="tiger_hull_top" />
 			<NODEREF id="tiger_front_plate" />
-			<NODEREF id="tiger_left_plate" /> --><!--
-			<NODEREF id="tiger_right_plate" /> -->
+			<!--<NODEREF id="tiger_left_plate" /> -->
+			<NODEREF id="tiger_right_plate" />
 			<NODEREF id="tiger_hull_rear_plate" />
             <NODEREF id="tiger_hull_bottom_plate" />
         </DESCENDANTS>
@@ -273,9 +293,11 @@
         </DESCENDANTS>
     </NODE>
 
-    <NODE id="tiger_left_plate">
+    <NODE id="tiger_right_plate">
         <MATERIAL id="null" />
 		<TEXTURE id="null" />
+
+        <TRANSLATION x="3.140" y="0" z="0" />
 
 		<DESCENDANTS>
 			<NODEREF id="tiger_side_plate" />
@@ -285,6 +307,8 @@
     <NODE id="tiger_side_plate">
         <MATERIAL id="null" />
 		<TEXTURE id="null" />
+
+        <ROTATION axis="y" angle="90" />
 
 		<DESCENDANTS>
             <NODEREF id="tiger_side_plate_front" />
@@ -296,9 +320,14 @@
         <MATERIAL id="null" />
 		<TEXTURE id="null" />
 
-
+        <TRANSLATION x="-5" y="0" z="0" />
 
 		<DESCENDANTS>
+            <LEAF type="triangle" args="0 1.780 0  -0.0696 1.335 0  0 1.335 0" />
+            <LEAF type="triangle" args="-1.2619 1.1125 0  -0.0696 1.1125 0  -0.0696 1.335 0" />
+            <LEAF type="rectangle" args="-0.0696 1.335 0 1.1125" />
+            <LEAF type="triangle" args="-1.2619 1.1125 0  -0.7898 0.100 0 -0.7898 1.1125 0" />
+            <LEAF type="rectangle" args="-0.7898 1.1125 0 0.100" />
             <LEAF type="triangle" args="-0.7898 0.100 0  -0.5935 0 0  -0.5935 0.100 0" />
             <LEAF type="rectangle" args="-0.5935 0.100 0 0" />
         </DESCENDANTS>
@@ -308,7 +337,7 @@
         <MATERIAL id="null" />
 		<TEXTURE id="null" />
 
-        <ROTATION axis="y" angle="90" />
+        <TRANSLATION x="-0.278" y="0" z="0" />
 
 		<DESCENDANTS>
             <LEAF type="rectangle" args="-4.722 1.780 0 0" />
