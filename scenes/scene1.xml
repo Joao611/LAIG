@@ -185,8 +185,8 @@
 		<TEXTURE id="null" />
 		
 		<DESCENDANTS>
-			<NODEREF id="tiger_hull_top" /><!-- 
-			<NODEREF id="tiger_front_plate" />
+			<NODEREF id="tiger_hull_top" />
+			<NODEREF id="tiger_front_plate" /><!-- 
 			<NODEREF id="tiger_left_plate" /> --><!-- 
 			<NODEREF id="tiger_right_plate" /> -->
 			<NODEREF id="tiger_hull_rear_plate" />
@@ -206,6 +206,72 @@
         </DESCENDANTS>
     </NODE>
 	
+    <NODE id="tiger_front_plate">
+        <MATERIAL id="null" />
+		<TEXTURE id="null" />
+
+        <TRANSLATION x="0" y="0" z="5.0696" />
+
+        <DESCENDANTS>  
+            <NODEREF id="tiger_hull_front_top" />
+            <NODEREF id="tiger_hull_front_second_top" />
+            <NODEREF id="tiger_hull_front_second_bottom" />
+            <NODEREF id="tiger_hull_front_bottom" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="tiger_hull_front_top">
+        <MATERIAL id="null" />
+		<TEXTURE id="null" />
+
+        <TRANSLATION x="0" y="1.3295" z="0" />
+        <ROTATION axis="x" angle="-9" />
+        <SCALE sx="3.140" sy="0.4505" sz="1" />
+
+        <DESCENDANTS>
+			<LEAF  type="rectangle" args="0 1 1 0" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="tiger_hull_front_second_top">
+        <MATERIAL id="null" />
+		<TEXTURE id="null" />
+
+        <TRANSLATION x="0" y="1.1125" z="1.2619" />
+        <ROTATION axis="x" angle="-80" />
+        <SCALE sx="3.140" sy="1.2813" sz="1" />
+
+        <DESCENDANTS>
+			<LEAF  type="rectangle" args="0 1 1 0" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="tiger_hull_front_second_bottom">
+        <MATERIAL id="null" />
+		<TEXTURE id="null" />
+
+        <TRANSLATION x="0" y="0.100" z="0.7897" />
+        <ROTATION axis="x" angle="25" />
+        <SCALE sx="3.140" sy="1.1172" sz="1" />
+
+        <DESCENDANTS>
+			<LEAF  type="rectangle" args="0 1 1 0" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="tiger_hull_front_bottom">
+        <MATERIAL id="null" />
+		<TEXTURE id="null" />
+
+        <TRANSLATION x="0" y="0" z="0.5935" />
+        <ROTATION axis="x" angle="63" />
+        <SCALE sx="3.140" sy="0.2203" sz="1" />
+
+        <DESCENDANTS>
+			<LEAF  type="rectangle" args="0 1 1 0" />
+        </DESCENDANTS>
+    </NODE>
+
     <!-- <NODE id="tiger_right_plate">
         <MATERIAL id="null" />
 		<TEXTURE id="null" />
