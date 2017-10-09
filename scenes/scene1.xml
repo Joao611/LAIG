@@ -190,6 +190,7 @@
 			<NODEREF id="tiger_left_plate" /> --><!-- 
 			<NODEREF id="tiger_right_plate" /> -->
 			<NODEREF id="tiger_hull_rear_plate" />
+            <NODEREF id="tiger_hull_bottom_plate" />
         </DESCENDANTS>
 	</NODE>
 
@@ -290,6 +291,19 @@
         <SCALE sx="3.140" sy="1.802" sz="1" />
         <TRANSLATION x="1" y="0" z="0" />
         <ROTATION axis="y" angle="180" />
+
+		<DESCENDANTS>
+			<LEAF  type="rectangle" args="0 1 1 0" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="tiger_hull_bottom_plate">
+        <MATERIAL id="null" />
+		<TEXTURE id="null" />
+
+        <TRANSLATION x="0" y="0" z="0.278" />
+        <SCALE sx="3.140" sy="1" sz="5.3696" />
+        <ROTATION axis="x" angle="90" />
 
 		<DESCENDANTS>
 			<LEAF  type="rectangle" args="0 1 1 0" />
