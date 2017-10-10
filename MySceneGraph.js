@@ -1140,6 +1140,7 @@ MySceneGraph.prototype.parseMaterials = function(materialsNode) {
         
         // Creates material with the specified characteristics.
         var newMaterial = new CGFappearance(this.scene);
+        newMaterial.setTextureWrap("REPEAT", "REPEAT");
         newMaterial.setShininess(shininess);
         newMaterial.setAmbient(ambientComponent[0], ambientComponent[1], ambientComponent[2], ambientComponent[3]);
         newMaterial.setDiffuse(diffuseComponent[0], diffuseComponent[1], diffuseComponent[2], diffuseComponent[3]);
@@ -1229,6 +1230,10 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
             if (textureID != "null" && textureID != "clear" && this.textures[textureID] == null )
                 return "ID does not correspond to a valid texture (node ID = " + nodeID + ")";
             
+            if (nodeID == "luzes") {
+                let i = 1+1;
+            }
+
             this.nodes[nodeID].textureID = textureID;
             
             // Retrieves possible transformations.
@@ -1423,34 +1428,39 @@ MySceneGraph.generateRandomString = function(length) {
  */
 MySceneGraph.prototype.displayScene = function() {	
 	let rootNode = this.nodes[this.idRoot];
-	this.displayNode(rootNode, "null", "null", false);
+	this.displayNode(rootNode, null, null, 1, 1, false);
 }
 
-MySceneGraph.prototype.displayNode = function(node, materialID, textureID, appliedMaterial) {
+MySceneGraph.prototype.displayNode = function(node, materialID, textureID, ampS, ampT, appliedMaterial) {
     this.scene.pushMatrix();
     this.scene.multMatrix(node.transformMatrix);
-    if (materialID == "null" && node.materialID != "null") {
+    if (materialID == null && node.materialID != "null") {
         materialID = node.materialID;
     }
-    if (textureID == "null" && (node.textureID != "null" && node.textureID != "clear")) {
+    if (textureID == null && (node.textureID != null && node.textureID != "null" && node.textureID != "clear")) {
         textureID = node.textureID;
+        ampS = this.textures[textureID][1];
+        ampT = this.textures[textureID][2];
     }
-    if (!appliedMaterial && materialID != "null" && textureID != "null") {
-        this.materials[materialID].setTexture(this.textures[textureID][0]);
-        this.materials[materialID].apply();
-        appliedMaterial = true;
-    }
-    if (appliedMaterial && node.textureID == "clear") {
-        appliedMaterial = false;
+
+    if (node.textureID == "clear") {
+        node.textureID = null;
     }
 
     for (let i = 0; i < node.children.length; i++) { //missing transformations
         let childName = node.children[i];
         let child = this.nodes[childName];
-        this.displayNode(child, materialID, textureID, appliedMaterial);
+        this.displayNode(child, materialID, textureID, ampS, ampT, appliedMaterial);
 
     }
     for (let i = 0; i < node.leaves.length; i++) {
+        if (textureID != null) {
+            this.materials[materialID].setTexture(this.textures[textureID][0]);
+        }
+        if (materialID != null) {
+            this.materials[materialID].apply();
+        }
+        node.leaves[i].updateTexCoords(ampS, ampT);
         node.leaves[i].display();
     }
     this.scene.popMatrix();

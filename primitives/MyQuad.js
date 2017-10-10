@@ -13,8 +13,8 @@ function MyQuad(scene, leftX, topY, rightX, bottomY) {
 
 	this.minS = 0;
 	this.minT = 0;
-	this.maxS = 1;
-	this.maxT = 1;
+	this.maxS = rightX - leftX;
+	this.maxT = topY - bottomY;
 	
 	this.initBuffers();
 };

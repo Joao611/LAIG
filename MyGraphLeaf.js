@@ -27,3 +27,15 @@ function MyGraphLeaf(graph, xmlelem) {
 MyGraphLeaf.prototype.display = function() {
     this.primitive.display();
 }
+
+MyGraphLeaf.prototype.updateTexCoords = function(ampS, ampT) {
+    this.originalTexCoords = this.primitive.texCoords.slice();
+    for (let i = 0; i < this.primitive.texCoords.length; i += 2) {
+        this.primitive.texCoords[i] /= ampS;
+    }
+    for (let i = 1; i < this.primitive.texCoords.length; i += 2) {
+        this.primitive.texCoords[i] /= ampT;
+    }
+    this.primitive.updateTexCoordsGLBuffers();
+    this.primitive.texCoords = this.originalTexCoords;
+}
