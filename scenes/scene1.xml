@@ -227,7 +227,7 @@
         <ROTATION axis="x" angle="90" />
 
         <DESCENDANTS>
-            <LEAF type="cylinder" args="1 0.5 0.5 1 10 1 0" />
+            <LEAF type="cylinder" args="1 0.5 0.5 1 10 1 1" />
         </DESCENDANTS>
     </NODE>
 
