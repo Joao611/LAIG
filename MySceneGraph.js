@@ -1434,10 +1434,10 @@ MySceneGraph.prototype.displayScene = function() {
 MySceneGraph.prototype.displayNode = function(node, materialID, textureID, ampS, ampT, appliedMaterial) {
     this.scene.pushMatrix();
     this.scene.multMatrix(node.transformMatrix);
-    if (materialID == null && node.materialID != "null") {
+    if (node.materialID != "null") {
         materialID = node.materialID;
     }
-    if (textureID == null && (node.textureID != null && node.textureID != "null" && node.textureID != "clear")) {
+    if (node.textureID != "null" && node.textureID != "clear") {
         textureID = node.textureID;
         ampS = this.textures[textureID][1];
         ampT = this.textures[textureID][2];
