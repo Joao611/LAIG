@@ -4,7 +4,7 @@
 **/
 
 function MyGraphLeaf(graph, xmlelem) {
-    this.type = graph.reader.getItem(xmlelem, 'type', ['rectangle', 'cylinder', 'sphere', 'triangle']);
+    this.type = graph.reader.getItem(xmlelem, 'type', ['rectangle', 'cylinder', 'sphere', 'triangle', 'patch']);
     let args = graph.reader.getString(xmlelem, 'args');
     let regex = /[+-]?\d+(\.\d+)?/g;
     let argList = args.match(regex).map(function(v) { return parseFloat(v); }); //regex magic
@@ -21,14 +21,22 @@ function MyGraphLeaf(graph, xmlelem) {
         case "triangle":
             this.primitive = new MyTriangle(graph.scene,  argList[0], argList[1], argList[2], argList[3], argList[4],  argList[5], argList[6], argList[7], argList[8]);
             break;
+        case "patch":
+            break;
     }
 }
 
 MyGraphLeaf.prototype.display = function() {
+    if (this.type == "patch") {
+        return;
+    }
     this.primitive.display();
 }
 
 MyGraphLeaf.prototype.updateTexCoords = function(ampS, ampT) {
+    if (this.type == "patch") {
+        return;
+    }
     this.originalTexCoords = this.primitive.texCoords.slice();
     for (let i = 0; i < this.primitive.texCoords.length; i += 2) {
         this.primitive.texCoords[i] /= ampS;
