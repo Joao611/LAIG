@@ -38,34 +38,29 @@
  	  0, 0, 1,
  	];
 
-    this.ab =Math.sqrt(Math.pow(this.x2-this.x1 ,2)
+    let b = Math.sqrt(Math.pow(this.x2-this.x1 ,2)
                    + Math.pow(this.y2-this.y1 ,2)
                    + Math.pow(this.z2-this.z1 ,2));
                    
-    this.ac =Math.sqrt(Math.pow(this.x1-this.x3 ,2)
+    let a = Math.sqrt(Math.pow(this.x1-this.x3 ,2)
                    + Math.pow(this.y1-this.y3 ,2)
                    + Math.pow(this.z1-this.z3 ,2));
 
-    this.bc = Math.sqrt(Math.pow(this.x2 - this.x3, 2)
+    let c = Math.sqrt(Math.pow(this.x2 - this.x3, 2)
  	                   + Math.pow(this.y2 - this.y3, 2)
  	                   + Math.pow(this.z2 - this.z3, 2));
   	                  
-    this.beta= Math.acos(
-           ( Math.pow(this.bc, 2)
-           - Math.pow(this.ac,2)
-           + Math.pow(this.ab, 2))
-           / (2*this.ab*this.bc)
-           );
+    let cosBeta = (a*a - b*b + c*c) / (2*a*c);
+    let sinBeta = Math.sqrt(1 - cosBeta*cosBeta);
 
-  this.ptX = this.ab-this.bc*Math.cos(this.beta);
-  this.ptY = this.bc*Math.sin(this.beta);
-  this.texCoords=[
-    0,0,
-    this.bc,0,
-    this.ptX,1-this.ptY
-  ];
+    let ptX = c - a * cosBeta;
+    let ptY = a * sinBeta;
 
-
+    this.texCoords=[
+      0, 0,
+      c, 0,
+      ptX, 1 - ptY
+    ];
 
  	this.primitiveType = this.scene.gl.TRIANGLES;
  	this.initGLBuffers();
