@@ -429,11 +429,34 @@
 		<TEXTURE id="null" />
 
         <TRANSLATION x="0" y="1.3295" z="0" />
+
+        <DESCENDANTS>
+            <NODEREF id="tiger_hull_front_top_plate" />
+            <NODEREF id="tiger_front_mg" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="tiger_hull_front_top_plate">
+        <MATERIAL id="null" />
+		<TEXTURE id="null" />
+
         <ROTATION axis="x" angle="-9" />
         <SCALE sx="3.140" sy="0.4505" sz="1" />
 
         <DESCENDANTS>
-			<LEAF  type="rectangle" args="0 1 1 0" />
+			<LEAF type="rectangle" args="0 1 1 0" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="tiger_front_mg">
+        <MATERIAL id="null" />
+		<TEXTURE id="null" />
+
+        <TRANSLATION x="0.8" y="0.2" z="-0.15" />
+
+        <DESCENDANTS>
+			<LEAF type="sphere" args="0.2 20 20" />
+            <LEAF type="cylinder" args="0.5 0.02 0.02 1 10 0 0" />
         </DESCENDANTS>
     </NODE>
 
@@ -569,20 +592,20 @@
     <NODE id="tiger_track_left">
         <MATERIAL id="null" />
 		<TEXTURE id="null" />
-		
+
 		<TRANSLATION x="-0.5" y="0" z="0" />
-		
+
         <DESCENDANTS>
 			<NODEREF id="tiger_track" />
         </DESCENDANTS>
     </NODE>
-	
+
 	<NODE id="tiger_track_right">
         <MATERIAL id="null" />
 		<TEXTURE id="null" />
 
 		<TRANSLATION x="2.640" y="0" z="0" />
-		
+
         <DESCENDANTS>
 			<NODEREF id="tiger_track" />
         </DESCENDANTS>
@@ -599,7 +622,7 @@
 			<NODEREF id="tiger_track_back" />
         </DESCENDANTS>
     </NODE>
-	
+
     <NODE id="tiger_track_top">
         <MATERIAL id="null" />
 		<TEXTURE id="tank_track_top" />
@@ -622,11 +645,11 @@
 			<NODEREF id="cube" />
         </DESCENDANTS>
     </NODE>
-	
+
 	<NODE id="tiger_track_front">
         <MATERIAL id="null" />
 		<TEXTURE id="tank_track_front" />
-		
+
 		<TRANSLATION x="0" y="0" z="6.4" />
         <SCALE sx="1" sy="1" sz="0.1" />
 
@@ -634,7 +657,7 @@
 			<NODEREF id="cube" />
         </DESCENDANTS>
     </NODE>
-	
+
 	<NODE id="tiger_track_back">
         <MATERIAL id="null" />
 		<TEXTURE id="tank_track_front" />
@@ -645,7 +668,7 @@
 			<NODEREF id="cube" />
         </DESCENDANTS>
     </NODE>
-	
+
 </NODES>
 
 </SCENE>

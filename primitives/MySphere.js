@@ -4,32 +4,32 @@
  */
 
 function MySphere(scene, radius, slices, stacks) {
- 	CGFobject.call(this,scene);
+	CGFobject.call(this,scene);
 
 	this.radius = radius;
 	this.slices = slices;
 	this.stacks = stacks;
 
- 	this.initBuffers();
- };
+	this.initBuffers();
+};
 
- MySphere.prototype = Object.create(CGFobject.prototype);
- MySphere.prototype.constructor = MySphere;
+MySphere.prototype = Object.create(CGFobject.prototype);
+MySphere.prototype.constructor = MySphere;
 
- MySphere.prototype.initBuffers = function() {
+MySphere.prototype.initBuffers = function() {
 
-this.vertices = [];
-this.indices = [];
-this.normals = [];
-this.texCoords = [];
+	this.vertices = [];
+	this.indices = [];
+	this.normals = [];
+	this.texCoords = [];
 
-var sliceStep = (2 * Math.PI)/ this.slices;
-var stackStep = Math.PI/ this.stacks;
+	var sliceStep = (2 * Math.PI)/ this.slices;
+	var stackStep = Math.PI/ this.stacks;
 
-var actStack  = 0;
-var actSlice = 0;
+	var actStack  = 0;
+	var actSlice = 0;
 
-for(var i = 0 ; i <= this.stacks ; i++){
+	for(let i = 0 ; i <= this.stacks ; i++){
 		actStack = i * stackStep;
 		for(var j = 0 ; j <= this.slices; j++){
 			actSlice = j * sliceStep;
@@ -45,15 +45,15 @@ for(var i = 0 ; i <= this.stacks ; i++){
 	}
 
 
-for(var i = 0 ; i < this.stacks ; i++){
+	for(var i = 0 ; i < this.stacks ; i++){
  		for(var j = 0; j < this.slices ; j++){
       		var x = i * (this.slices + 1) + j;
      		var y = (i + 1) * (this.slices + 1) + j;
- 				this.indices.push(x,  (i + 1) * (this.slices + 1) + j + 1, y);
-				this.indices.push(x,   i * (this.slices + 1) + j + 1, y + 1);
+ 			this.indices.push(x,  (i + 1) * (this.slices + 1) + j + 1, y);
+			this.indices.push(x,   i * (this.slices + 1) + j + 1, y + 1);
 		}
 	}
 
  	this.primitiveType = this.scene.gl.TRIANGLES;
  	this.initGLBuffers();
- };
+};
