@@ -603,7 +603,7 @@
 	<NODE id="tiger_track_right">
         <MATERIAL id="null" />
 		<TEXTURE id="null" />
-
+		
 		<TRANSLATION x="2.640" y="0" z="0" />
 
         <DESCENDANTS>

@@ -22,6 +22,14 @@ function MyGraphLeaf(graph, xmlelem) {
             this.primitive = new MyTriangle(graph.scene,  argList[0], argList[1], argList[2], argList[3], argList[4],  argList[5], argList[6], argList[7], argList[8]);
             break;
         case "patch":
+            let controlVertexes = [];
+            for (let line = 0; line < xmlelem.children.length; line++) {
+                let cpline = [];
+                for (let point = 0; point < xmlelem.children[line].length; point++) {
+
+                }
+            }
+            this.primitive = new CGFnurbsSurface(argList[0], argList[1], controlVertexes);
             break;
     }
 }
