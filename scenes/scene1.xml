@@ -53,6 +53,23 @@
         <specular r="0.6" g="0.6" b="0.6" a="1.0" />
     </LIGHT>
 
+       <LIGHT id="light4">
+        <enable value ="1" />
+        <position x="15" y="10" z="10" w="1" />
+        <ambient r="0.2" g="0.2" b="0.2" a="1.0" />
+        <diffuse r="0.6" g="0.6" b="0.6" a="1.0" />
+        <specular r="0.6" g="0.6" b="0.6" a="1.0" />
+    </LIGHT>
+
+     <LIGHT id="light5">
+        <enable value ="1" />
+        <position x="-10" y="10" z="10" w="1" />
+        <ambient r="0.2" g="0.2" b="0.2" a="1.0" />
+        <diffuse r="0.6" g="0.6" b="0.6" a="1.0" />
+        <specular r="0.6" g="0.6" b="0.6" a="1.0" />
+    </LIGHT>
+
+
 </LIGHTS>
 
 <!-- Textures -->
@@ -107,6 +124,16 @@
         <amplif_factor s="1" t="1" />
     </TEXTURE>
 
+	<TEXTURE id="tank_camouflage">
+        <file path="images/camouflage.jpg" />
+        <amplif_factor s="1" t="1" />
+    </TEXTURE>
+
+	<TEXTURE id="number">
+        <file path="images/7.jpg" />
+        <amplif_factor s="1" t="1" />
+    </TEXTURE>
+	
 </TEXTURES>
 
 
@@ -234,7 +261,7 @@
 
     <NODE id="tiger_cupola">
         <MATERIAL id="null" />
-        <TEXTURE id="null" />
+        <TEXTURE id="tank_camouflage" />
 
         <TRANSLATION x="0.540" y="0" z="0" />
         <TRANSLATION x="1.5" y="1.265" z="1" />
@@ -354,7 +381,7 @@
 
     <NODE id="tiger_barrel_medium_section">
         <MATERIAL id="null" />
-		<TEXTURE id="null" />
+		<TEXTURE id="tank_camouflage" />
 
         <TRANSLATION x="0" y="0" z="1" />
 
@@ -394,7 +421,7 @@
 		<DESCENDANTS>
 			<NODEREF id="tiger_hull_top" />
 			<NODEREF id="tiger_front_plate" />
-			<!--<NODEREF id="tiger_left_plate" /> -->
+			<NODEREF id="tiger_left_plate" />
 			<NODEREF id="tiger_right_plate" />
 			<NODEREF id="tiger_hull_rear_plate" />
             <NODEREF id="tiger_hull_bottom_plate" />
@@ -467,7 +494,7 @@
 
     <NODE id="tiger_hull_front_second_top">
         <MATERIAL id="null" />
-		<TEXTURE id="null" />
+		<TEXTURE id="tank_camouflage" />
 
         <TRANSLATION x="0" y="1.1125" z="1.2619" />
         <ROTATION axis="x" angle="-80" />
@@ -480,7 +507,7 @@
 
     <NODE id="tiger_hull_front_second_bottom">
         <MATERIAL id="null" />
-		<TEXTURE id="null" />
+		<TEXTURE id="tank_camouflage" />
 
         <TRANSLATION x="0" y="0.100" z="0.7897" />
         <ROTATION axis="x" angle="25" />
@@ -509,6 +536,17 @@
 		<TEXTURE id="null" />
 
         <TRANSLATION x="3.140" y="0" z="0" />
+
+		<DESCENDANTS>
+			<NODEREF id="tiger_side_plate" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="tiger_left_plate">
+        <MATERIAL id="null" />
+		<TEXTURE id="null" />
+
+        <TRANSLATION x="0" y="0" z="0" />
 
 		<DESCENDANTS>
 			<NODEREF id="tiger_side_plate" />
@@ -573,7 +611,7 @@
 
     <NODE id="tiger_hull_bottom_plate">
         <MATERIAL id="null" />
-		<TEXTURE id="null" />
+		<TEXTURE id="tank_camouflage" />
 
         <TRANSLATION x="0" y="0" z="0.278" />
         <SCALE sx="3.140" sy="1" sz="5.3696" />
