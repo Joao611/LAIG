@@ -707,13 +707,13 @@
 			<NODEREF id="tiger_track_bottom" />
 			<NODEREF id="tiger_track_front" />
 			<NODEREF id="tiger_track_back" />
-      <NODEREF id="tiger_track_wheels" />
+            <NODEREF id="tiger_track_wheels" />
         </DESCENDANTS>
     </NODE>
 
     <NODE id="tiger_track_wheels">
       <MATERIAL id="null" />
-      <TEXTURE id="null" />
+      <TEXTURE id="tank_wheel" />
 
 <DESCENDANTS>
   <NODEREF id = "wheel1"/>
@@ -732,7 +732,7 @@
 
   <NODE id="wheel1">
   <MATERIAL id="null" />
-  <TEXTURE id="tank_wheel"/>
+  <TEXTURE id="null"/>
   <TRANSLATION x="0" y="0.55" z="0.55" />
   <ROTATION axis="Y" angle="90" />
   <SCALE sx="0.9" sy="0.9" sz="1" />
@@ -744,7 +744,7 @@
 
 <NODE id="wheel2">
 <MATERIAL id="null" />
-<TEXTURE id="tank_wheel"/>
+<TEXTURE id="null"/>
 <TRANSLATION x="0.2" y="0.55" z="1.30" />
 <ROTATION axis="Y" angle="90" />
 <SCALE sx="0.9" sy="0.9" sz="1" />
@@ -756,7 +756,7 @@
 
 <NODE id="wheel3">
 <MATERIAL id="null" />
-<TEXTURE id="tank_wheel"/>
+<TEXTURE id="null"/>
 <TRANSLATION x="0" y="0.55" z="2.05" />
 <ROTATION axis="Y" angle="90" />
 <SCALE sx="0.9" sy="0.9" sz="1" />
@@ -768,7 +768,7 @@
 
 <NODE id="wheel4">
 <MATERIAL id="null" />
-<TEXTURE id="tank_wheel" />
+<TEXTURE id="null" />
 <TRANSLATION x="0.2" y="0.55" z="2.80" />
 <ROTATION axis="Y" angle="90" />
 <SCALE sx="0.9" sy="0.9" sz="1" />
@@ -780,7 +780,7 @@
 
 <NODE id="wheel5">
 <MATERIAL id="null" />
-<TEXTURE id="tank_wheel" />
+<TEXTURE id="null" />
 <TRANSLATION x="0" y="0.55" z="3.55" />
 <ROTATION axis="Y" angle="90" />
 <SCALE sx="0.9" sy="0.9" sz="1" />
@@ -792,7 +792,7 @@
 
 <NODE id="wheel6">
 <MATERIAL id="null" />
-<TEXTURE id="tank_wheel" />
+<TEXTURE id="null" />
 <TRANSLATION x="0.2" y="0.55" z="4.30" />
 <ROTATION axis="Y" angle="90" />
 <SCALE sx="0.9" sy="0.9" sz="1" />
@@ -804,7 +804,7 @@
 
 <NODE id="wheel7">
 <MATERIAL id="null" />
-<TEXTURE id="tank_wheel" />
+<TEXTURE id="null" />
 <TRANSLATION x="0" y="0.55" z="5.05" />
 <ROTATION axis="Y" angle="90" />
 <SCALE sx="0.9" sy="0.9" sz="1" />
@@ -816,7 +816,7 @@
 
 <NODE id="wheel8">
 <MATERIAL id="null" />
-<TEXTURE id="tank_wheel" />
+<TEXTURE id="null" />
 <TRANSLATION x="0.2" y="0.55" z="5.80" />
 <ROTATION axis="Y" angle="90" />
 <SCALE sx="0.9" sy="0.9" sz="1" />
