@@ -590,9 +590,11 @@
 		<TEXTURE id="null" />
 
         <TRANSLATION x="3.140" y="0" z="0" />
+        <ROTATION axis="y" angle="90" />
 
 		<DESCENDANTS>
-			<NODEREF id="tiger_side_plate" />
+			<NODEREF id="tiger_left_plate_front" />
+            <NODEREF id="tiger_left_plate_midback" />
         </DESCENDANTS>
     </NODE>
 
@@ -600,26 +602,15 @@
         <MATERIAL id="null" />
 		<TEXTURE id="null" />
 
-        <TRANSLATION x="0" y="0" z="0" />
-
-		<DESCENDANTS>
-			<NODEREF id="tiger_side_plate" />
-        </DESCENDANTS>
-    </NODE>
-
-    <NODE id="tiger_side_plate">
-        <MATERIAL id="null" />
-		<TEXTURE id="null" />
-
         <ROTATION axis="y" angle="90" />
 
 		<DESCENDANTS>
-            <NODEREF id="tiger_side_plate_front" />
-            <NODEREF id="tiger_side_plate_midback" />
+			<NODEREF id="tiger_right_plate_front" />
+            <NODEREF id="tiger_right_plate_midback" />
         </DESCENDANTS>
     </NODE>
 
-    <NODE id="tiger_side_plate_front">
+    <NODE id="tiger_left_plate_front">
         <MATERIAL id="null" />
 		<TEXTURE id="null" />
 
@@ -636,7 +627,7 @@
         </DESCENDANTS>
     </NODE>
 
-    <NODE id="tiger_side_plate_midback">
+    <NODE id="tiger_left_plate_midback">
         <MATERIAL id="null" />
 		<TEXTURE id="null" />
 
@@ -645,6 +636,83 @@
 		<DESCENDANTS>
             <LEAF type="rectangle" args="-4.722 1.780 0 0" />
 			<LEAF type="triangle" args="0 0 0  0.278 1.780 0  0 1.780 0" />
+        </DESCENDANTS>
+    </NODE>
+
+     <NODE id="tiger_right_plate_front">
+        <MATERIAL id="null" />
+		<TEXTURE id="null" />
+
+        <TRANSLATION x="-5" y="0" z="0" />
+
+		<DESCENDANTS>
+            <NODEREF id="tiger_right_plate_front_inverted_quad1" />
+            <NODEREF id="tiger_right_plate_front_inverted_quad2" />
+            <NODEREF id="tiger_right_plate_front_inverted_quad3" />
+            <LEAF type="triangle" args="-0.0696 1.335 0  0 1.780 0   0 1.335 0" />
+            <LEAF type="triangle" args="-0.0696 1.1125 0  -1.2619 1.1125 0  -0.0696 1.335 0" />
+            <LEAF type="triangle" args="-0.7898 0.100 0 -1.2619 1.1125 0  -0.7898 1.1125 0" />
+            <LEAF type="triangle" args="-0.5935 0 0  -0.7898 0.100 0  -0.5935 0.100 0" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="tiger_right_plate_midback">
+        <MATERIAL id="null" />
+		<TEXTURE id="null" />
+
+        <TRANSLATION x="-0.278" y="0" z="0" />
+
+		<DESCENDANTS>
+            <NODEREF id="tiger_right_plate_midback_inverted_quad" />
+			<LEAF type="triangle" args="0.278 1.780 0  0 0 0  0 1.780 0" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="tiger_right_plate_front_inverted_quad1">
+        <MATERIAL id="null" />
+		<TEXTURE id="null" />
+
+        <TRANSLATION x="-0.0696" y="0" z="0" />
+        <ROTATION axis="y" angle="180" />
+
+		<DESCENDANTS>
+            <LEAF type="rectangle" args="-0.0696 1.335 0 1.1125" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="tiger_right_plate_front_inverted_quad2">
+        <MATERIAL id="null" />
+		<TEXTURE id="null" />
+
+        <TRANSLATION x="-0.7898" y="0" z="0" />
+        <ROTATION axis="y" angle="180" />
+
+		<DESCENDANTS>
+            <LEAF type="rectangle" args="-0.7898 1.1125 0 0.100" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="tiger_right_plate_front_inverted_quad3">
+        <MATERIAL id="null" />
+		<TEXTURE id="null" />
+
+        <TRANSLATION x="-0.5935" y="0" z="0" />
+        <ROTATION axis="y" angle="180" />
+
+		<DESCENDANTS>
+            <LEAF type="rectangle" args="-0.5935 0.100 0 0" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="tiger_right_plate_midback_inverted_quad">
+        <MATERIAL id="null" />
+		<TEXTURE id="null" />
+
+        <TRANSLATION x="-4.722" y="0" z="0" />
+        <ROTATION axis="y" angle="180" />
+
+		<DESCENDANTS>
+            <LEAF type="rectangle" args="-4.722 1.780 0 0" />
         </DESCENDANTS>
     </NODE>
 
