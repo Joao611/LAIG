@@ -29,14 +29,14 @@
  	];
 
  	this.indices = [
- 	  0, 1, 2, 
- 	  0, 2, 1,
+ 	  0, 1, 2
+//  	  0, 2, 1,
  	];
 
  	this.normals = [
  	  0, 0, 1,
  	  0, 0, 1,
- 	  0, 0, 1,
+ 	  0, 0, 1
  	];
 
     let b = Math.sqrt(Math.pow(this.x3-this.x1 ,2)
