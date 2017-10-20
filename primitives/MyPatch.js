@@ -2,18 +2,21 @@
  * MyPatch
  * @constructor
  */
-function MyPatch(degree1, degree2, controlVertexes) {
+function MyPatch(scene, uDivs, vDivs, controlVertexes) {
 	CGFobject.call(this, scene);
     
-    let knots1 = this.getKnotsVector(degree1);
-	let knots2 = this.getKnotsVector(degree2);
+	let uOrder = controlVertexes[0].length - 1;
+	let vOrder = controlVertexes[1].length - 1;
 
-	let nurbsSurface = new CGFnurbsSurface(degree1, degree2, knots1, knots2, controlVertexes);
+    let knots1 = this.getKnotsVector(uOrder);
+	let knots2 = this.getKnotsVector(vOrder);
+
+	let nurbsSurface = new CGFnurbsSurface(uOrder, vOrder, knots1, knots2, controlVertexes);
 	getSurfacePoint = function(u, v) {
 		return nurbsSurface.getPoint(u, v);
 	};
 	
-	this.surface = new CGFnurbsObject(this, getSurfacePoint, 20, 20);
+	this.surface = new CGFnurbsObject(scene, getSurfacePoint, uDivs, vDivs);
 };
 
 MyPatch.prototype = Object.create(CGFobject.prototype);

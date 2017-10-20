@@ -25,11 +25,18 @@ function MyGraphLeaf(graph, xmlelem) {
             let controlVertexes = [];
             for (let line = 0; line < xmlelem.children.length; line++) {
                 let cpline = [];
-                for (let point = 0; point < xmlelem.children[line].length; point++) {
-
+                for (let point = 0; point < xmlelem.children[line].children.length; point++) {
+                    let xmlPoint = xmlelem.children[line].children[point];
+                    let x = graph.reader.getString(xmlPoint, 'xx');
+                    let y = graph.reader.getString(xmlPoint, 'yy');
+                    let z = graph.reader.getString(xmlPoint, 'zz');
+                    let w = graph.reader.getString(xmlPoint, 'ww');
+                    let cppoint = [x, y, z, w];
+                    cpline.push(cppoint);
                 }
+                controlVertexes.push(cpline);
             }
-            this.primitive = new CGFnurbsSurface(argList[0], argList[1], controlVertexes);
+            this.primitive = new MyPatch(graph.scene, argList[0], argList[1], controlVertexes);
             break;
     }
 }

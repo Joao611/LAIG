@@ -133,7 +133,7 @@
         <file path="images/7.jpg" />
         <amplif_factor s="1" t="1" />
     </TEXTURE>
-	
+
 </TEXTURES>
 
 
@@ -220,6 +220,21 @@
 
         <DESCENDANTS>
             <NODEREF id="PzKpfw_Tiger" />
+            <NODEREF id="ground" />
+        </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="ground">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <SCALE sx="100" sy="1" sz="100" />
+        <TRANSLATION x="-0.5" y="0" z="0.5" />
+        <ROTATION axis="x" angle="-90" />
+
+        <DESCENDANTS>
+            <LEAF type="rectangle" args="0 1 1 0" />
         </DESCENDANTS>
 
     </NODE>
@@ -646,7 +661,7 @@
 	<NODE id="tiger_track_right">
         <MATERIAL id="null" />
 		<TEXTURE id="null" />
-		
+
 		<TRANSLATION x="2.640" y="0" z="0" />
     <TRANSLATION x="1" y="0" z="6.5" />
     <ROTATION axis="Y" angle="180" />
