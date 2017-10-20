@@ -137,15 +137,13 @@
 
 	<TEXTURE id="field">
         <file path="images/field3.jpg" />
-        <amplif_factor s="1" t="1" />
+        <amplif_factor s="0.3" t="0.3" />
     </TEXTURE>
 
     <TEXTURE id="mountain">
         <file path="images/mountain.jpg" />
         <amplif_factor s="1" t="1" />
     </TEXTURE>
-
-    
 
 </TEXTURES>
 
