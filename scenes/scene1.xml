@@ -222,8 +222,8 @@
         <DESCENDANTS>
             <NODEREF id="PzKpfw_Tiger" />
             <NODEREF id="ground" />
+            <NODEREF id="mountain" />
         </DESCENDANTS>
-
     </NODE>
 
     <NODE id="ground">
@@ -237,9 +237,35 @@
         <DESCENDANTS>
             <LEAF type="rectangle" args="0 1 1 0" />
         </DESCENDANTS>
-
     </NODE>
 
+    <NODE id="mountain">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="10" y="-2" z="0" />
+        <SCALE sx="2" sy="1" sz="2" />
+
+        <DESCENDANTS>
+            <LEAF type="patch" args="20 20">
+                <CPLINE>
+					<CPOINT xx="0" yy="0" zz="0" ww="1" />
+					<CPOINT xx="5" yy="0" zz="0" ww="1" />
+					<CPOINT xx="10" yy="0" zz="0" ww="1" />
+				</CPLINE>
+				<CPLINE>
+					<CPOINT xx="0" yy="0" zz="5" ww="1" />
+					<CPOINT xx="5" yy="12" zz="5" ww="5" />
+					<CPOINT xx="10" yy="0" zz="5" ww="1" />
+				</CPLINE>
+                <CPLINE>
+					<CPOINT xx="0" yy="0" zz="10" ww="1" />
+					<CPOINT xx="5" yy="0" zz="10" ww="1" />
+					<CPOINT xx="10" yy="0" zz="10" ww="1" />
+				</CPLINE>
+			</LEAF>
+        </DESCENDANTS>
+    </NODE>
 
 	<NODE id="PzKpfw_Tiger">
 		<MATERIAL id="tigerMaterial" />
