@@ -42,9 +42,6 @@ function MyGraphLeaf(graph, xmlelem) {
 }
 
 MyGraphLeaf.prototype.display = function() {
-    if (this.type == "patch") {
-        return;
-    }
     this.primitive.display();
 }
 

@@ -23,7 +23,6 @@ MyPatch.prototype = Object.create(CGFobject.prototype);
 MyPatch.prototype.constructor = MyPatch;
 
 MyPatch.prototype.getKnotsVector = function(degree) {
-	
 	var v = new Array();
 	for (var i=0; i<=degree; i++) {
 		v.push(0);
