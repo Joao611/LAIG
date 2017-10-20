@@ -30,13 +30,16 @@
 
  	this.indices = [
  	  0, 1, 2
-//  	  0, 2, 1,
  	];
 
+    let side12 = [this.x2-this.x1, this.y2-this.y1, this.z2-this.z1];
+    let side13 = [this.x3-this.x1, this.y3-this.y1, this.z3-this.z1];
+    let normal = crossProduct(side12, side13);
+
  	this.normals = [
- 	  0, 0, 1,
- 	  0, 0, 1,
- 	  0, 0, 1
+ 	  normal[0], normal[1], normal[2],
+ 	  normal[0], normal[1], normal[2],
+ 	  normal[0], normal[1], normal[2]
  	];
 
     let b = Math.sqrt(Math.pow(this.x3-this.x1 ,2)
