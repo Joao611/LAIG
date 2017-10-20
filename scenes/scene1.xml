@@ -135,6 +135,11 @@
     </TEXTURE>
 
 
+	<TEXTURE id="field">
+        <file path="images/field3.jpg" />
+        <amplif_factor s="1" t="1" />
+    </TEXTURE>
+
 </TEXTURES>
 
 
@@ -228,7 +233,7 @@
 
     <NODE id="ground">
         <MATERIAL id="null" />
-        <TEXTURE id="null" />
+        <TEXTURE id="field" />
 
         <SCALE sx="100" sy="1" sz="100" />
         <TRANSLATION x="-0.5" y="0" z="0.5" />
