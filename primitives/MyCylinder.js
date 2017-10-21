@@ -34,7 +34,7 @@ MyCylinder.prototype.initBuffers = function () {
 	this.texCoords = [];
 
 	for (let j = 0; j <= this.stacks; j++) {
-		let radius = this.bottomRadius+(this.topRadius-this.bottomRadius)/(this.stacks-j+1);
+		let radius = this.bottomRadius + (this.topRadius-this.bottomRadius)/this.stacks * j;
 		for (i = 0; i < this.slices; i++) {
 			let x = Math.cos(ang * i)*radius;
 			let y = Math.sin(ang * i)*radius;
