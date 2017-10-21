@@ -145,6 +145,11 @@
         <amplif_factor s="1" t="1" />
     </TEXTURE>
 
+	<TEXTURE id="exhaust">
+        <file path="images/exhaust.jpg" />
+        <amplif_factor s="1" t="1" />
+    </TEXTURE>
+
 </TEXTURES>
 
 
@@ -478,6 +483,8 @@
 			<NODEREF id="tiger_hull_rear_plate" />
             <NODEREF id="tiger_hull_bottom_plate" />
             <NODEREF id="tiger_tracks" />
+            <NODEREF id="tiger_exhaust" />
+            <NODEREF id="tiger_exhaust2" />
         </DESCENDANTS>
 	</NODE>
 
@@ -580,6 +587,30 @@
 
         <DESCENDANTS>
 			<LEAF  type="rectangle" args="0 1 1 0" />
+        </DESCENDANTS>
+    </NODE>
+
+     <NODE id="tiger_exhaust">
+        <MATERIAL id="null" />
+		<TEXTURE id="exhaust" />
+
+        <TRANSLATION x="2" y="1.5" z="-0.2" />
+        <ROTATION axis="x" angle="60" />
+
+        <DESCENDANTS>
+            <LEAF type="cylinder" args="1 0.08 0.08 1 10 0 0" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="tiger_exhaust2">
+        <MATERIAL id="null" />
+		<TEXTURE id="exhaust" />
+
+        <TRANSLATION x="1" y="1.5" z="-0.2" />
+        <ROTATION axis="x" angle="60" />
+
+        <DESCENDANTS>
+            <LEAF type="cylinder" args="1 0.08 0.08 1 10 0 0" />
         </DESCENDANTS>
     </NODE>
 
