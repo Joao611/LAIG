@@ -146,7 +146,7 @@
     </TEXTURE>
 
 	<TEXTURE id="exhaust">
-        <file path="images/exhaust.jpg" />
+        <file path="images/carbon.jpg" />
         <amplif_factor s="1" t="1" />
     </TEXTURE>
 
