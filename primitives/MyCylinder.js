@@ -35,26 +35,21 @@ MyCylinder.prototype.initBuffers = function () {
 
 	for (let j = 0; j <= this.stacks; j++) {
 		let radius = this.bottomRadius + (this.topRadius-this.bottomRadius)/this.stacks * j;
-		for (i = 0; i < this.slices; i++) {
+		for (let i = 0; i <= this.slices; i++) {
 			let x = Math.cos(ang * i)*radius;
 			let y = Math.sin(ang * i)*radius;
 			let z = j*stack_height*this.height;
 			this.vertices.push(x, y, z);
+			this.normals.push(Math.cos(ang * i), Math.sin(ang * i), 0);
 			this.texCoords.push(i/this.slices, j*stack_height);
-		}
-	}
-
-	for (let j = 0; j <= this.stacks; j++) {
-		for (i = 0; i < this.slices; i++) {
-		    this.normals.push(Math.cos(ang * i), Math.sin(ang * i), 0);
 		}
 	}
 
 	let vertsPerRing = this.slices;
 	for (let j = 0; j < this.stacks; j++) {
-		for (i = 0; i < this.slices; i++) {
-			this.indices.push(j*vertsPerRing + i % vertsPerRing, (j+1)*vertsPerRing + (i + 1) % vertsPerRing, (j+1)*vertsPerRing + i % vertsPerRing);
-			this.indices.push(j*vertsPerRing + i % vertsPerRing, j*vertsPerRing + (i + 1) % vertsPerRing, (j+1)*vertsPerRing + (i + 1) % vertsPerRing);
+		for (let i = 0; i <= this.slices; i++) {
+			this.indices.push(j*vertsPerRing + i, (j+1)*vertsPerRing + (i + 1), (j+1)*vertsPerRing + i);
+			this.indices.push(j*vertsPerRing + i, j*vertsPerRing + (i + 1), (j+1)*vertsPerRing + (i + 1));
 		}
 	}
 
