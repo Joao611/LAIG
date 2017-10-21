@@ -1140,7 +1140,7 @@ MySceneGraph.prototype.parseMaterials = function(materialsNode) {
         
         // Creates material with the specified characteristics.
         var newMaterial = new CGFappearance(this.scene);
-        newMaterial.setTextureWrap("REPEAT", "REPEAT");
+        newMaterial.setTextureWrap("CLAMP_TO_EDGE", "CLAMP_TO_EDGE");
         newMaterial.setShininess(shininess);
         newMaterial.setAmbient(ambientComponent[0], ambientComponent[1], ambientComponent[2], ambientComponent[3]);
         newMaterial.setDiffuse(diffuseComponent[0], diffuseComponent[1], diffuseComponent[2], diffuseComponent[3]);
@@ -1443,7 +1443,7 @@ MySceneGraph.prototype.displayNode = function(node, materialID, textureID, ampS,
         ampT = this.textures[textureID][2];
     }
 
-    if (node.textureID == "clear") {
+    if (node.textureID == "clear" && textureID != null) {
         this.textures[textureID][0].unbind();
         textureID = null;
         node.textureID = null;
