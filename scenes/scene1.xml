@@ -594,11 +594,11 @@
         <MATERIAL id="null" />
 		<TEXTURE id="exhaust" />
 
-        <TRANSLATION x="2" y="1.5" z="-0.2" />
-        <ROTATION axis="x" angle="60" />
+        <TRANSLATION x="2" y="1.8" z="-0.2" />
+        <ROTATION axis="x" angle="80" />
 
         <DESCENDANTS>
-            <LEAF type="cylinder" args="1 0.08 0.08 1 10 0 0" />
+            <LEAF type="cylinder" args="1.4 0.25 0.25 1 10 1 1" />
         </DESCENDANTS>
     </NODE>
 
@@ -606,11 +606,11 @@
         <MATERIAL id="null" />
 		<TEXTURE id="exhaust" />
 
-        <TRANSLATION x="1" y="1.5" z="-0.2" />
-        <ROTATION axis="x" angle="60" />
+        <TRANSLATION x="1" y="1.8" z="-0.2" />
+        <ROTATION axis="x" angle="80" />
 
         <DESCENDANTS>
-            <LEAF type="cylinder" args="1 0.08 0.08 1 10 0 0" />
+            <LEAF type="cylinder" args="1.4 0.25 0.25 1 10 1 1" />
         </DESCENDANTS>
     </NODE>
 
