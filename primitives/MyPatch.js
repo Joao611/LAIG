@@ -5,8 +5,8 @@
 function MyPatch(scene, uDivs, vDivs, controlVertexes) {
 	CGFobject.call(this, scene);
     
-	let uOrder = controlVertexes[0].length - 1;
-	let vOrder = controlVertexes[1].length - 1;
+	let uOrder = controlVertexes.length - 1;
+	let vOrder = controlVertexes[0].length - 1;
 
     let knots1 = this.getKnotsVector(uOrder);
 	let knots2 = this.getKnotsVector(vOrder);
