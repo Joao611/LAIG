@@ -164,6 +164,11 @@
         <file path="images/tiger_123_rear_turret.png" />
         <amplif_factor s="1" t="1" />
     </TEXTURE>
+
+    <TEXTURE id="tiger_123_top_turret">
+        <file path="images/tiger_123_top_turret.png" />
+        <amplif_factor s="1" t="1" />
+    </TEXTURE>
 </TEXTURES>
 
 
@@ -332,8 +337,8 @@
             <NODEREF id="tiger_turret_box_right" />
             <NODEREF id="tiger_turret_box_back" />
             <NODEREF id="tiger_turret_box_left" />
-            <NODEREF id="tiger_turret_box_face5" />
-            <NODEREF id="tiger_turret_box_face6" />
+            <NODEREF id="tiger_turret_box_top" />
+            <NODEREF id="tiger_turret_box_bottom" />
         </DESCENDANTS>
     </NODE>
 
@@ -383,9 +388,9 @@
         </DESCENDANTS>
     </NODE>
 
-    <NODE id="tiger_turret_box_face5">
+    <NODE id="tiger_turret_box_top">
         <MATERIAL id="null" />
-        <TEXTURE id="null" />
+        <TEXTURE id="tiger_123_top_turret" />
 
         <TRANSLATION x="0" y="1" z="1" />
         <ROTATION axis="x" angle="-90" />
@@ -395,7 +400,7 @@
         </DESCENDANTS>
     </NODE>
 
-    <NODE id="tiger_turret_box_face6">
+    <NODE id="tiger_turret_box_bottom">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
