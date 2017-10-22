@@ -150,6 +150,20 @@
         <amplif_factor s="1" t="1" />
     </TEXTURE>
 
+    <TEXTURE id="tiger_123_left_turret">
+        <file path="images/tiger_123_left_turret.png" />
+        <amplif_factor s="1" t="1" />
+    </TEXTURE>
+
+    <TEXTURE id="tiger_123_right_turret">
+        <file path="images/tiger_123_right_turret.png" />
+        <amplif_factor s="1" t="1" />
+    </TEXTURE>
+
+    <TEXTURE id="tiger_123_rear_turret">
+        <file path="images/tiger_123_rear_turret.png" />
+        <amplif_factor s="1" t="1" />
+    </TEXTURE>
 </TEXTURES>
 
 
@@ -289,6 +303,7 @@
 		<DESCENDANTS>
 			<NODEREF id="tiger_turret" />
 			<NODEREF id="tiger_hull" />
+            <NODEREF id="tiger_tracks" />
         </DESCENDANTS>
 	</NODE>
 
@@ -296,6 +311,7 @@
         <MATERIAL id="null" />
 		<TEXTURE id="null" />
 
+        <TRANSLATION x="0" y="0.02" z="0" />
         <TRANSLATION x="0.07" y="1.780" z="1" />
 
 		<DESCENDANTS>
@@ -312,7 +328,81 @@
         <SCALE sx="3" sy="1" sz="3" />
 
         <DESCENDANTS>
-            <NODEREF id="cube" />
+            <NODEREF id="tiger_turret_box_front" />
+            <NODEREF id="tiger_turret_box_right" />
+            <NODEREF id="tiger_turret_box_back" />
+            <NODEREF id="tiger_turret_box_left" />
+            <NODEREF id="tiger_turret_box_face5" />
+            <NODEREF id="tiger_turret_box_face6" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="tiger_turret_box_front">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="0" y="0" z="1" />
+
+        <DESCENDANTS>
+            <LEAF type="rectangle" args="0 1 1 0" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="tiger_turret_box_right">
+        <MATERIAL id="null" />
+        <TEXTURE id="tiger_123_right_turret" />
+
+        <ROTATION axis="y" angle="-90" />
+
+        <DESCENDANTS>
+            <LEAF type="rectangle" args="0 1 1 0" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="tiger_turret_box_back">
+        <MATERIAL id="null" />
+        <TEXTURE id="tiger_123_rear_turret" />
+
+        <TRANSLATION x="1" y="0" z="0" />
+        <ROTATION axis="y" angle="180" />
+
+        <DESCENDANTS>
+            <LEAF type="rectangle" args="0 1 1 0" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="tiger_turret_box_left">
+        <MATERIAL id="null" />
+        <TEXTURE id="tiger_123_left_turret" />
+
+        <TRANSLATION x="1" y="0" z="1" />
+        <ROTATION axis="y" angle="90" />
+
+        <DESCENDANTS>
+            <LEAF type="rectangle" args="0 1 1 0" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="tiger_turret_box_face5">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="0" y="1" z="1" />
+        <ROTATION axis="x" angle="-90" />
+
+        <DESCENDANTS>
+            <LEAF type="rectangle" args="0 1 1 0" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="tiger_turret_box_face6">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <ROTATION axis="x" angle="90" />
+
+        <DESCENDANTS>
+            <LEAF type="rectangle" args="0 1 1 0" />
         </DESCENDANTS>
     </NODE>
 
@@ -443,7 +533,7 @@
         <TRANSLATION x="0" y="0" z="1" />
 
 		<DESCENDANTS>
-            <LEAF type="cylinder" args="1 0.1 0.1 1 10 1 0" />
+            <LEAF type="cylinder" args="1 0.15 0.15 1 10 1 0" />
         </DESCENDANTS>
 	</NODE>
 
@@ -454,7 +544,7 @@
         <TRANSLATION x="0" y="0" z="2" />
 
         <DESCENDANTS>
-            <LEAF type="cylinder" args="1 0.05 0.05 1 10 0 0" />
+            <LEAF type="cylinder" args="2 0.1 0.1 1 10 0 0" />
         </DESCENDANTS>
 	</NODE>
 
@@ -462,18 +552,30 @@
         <MATERIAL id="null" />
 		<TEXTURE id="null" />
 
-        <TRANSLATION x="-0.1" y="-0.1" z="-0.1" />
-        <TRANSLATION x="0" y="0" z="3" />
-        <SCALE sx="0.2" sy="0.2" sz="0.2" />
+        <TRANSLATION x="0" y="0" z="4" />
 
         <DESCENDANTS>
-            <NODEREF id="cube" />
+            <LEAF type="cylinder" args="0.2 0.1 0.2 1 10 1 0" />
+            <NODEREF id="tiger_barrel_tip" />
+        </DESCENDANTS>
+	</NODE>
+
+    <NODE id="tiger_barrel_tip">
+        <MATERIAL id="null" />
+		<TEXTURE id="null" />
+
+        <TRANSLATION x="0" y="0" z="0.2" />
+
+        <DESCENDANTS>
+            <LEAF type="cylinder" args="0.15 0.15 0.15 1 10 1 0" />
         </DESCENDANTS>
 	</NODE>
 
     <NODE id="tiger_hull">
         <MATERIAL id="null" />
 		<TEXTURE id="null" />
+
+        <TRANSLATION x="0" y="0.02" z="0" />
 
 		<DESCENDANTS>
 			<NODEREF id="tiger_hull_top" />
@@ -482,7 +584,6 @@
 			<NODEREF id="tiger_right_plate" />
 			<NODEREF id="tiger_hull_rear_plate" />
             <NODEREF id="tiger_hull_bottom_plate" />
-            <NODEREF id="tiger_tracks" />
             <NODEREF id="tiger_exhaust" />
             <NODEREF id="tiger_exhaust2" />
         </DESCENDANTS>
@@ -788,8 +889,8 @@
 		<TEXTURE id="null" />
 
 		<TRANSLATION x="2.640" y="0" z="0" />
-    <TRANSLATION x="1" y="0" z="6.5" />
-    <ROTATION axis="Y" angle="180" />
+        <TRANSLATION x="1" y="0" z="6.5" />
+        <ROTATION axis="Y" angle="180" />
 
         <DESCENDANTS>
 			<NODEREF id="tiger_track" />
