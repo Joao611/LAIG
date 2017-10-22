@@ -41,10 +41,17 @@ function MyGraphLeaf(graph, xmlelem) {
     }
 }
 
+/**
+ * Displays the associated primitive.
+ */
 MyGraphLeaf.prototype.display = function() {
     this.primitive.display();
 }
 
+/**
+ * Updates the internal texture coordinates buffers by dividing by the given amplification factors.
+ * this.texCoords is not modified.
+ */
 MyGraphLeaf.prototype.updateTexCoords = function(ampS, ampT) {
     if (this.type == "patch") {
         return;

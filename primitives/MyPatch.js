@@ -22,6 +22,11 @@ function MyPatch(scene, uDivs, vDivs, controlVertexes) {
 MyPatch.prototype = Object.create(CGFobject.prototype);
 MyPatch.prototype.constructor = MyPatch;
 
+/**
+ * Initializes a knots vector of a given degree.
+ * [(degree+1) 0's, (degree+1) 1's]
+ * @param {int} degree
+ */
 MyPatch.prototype.getKnotsVector = function(degree) {
 	var v = new Array();
 	for (var i=0; i<=degree; i++) {

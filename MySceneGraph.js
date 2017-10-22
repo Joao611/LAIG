@@ -1431,6 +1431,10 @@ MySceneGraph.prototype.displayScene = function() {
 	this.displayNode(rootNode, null, null, 1, 1, false);
 }
 
+/**
+ * Displays the scene, processing each node, starting at the given node.
+ * Must be called from displayScene to start at the root node.
+ */
 MySceneGraph.prototype.displayNode = function(node, materialID, textureID, ampS, ampT, appliedMaterial) {
     this.scene.pushMatrix();
     this.scene.multMatrix(node.transformMatrix);
