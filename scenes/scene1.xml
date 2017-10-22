@@ -169,6 +169,16 @@
         <file path="images/tiger_123_top_turret.png" />
         <amplif_factor s="1" t="1" />
     </TEXTURE>
+
+    <TEXTURE id="tiger_front_turret">
+        <file path="images/tiger_front_turret.png" />
+        <amplif_factor s="1" t="1" />
+    </TEXTURE>
+
+    <TEXTURE id="tiger_hull_front_top">
+        <file path="images/tiger_hull_front_top.png" />
+        <amplif_factor s="1" t="1" />
+    </TEXTURE>
 </TEXTURES>
 
 
@@ -344,7 +354,7 @@
 
     <NODE id="tiger_turret_box_front">
         <MATERIAL id="null" />
-        <TEXTURE id="null" />
+        <TEXTURE id="tiger_front_turret" />
 
         <TRANSLATION x="0" y="0" z="1" />
 
@@ -635,7 +645,7 @@
 
     <NODE id="tiger_hull_front_top_plate">
         <MATERIAL id="null" />
-		<TEXTURE id="null" />
+		<TEXTURE id="tiger_hull_front_top" />
 
         <ROTATION axis="x" angle="-9" />
         <SCALE sx="3.140" sy="0.4505" sz="1" />
@@ -649,10 +659,10 @@
         <MATERIAL id="null" />
 		<TEXTURE id="null" />
 
-        <TRANSLATION x="0.8" y="0.2" z="-0.15" />
+        <TRANSLATION x="1" y="0.15" z="-0.15" />
 
         <DESCENDANTS>
-			<LEAF type="sphere" args="0.2 20 20" />
+			<LEAF type="sphere" args="0.25 20 20" />
             <LEAF type="cylinder" args="0.5 0.02 0.02 1 10 0 0" />
         </DESCENDANTS>
     </NODE>
