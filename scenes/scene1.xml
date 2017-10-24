@@ -623,7 +623,7 @@
 
     <NODE id="tiger_hull_front_top">
         <MATERIAL id="null" />
-		<TEXTURE id="null" />
+		<TEXTURE id="clear" />
 
         <TRANSLATION x="0" y="1.3295" z="0" />
 

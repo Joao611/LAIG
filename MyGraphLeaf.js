@@ -4,7 +4,7 @@
 **/
 
 function MyGraphLeaf(graph, xmlelem) {
-    this.type = graph.reader.getItem(xmlelem, 'type', ['rectangle', 'cylinder', 'sphere', 'triangle', 'patch']);
+    this.type = graph.reader.getItem(xmlelem, 'type', ['rectangle', 'cylinder', 'sphere', 'triangle', 'patch', 'tree']);
     let args = graph.reader.getString(xmlelem, 'args');
     let regex = /[+-]?\d+(\.\d+)?/g;
     let argList = args.match(regex).map(function(v) { return parseFloat(v); }); //regex magic
@@ -38,6 +38,9 @@ function MyGraphLeaf(graph, xmlelem) {
             }
             this.primitive = new MyPatch(graph.scene, argList[0], argList[1], controlVertexes);
             break;
+        case "tree":
+            this.primitive = new MyTree(graph.scene, argList[0], argList[1], argList[2], argList[3], argList[4]);
+            break;
     }
 }
 
@@ -53,7 +56,7 @@ MyGraphLeaf.prototype.display = function() {
  * this.texCoords is not modified.
  */
 MyGraphLeaf.prototype.updateTexCoords = function(ampS, ampT) {
-    if (this.type == "patch") {
+    if (this.type == "patch" || this.type == 'tree') {
         return;
     }
     this.originalTexCoords = this.primitive.texCoords.slice();
