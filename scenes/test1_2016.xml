@@ -83,7 +83,7 @@
     <MATERIAL id="defaultMaterial">
         <shininess value="1" />
         <specular r="0.0" g="0.0" b="0.0" a="1" />
-        <diffuse r="0.4" g="0.4" b="0.4" a="1" />
+        <diffuse r="1" g="0" b="0" a="1" />
         <ambient r="0.4" g="0.4" b="0.4" a="1" />
         <emission r="0.0" g="0.0" b="0.0" a="1" />
     </MATERIAL>
@@ -96,7 +96,7 @@
     <ROOT id="root" />
 
     <NODE id="root">
-        <MATERIAL id="defaultMaterial" />
+        <MATERIAL id="defaultMaterial" invert="1" />
         <TEXTURE id="null" />
 
         <DESCENDANTS>

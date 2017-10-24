@@ -1217,8 +1217,10 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
                 return "unable to parse material ID (node ID = " + nodeID + ")";
             if (materialID != "null" && this.materials[materialID] == null )
                 return "ID does not correspond to a valid material (node ID = " + nodeID + ")";
+            let materialInvert = this.reader.getFloat(nodeSpecs[materialIndex], 'invert');
             
             this.nodes[nodeID].materialID = materialID;
+            this.nodes[nodeID].materialInvert = materialInvert;
             
             // Retrieves texture ID.
             var textureIndex = specsNames.indexOf("TEXTURE");
@@ -1428,18 +1430,21 @@ MySceneGraph.generateRandomString = function(length) {
  */
 MySceneGraph.prototype.displayScene = function() {	
 	let rootNode = this.nodes[this.idRoot];
-	this.displayNode(rootNode, null, null, 1, 1, false);
+	this.displayNode(rootNode, null, null, 1, 1, false, false);
 }
 
 /**
  * Displays the scene, processing each node, starting at the given node.
  * Must be called from displayScene to start at the root node.
  */
-MySceneGraph.prototype.displayNode = function(node, materialID, textureID, ampS, ampT, appliedMaterial) {
+MySceneGraph.prototype.displayNode = function(node, materialID, textureID, ampS, ampT, appliedMaterial, materialInvert) {
     this.scene.pushMatrix();
     this.scene.multMatrix(node.transformMatrix);
     if (node.materialID != "null") {
         materialID = node.materialID;
+    }
+    if (node.materialInvert != null) {
+        materialInvert = node.materialInvert;
     }
     if (node.textureID != null && node.textureID != "null" && node.textureID != "clear") {
         textureID = node.textureID;
@@ -1456,15 +1461,27 @@ MySceneGraph.prototype.displayNode = function(node, materialID, textureID, ampS,
     for (let i = 0; i < node.children.length; i++) { //missing transformations
         let childName = node.children[i];
         let child = this.nodes[childName];
-        this.displayNode(child, materialID, textureID, ampS, ampT, appliedMaterial);
+        this.displayNode(child, materialID, textureID, ampS, ampT, appliedMaterial, materialInvert);
 
     }
     for (let i = 0; i < node.leaves.length; i++) {
-        if (materialID != null) {
-            this.materials[materialID].apply();
-        }
         if (textureID != null) {
             this.textures[textureID][0].bind();
+        }
+        let material = this.materials[materialID];
+        if (materialInvert) {
+            material['ambient'] = [1 - material['ambient'][0], 1 - material['ambient'][1], 1 - material['ambient'][2]];
+            material['diffuse'] = [1 - material['diffuse'][0], 1 - material['diffuse'][1], 1 - material['diffuse'][2]];
+            material['specular'] = [1 - material['specular'][0], 1 - material['specular'][1], 1 - material['specular'][2]];
+        }
+        if (materialID != null) {
+            material.apply();
+            //this.materials[materialID].apply();
+        }
+        if (materialInvert) {
+            material['ambient'] = [1 - material['ambient'][0], 1 - material['ambient'][1], 1 - material['ambient'][2]];
+            material['diffuse'] = [1 - material['diffuse'][0], 1 - material['diffuse'][1], 1 - material['diffuse'][2]];
+            material['specular'] = [1 - material['specular'][0], 1 - material['specular'][1], 1 - material['specular'][2]];
         }
         node.leaves[i].updateTexCoords(ampS, ampT);
         node.leaves[i].display();
