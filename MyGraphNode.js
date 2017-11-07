@@ -22,6 +22,8 @@ function MyGraphNode(graph, nodeID) {
 
     this.transformMatrix = mat4.create();
     mat4.identity(this.transformMatrix);
+
+    this.animations = [];
 }
 
 /**
@@ -38,4 +40,6 @@ MyGraphNode.prototype.addLeaf = function(leaf) {
     this.leaves.push(leaf);
 }
 
-
+MyGraphNode.prototype.addAnimation = function(anim) {
+    this.animations.push(anim);
+}

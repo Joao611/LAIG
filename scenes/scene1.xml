@@ -237,6 +237,13 @@
 
 </MATERIALS>
 
+<!-- The animations -->
+<ANIMATIONS>
+    <ANIMATION id="transTest" speed="1" type="linear">
+        <controlpoint xx="0" yy="0" zz="0" />
+        <controlpoint xx="4" yy="0" zz="0" />
+    </ANIMATION>
+</ANIMATIONS>
 
 <!-- The leaves -->
 <LEAVES>
@@ -304,6 +311,10 @@
 	<NODE id="PzKpfw_Tiger">
 		<MATERIAL id="tigerMaterial" />
 		<TEXTURE id="tiger_solid_color" />
+
+        <ANIMATIONREFS>
+            <ANIMATIONREF id="transTest" />
+        </ANIMATIONREFS>
 
 		<DESCENDANTS>
 			<NODEREF id="tiger_turret" />
@@ -945,7 +956,7 @@
     <NODE id="wheel1">
         <MATERIAL id="null" />
         <TEXTURE id="null"/>
-        
+
         <TRANSLATION x="0" y="0.55" z="0.55" />
         <ROTATION axis="Y" angle="90" />
         <SCALE sx="0.9" sy="0.9" sz="1" />
@@ -958,7 +969,7 @@
     <NODE id="wheel2">
         <MATERIAL id="null" />
         <TEXTURE id="null"/>
-        
+
         <TRANSLATION x="0.2" y="0.55" z="1.30" />
         <ROTATION axis="Y" angle="90" />
         <SCALE sx="0.9" sy="0.9" sz="1" />
@@ -984,7 +995,7 @@
     <NODE id="wheel4">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
-        
+
         <TRANSLATION x="0.2" y="0.55" z="2.80" />
         <ROTATION axis="Y" angle="90" />
         <SCALE sx="0.9" sy="0.9" sz="1" />

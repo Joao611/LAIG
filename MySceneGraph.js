@@ -6,8 +6,9 @@ var ILLUMINATION_INDEX = 1;
 var LIGHTS_INDEX = 2;
 var TEXTURES_INDEX = 3;
 var MATERIALS_INDEX = 4;
-var LEAVES_INDEX = 5;
-var NODES_INDEX = 6;
+var ANIMATIONS_INDEX = 5;
+var LEAVES_INDEX = 6;
+var NODES_INDEX = 7;
 
 /**
  * MySceneGraph class, representing the scene graph.
@@ -137,6 +138,19 @@ MySceneGraph.prototype.parseLSXFile = function(rootElement) {
         
         if ((error = this.parseMaterials(nodes[index])) != null )
             return error;
+    }
+
+    // <ANIMATIONS>
+    if ((index = nodeNames.indexOf("ANIMATIONS")) == -1) {
+        return "tag <ANIMATIONS> missing";
+    } else {
+        if (index != ANIMATIONS_INDEX) {
+            this.onXMLMinorError("tag <ANIMATIONS> out of order");
+        }
+        
+        if ((error = this.parseAnimations(nodes[index])) != null) {
+            return error;
+        }
     }
     
     // <NODES>
@@ -1159,6 +1173,82 @@ MySceneGraph.prototype.parseMaterials = function(materialsNode) {
     console.log("Parsed materials");
 }
 
+function createLinearAnim(graph, xmlAnim) {
+    let animSpeed = graph.reader.getFloat(xmlAnim, 'speed');
+    let xmlPoints = xmlAnim.children;
+    let controlPoints = [];
+    for (let i = 0; i < xmlPoints.length; i++) {
+        let pointName;
+        if ((pointName = xmlPoints[i].nodeName) != "controlpoint") {
+            graph.onXMLMinorError("unknown tag <" + pointName + ">");
+        } else {
+            let x = graph.reader.getFloat(xmlPoints[i], 'xx');
+            let y = graph.reader.getFloat(xmlPoints[i], 'yy');
+            let z = graph.reader.getFloat(xmlPoints[i], 'zz');
+            let point = [];
+            point.push(x, y, z);
+            controlPoints.push(point);
+        }
+    }
+    return new LinearAnimation(graph.scene, controlPoints, animSpeed);
+}
+
+function createCircularAnim(xmlAnim) {
+    let animSpeed = this.reader.getFloat(xmlAnim, 'speed');
+}
+
+function createBezierAnim(xmlAnim) {
+    let animSpeed = this.reader.getFloat(xmlAnim, 'speed');
+}
+
+function createComboAnim(xmlAnim) {
+    
+}
+
+/**
+ * Parses the <ANIMATIONS> block.
+ */
+MySceneGraph.prototype.parseAnimations = function(animsNode) {
+    this.animations = [];
+    let children = animsNode.children;
+
+    for (let i = 0; i < children.length; i++) {
+        let nodeName;
+        if ((nodeName = children[i].nodeName) != "ANIMATION") {
+            this.onXMLMinorError("unknown tag name <" + nodeName + ">");
+        } else {
+
+            // Animation ID
+            let animID = this.reader.getString(children[i], 'id');
+            if (animID == null) {
+                return "failed to retrieve animation ID";
+            }
+            if (this.animations[animID] != null) {
+                return "animation ID must be unique (conflict: ID = " + animID + ")";
+            }
+            
+            this.log("Processing animation " + animID);
+
+            // Animation type
+            let animType = this.reader.getItem(children[i], 'type', ['linear', 'circular', 'bezier', 'combo']);
+            
+            switch (animType) {
+                case "linear":
+                    this.animations[animID] = createLinearAnim(this, children[i]);
+                    break;
+                case "circular":
+                    this.animations[animID] = createCircularAnim(this, children[i]);
+                    break;
+                case "bezier":
+                    this.animations[animID] = createBezierAnim(this, children[i]);
+                    break;
+                case "combo":
+                    this.animations[animID] = createComboAnim(this, children[i]);
+                    break;
+            }
+        }
+    }
+}
 
 /**
  * Parses the <NODES> block.
@@ -1190,7 +1280,7 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
             if (this.nodes[nodeID] != null )
                 return "node ID must be unique (conflict: ID = " + nodeID + ")";
             
-            this.log("Processing node "+nodeID);
+            this.log("Processing node " + nodeID);
 
             // Creates node.
             this.nodes[nodeID] = new MyGraphNode(this,nodeID);
@@ -1198,7 +1288,7 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
             // Gathers child nodes.
             var nodeSpecs = children[i].children;
             var specsNames = [];
-            var possibleValues = ["MATERIAL", "TEXTURE", "TRANSLATION", "ROTATION", "SCALE", "DESCENDANTS"];
+            var possibleValues = ["MATERIAL", "TEXTURE", "TRANSLATION", "ROTATION", "SCALE", "DESCENDANTS", "ANIMATIONREFS"];
             for (var j = 0; j < nodeSpecs.length; j++) {
                 var name = nodeSpecs[j].nodeName;
                 specsNames.push(nodeSpecs[j].nodeName);
@@ -1317,6 +1407,15 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
                 }
             }
             
+            // Retrieves possible animations.
+            let animsIndex = specsNames.indexOf("ANIMATIONREFS");
+            if (animsIndex != -1) {
+                let animationRefs = nodeSpecs[animsIndex].children;
+                for (let i = 0; i < animationRefs.length; i++) {
+                    this.nodes[nodeID].addAnimation(animationRefs[i].id);
+                }
+            }
+
             // Retrieves information about children.
             var descendantsIndex = specsNames.indexOf("DESCENDANTS");
             if (descendantsIndex == -1)

@@ -4,7 +4,8 @@
  * @param controlPoints Array with 3D points (arrays with 3 elements).
  * @param speed 3D units per second.
  */
-function LinearAnimation(controlPoints, speed) {
+function LinearAnimation(scene, controlPoints, speed) {
+	Animation.call(scene);
 	this.controlPoints = controlPoints;
 	this.speed = speed;
 
@@ -66,7 +67,7 @@ function getDistance(point1, point0) {
 	let distance = Math.pow(point1[0] - point0[0], 2);
 		distance += Math.pow(point1[1] - point0[1], 2);
 		distance += Math.pow(point1[2] - point0[2], 2);
-		distance = sqrt(distance);
+		distance = Math.sqrt(distance);
 	return distance;
 	
 }
@@ -76,5 +77,5 @@ function getTotalDistance(controlPoints) {
 	for (let i = 1; i < controlPoints.length; i++) {
 		distance += getDistance(controlPoints[i], controlPoints[i - 1]);
 	}
-	return dist;
+	return distance;
 }
