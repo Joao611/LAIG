@@ -4,13 +4,17 @@
  * @param controlPoints Array with 3D points (arrays with 3 elements).
  * @param speed 3D units per second.
  */
-function LinearAnimation(scene, controlPoints, speed) {
-	Animation.call(scene);
-	this.controlPoints = controlPoints;
-	this.speed = speed;
+class LinearAnimation extends Animation {
+	constructor(scene, controlPoints, speed) {
+		super(scene);
+		this.controlPoints = controlPoints;
+		this.speed = speed;
+	
+		this.totalDistance = getTotalDistance(this.controlPoints);
+		this.totalTime = this.speed / this.totalDistance;
+	}
+}
 
-	this.totalDistance = getTotalDistance(this.controlPoints);
-};
 
 LinearAnimation.prototype = Object.create(Animation.prototype);
 LinearAnimation.prototype.constructor = LinearAnimation;
@@ -69,7 +73,7 @@ function getDistance(point1, point0) {
 		distance += Math.pow(point1[2] - point0[2], 2);
 		distance = Math.sqrt(distance);
 	return distance;
-	
+
 }
 
 function getTotalDistance(controlPoints) {

@@ -7,7 +7,7 @@ function MyGraphNode(graph, nodeID) {
     this.graph = graph;
 
     this.nodeID = nodeID;
-    
+
     // IDs of child nodes.
     this.children = [];
 
@@ -23,7 +23,7 @@ function MyGraphNode(graph, nodeID) {
     this.transformMatrix = mat4.create();
     mat4.identity(this.transformMatrix);
 
-    this.animations = [];
+    this.animationIds = [];
 }
 
 /**
@@ -40,6 +40,24 @@ MyGraphNode.prototype.addLeaf = function(leaf) {
     this.leaves.push(leaf);
 }
 
-MyGraphNode.prototype.addAnimation = function(anim) {
-    this.animations.push(anim);
+MyGraphNode.prototype.addAnimation = function(animId) {
+    this.animationIds.push(animId);
+}
+
+/**
+ * Gets the transformation matrix for the animation being run at a certain time.
+ * currentSeconds - Seconds since the start of the first animation.
+ */
+MyGraphNode.prototype.getAnimTransform = function(currentSeconds) {
+    let elapsedTime = 0;
+    for (let i = 0; i < this.animationIds.length; i++) {
+        let animation = this.graph.animations[this.animationIds[i]]
+        if (elapsedTime + animation.totalTime > currentSeconds) {
+            let animT = currentSeconds - elapsedTime;
+            return animation.getTransform(animT);
+            break;
+        }
+        elapsedTime += animation.totalTime;
+    }
+    return null;
 }

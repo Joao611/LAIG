@@ -7,7 +7,6 @@ function Animation(scene) {
 	this.scene = scene;
 };
 
-Animation.prototype = Object.create(CGFobject.prototype);
 Animation.prototype.constructor = Animation;
 
 Animation.prototype.getTransform = function(t) {};
