@@ -11,7 +11,7 @@ class LinearAnimation extends Animation {
 		this.speed = speed;
 	
 		this.totalDistance = getTotalDistance(this.controlPoints);
-		this.totalTime = this.speed / this.totalDistance;
+		this.totalTime = this.totalDistance / this.speed;
 	}
 }
 
@@ -31,24 +31,25 @@ LinearAnimation.prototype.getTransform = function(t) {
         this.transformMatrix = this.scene.getMatrix();
     this.scene.popMatrix();
     for (let i = 1; i < this.controlPoints.length; i++) {
+    	let portionLength = getDistance(this.controlPoints[i-1], this.controlPoints[i]);
     	// get position on current straight segment
-        if (distanceAccumulator > traveledDistance) {
-            let distanceInPortion = distanceAccumulator - traveledDistance;
-            tInPortion = distanceInPortion / getDistance(this.controlPoints[i-1], this.controlPoints[i]);
+        if (distanceAccumulator + portionLength >= traveledDistance) {
+            let distanceInPortion = traveledDistance - distanceAccumulator;5
+            tInPortion = distanceInPortion / portionLength;
             this.scene.pushMatrix();
                 this.scene.setMatrix(this.transformMatrix);
                 let transX = tInPortion * this.controlPoints[i][0] - this.controlPoints[i - 1][0];
                 let transY = tInPortion * this.controlPoints[i][1] - this.controlPoints[i - 1][1];
                 let transZ = tInPortion * this.controlPoints[i][2] - this.controlPoints[i - 1][2];
                 this.scene.translate(transX, transY, transZ);
-                let angle = getXZOrientation(controlPoints[i], controlPoints[i - 1]);
+                let angle = getXZOrientation(this.controlPoints[i], this.controlPoints[i - 1]);
                 this.scene.rotate(angle, 0, 1, 0);
                 this.transformMatrix = this.scene.getMatrix();
             this.scene.popMatrix();
             break;
         }
   		// catch up on previous control points
-        distanceAccumulator += getDistance(this.controlPoints[i-1], this.controlPoints[i]);
+        distanceAccumulator += portionLength;
         this.scene.pushMatrix();
             this.scene.setMatrix(this.transformMatrix);
             let transX = this.controlPoints[i][0] - this.controlPoints[i - 1][0];
@@ -58,13 +59,18 @@ LinearAnimation.prototype.getTransform = function(t) {
             this.transformMatrix = this.scene.getMatrix();
         this.scene.popMatrix();
     }
-
+    
+	return this.transformMatrix;
 };
 
 function getXZOrientation(point1, point0) {
 	let z = point1[2] - point0[2];
 	let x = point1[0] - point0[0];
-	return Math.atan(z/x);
+	if (z == 0) {
+		return Math.PI / 2;
+	} else {
+		return Math.atan(x/z);
+	}
 }
 
 function getDistance(point1, point0) {

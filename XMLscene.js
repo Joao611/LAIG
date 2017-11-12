@@ -31,9 +31,6 @@ XMLscene.prototype.init = function(application) {
     this.gl.depthFunc(this.gl.LEQUAL);
 
     this.axis = new CGFaxis(this);
-
-    this.prevTime = Date.now();
-    this.setUpdatePeriod(1000.0/60);
 }
 
 /**
@@ -95,6 +92,9 @@ XMLscene.prototype.onGraphLoaded = function()
 
     // Adds lights group.
     this.interface.addLightsGroup(this.graph.lights);
+
+    this.prevTime = Date.now();
+    this.setUpdatePeriod(1000.0/60);
 }
 
 /**
