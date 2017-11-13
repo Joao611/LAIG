@@ -56,6 +56,8 @@ LinearAnimation.prototype.getTransform = function(t) {
             let transY = this.controlPoints[i][1] - this.controlPoints[i - 1][1];
             let transZ = this.controlPoints[i][2] - this.controlPoints[i - 1][2];
             this.scene.translate(transX, transY, transZ);
+            let angle = getXZOrientation(this.controlPoints[i], this.controlPoints[i - 1]);
+            this.scene.rotate(angle, 0, 1, 0);
             this.transformMatrix = this.scene.getMatrix();
         this.scene.popMatrix();
     }

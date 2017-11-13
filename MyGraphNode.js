@@ -51,8 +51,8 @@ MyGraphNode.prototype.addAnimation = function(animId) {
 MyGraphNode.prototype.getAnimTransform = function(currentSeconds) {
     let elapsedTime = 0;
     for (let i = 0; i < this.animationIds.length; i++) {
-        let animation = this.graph.animations[this.animationIds[i]]
-        if (elapsedTime + animation.totalTime > currentSeconds) {
+        let animation = this.graph.animations[this.animationIds[i]];
+        if (elapsedTime + animation.totalTime > currentSeconds || i + 1 == this.animationIds.length) {
             let animT = currentSeconds - elapsedTime;
             return animation.getTransform(animT);
             break;
