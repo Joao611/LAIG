@@ -312,7 +312,7 @@
         </DESCENDANTS>
     </NODE>
 
-	<NODE id="PzKpfw_Tiger">
+	<NODE id="PzKpfw_Tiger" selectable="1">
 		<MATERIAL id="tigerMaterial" />
 		<TEXTURE id="tiger_solid_color" />
 
