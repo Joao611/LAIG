@@ -243,6 +243,12 @@
         <controlpoint xx="0" yy="0" zz="0" />
         <controlpoint xx="4" yy="0" zz="0" />
     </ANIMATION>
+
+
+    <ANIMATION id="circTest" speed="1" type="circular"
+               centerX = "0" centerY = "0" centerZ = "0"
+               radius = "5" startAng = "0" rotAng = "90"/>
+
     <ANIMATION id="transTest2" speed="1" type="linear">
         <controlpoint xx="4" yy="0" zz="0" />
         <controlpoint xx="4" yy="0" zz="4" />
@@ -317,8 +323,8 @@
 		<TEXTURE id="tiger_solid_color" />
 
         <ANIMATIONREFS>
-            <ANIMATIONREF id="transTest" />
-            <ANIMATIONREF id="transTest2" />
+          <!--  <ANIMATIONREF id="transTest" /> -->
+            <ANIMATIONREF id="circTest" />
         </ANIMATIONREFS>
 
 		<DESCENDANTS>

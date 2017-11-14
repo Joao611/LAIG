@@ -1196,8 +1196,18 @@ function createLinearAnim(graph, xmlAnim) {
     return new LinearAnimation(graph.scene, controlPoints, animSpeed);
 }
 
-function createCircularAnim(xmlAnim) {
-    let animSpeed = this.reader.getFloat(xmlAnim, 'speed');
+function createCircularAnim(graph, xmlAnim) {
+    let animSpeed = graph.reader.getFloat(xmlAnim, 'speed');
+    let centerX = graph.reader.getFloat(xmlAnim, 'centerX');
+    let centerY = graph.reader.getFloat(xmlAnim, 'centerY');
+    let centerZ = graph.reader.getFloat(xmlAnim, 'centerZ');
+    let radius = graph.reader.getFloat(xmlAnim, 'radius');
+    let startAng = graph.reader.getFloat(xmlAnim, 'startAng');
+    let rotAng = graph.reader.getFloat(xmlAnim, 'rotAng');
+
+
+
+    return new CircularAnimation(graph.scene, animSpeed, centerX, centerY, centerZ, radius, startAng, rotAng);
 }
 
 function createBezierAnim(xmlAnim) {

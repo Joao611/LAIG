@@ -4,29 +4,28 @@
  */
 var degToRad = Math.PI / 180;
 
-function CircularAnimation(speed, centerX, centerY, centerZ, radius, startAng, rotAng) {
+class CircularAnimation extends Animation {
+	constructor(scene, speed, centerX, centerY, centerZ, radius, startAng, rotAng) {
+	super(scene);
 
-this.speed=speed;
-this.centerX=centerX;
-this.centerY=centerY;
-this.centerZ=centerZ;	
-this.radius=radius;
-this.startAng=startAng * degToRad;
-this.rotAng=rotAng * degToRad;
-};
-
-CircularAnimation.prototype = Object.create(Animation.prototype);
-CircularAnimation.prototype.constructor = CircularAnimation;
+		this.speed=speed;
+		this.centerX=centerX;
+		this.centerY=centerY;
+		this.centerZ=centerZ;
+		this.radius=radius;
+		this.startAng=startAng * degToRad;
+		this.rotAng=rotAng * degToRad;
+	}
+}
 
 CircularAnimation.prototype.getTransform = function(t) {
-
-
 this.scene.pushMatrix();
-	this.scene.loadIdentity(); 
-		this.scene.translate(centerX,centerY,centerZ);
-			this.scene.rotate(startAng+(rotAng*t));
-			this.scene.translate(radius, 0, 0);
-		this.scene.translate(-centerX,-centerY,-centerZ);
+	this.scene.loadIdentity();
+		this.scene.translate(this.centerX,this.centerY,this.centerZ);
+			this.scene.rotate(-(this.startAng+(this.rotAng*t)),0,1,0);
+			this.scene.translate(this.radius, 0, 0);
+		this.scene.translate(-this.centerX,-this.centerY,-this.centerZ);
 	this.transformMatrix = this.scene.getMatrix();
 this.scene.popMatrix();
+return this.transformMatrix;
 }
