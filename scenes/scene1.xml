@@ -245,9 +245,9 @@
     </ANIMATION>
 
 
-    <ANIMATION id="circTest" speed="1.0" type="circular"
+    <ANIMATION id="circTest" speed="1" type="circular"
                centerX = "0" centerY = "0" centerZ = "0"
-               radius = "5" startAng = "1" rotAng = "90"/>
+               radius = "5" startAng = "0" rotAng = "90"/>
 
     <ANIMATION id="transTest2" speed="1" type="linear">
         <controlpoint xx="4" yy="0" zz="0" />
