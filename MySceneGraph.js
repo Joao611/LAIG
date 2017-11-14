@@ -1545,8 +1545,17 @@ MySceneGraph.prototype.displayScene = function() {
  * Displays the scene, processing each node, starting at the given node.
  * Must be called from displayScene to start at the root node.
  */
-MySceneGraph.prototype.displayNode = function(node, materialID, textureID, ampS, ampT, appliedMaterial) {
+MySceneGraph.prototype.displayNode = function(node, materialID, textureID, ampS, ampT, appliedMaterial, isSelectable = false) {
+   
+    if (node.selectable) {
+        isSelectable = true;
+        this.scene.setActiveShader(this.scene.selectableShader);
+    } else if (!isSelectable) {
+        this.scene.setActiveShader(this.scene.defaultShader);
+    }
+    
     this.scene.pushMatrix();
+   
     this.scene.multMatrix(node.transformMatrix);
     let animTransform = node.getAnimTransform(this.elapsedSeconds);
     if (animTransform != null) {
@@ -1570,7 +1579,7 @@ MySceneGraph.prototype.displayNode = function(node, materialID, textureID, ampS,
     for (let i = 0; i < node.children.length; i++) { //missing transformations
         let childName = node.children[i];
         let child = this.nodes[childName];
-        this.displayNode(child, materialID, textureID, ampS, ampT, appliedMaterial);
+        this.displayNode(child, materialID, textureID, ampS, ampT, appliedMaterial, isSelectable);
 
     }
     for (let i = 0; i < node.leaves.length; i++) {

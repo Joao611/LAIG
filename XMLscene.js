@@ -161,7 +161,7 @@ XMLscene.prototype.display = function() {
 
 XMLscene.prototype.update = function(currTime) {
 	let y = Math.abs(Math.sin(currTime));
-	this.selectableShader.setUniformsValues({'timeFactor' : y});
+	this.selectableShader.setUniformsValues({timeFactor: y});
     let deltaMs = currTime - this.prevTime;
     this.prevTime = currTime;
     this.graph.update(deltaMs);
