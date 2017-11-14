@@ -160,8 +160,8 @@ XMLscene.prototype.display = function() {
 }
 
 XMLscene.prototype.update = function(currTime) {
-	let y = Math.abs(Math.sin(currTime));
-	this.selectableShader.setUniformsValues({timeFactor: y});
+	let y = Math.abs(Math.sin(currTime / 150));
+	this.selectableShader.setUniformsValues({timeFactor: y, saturatedColor: [1, 0, 1]});
     let deltaMs = currTime - this.prevTime;
     this.prevTime = currTime;
     this.graph.update(deltaMs);
