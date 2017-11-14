@@ -27,27 +27,26 @@ class LinearAnimation extends Animation {
  */
 LinearAnimation.prototype.getTransform = function(t) {
     let traveledDistance = t * this.totalDistance;
-    let distanceAccumulator = 0;
+    this.distanceAccumulator = 0;
     let tInPortion = -1;
     let currentMatrix = [];
     for (let i = 1; i < this.controlPoints.length; i++) {
     	let portionLength = getDistance(this.controlPoints[i-1], this.controlPoints[i]);
-		if (this.elapsedDistance < distanceAccumulator) {
+		if (this.elapsedDistance + portionLength < traveledDistance) {
 			this.catchUp(this.controlPoints[i], this.controlPoints[i - 1]);
 			this.elapsedDistance += portionLength;
+			this.distanceAccumulator += portionLength;
 			continue;
 		}
-		distanceAccumulator += portionLength;
-		if (this.elapsedDistance < this.totalDistance) {
-			let distanceInPortion = traveledDistance - this.elapsedDistance;
-			let tInPortion = distanceInPortion / portionLength;
-			return this.applyCurrent(tInPortion, this.controlPoints[i], this.controlPoints[i - 1]);
-			this.elapsedDistance = traveledDistance;
-			break;
+		
+		let distanceInPortion = traveledDistance - this.distanceAccumulator;
+		if (distanceInPortion > portionLength) {
+			distanceInPortion = portionLength;
 		}
+		this.elapsedDistance += distanceInPortion;
+		let tInPortion = distanceInPortion / portionLength;
+		return this.applyCurrent(tInPortion, this.controlPoints[i], this.controlPoints[i - 1]);
     }
-    
-	return this.transformMatrix;
 };
 
 function getXZOrientation(point1, point0) {
@@ -95,11 +94,8 @@ LinearAnimation.prototype.applyCurrent = function(tInPortion, endControlPoint, s
 		let transY = tInPortion * (endControlPoint[1] - startControlPoint[1]);
 		let transZ = tInPortion * (endControlPoint[2] - startControlPoint[2]);
 		this.scene.translate(transX, transY, transZ);
-// 		if (!this.rotated) {
-			let angle = getXZOrientation(endControlPoint, startControlPoint);
-			this.scene.rotate(angle, 0, 1, 0);
-// 			this.rotated = true;
-// 		}
+		let angle = getXZOrientation(endControlPoint, startControlPoint);
+		this.scene.rotate(angle, 0, 1, 0);
 		let resultMatrix = this.scene.getMatrix();
 	this.scene.popMatrix();
 
