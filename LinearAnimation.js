@@ -17,6 +17,7 @@ class LinearAnimation extends Animation {
 
 		this.scene.pushMatrix();
         	this.scene.loadIdentity();
+        	this.scene.translate(this.controlPoints[0][0], this.controlPoints[0][1], this.controlPoints[0][2]);
         	this.transformMatrix = this.scene.getMatrix();
     	this.scene.popMatrix();
 	}
