@@ -23,9 +23,7 @@ class LinearAnimation extends Animation {
 	}
 }
 
-/**
- * TODO: Save previous translations instead of recalculating them.
- */
+
 LinearAnimation.prototype.getTransform = function(t) {
     let traveledDistance = t * this.totalDistance;
     this.distanceAccumulator = 0;

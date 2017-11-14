@@ -317,6 +317,7 @@
 		<TEXTURE id="tiger_solid_color" />
 
         <ANIMATIONREFS>
+            <ANIMATIONREF id="transTest" />
             <ANIMATIONREF id="transTest2" />
         </ANIMATIONREFS>
 
