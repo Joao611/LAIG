@@ -17,14 +17,13 @@ class LinearAnimation extends Animation {
 
 		this.scene.pushMatrix();
         	this.scene.loadIdentity();
+        	this.scene.translate(this.controlPoints[0][0], this.controlPoints[0][1], this.controlPoints[0][2]);
         	this.transformMatrix = this.scene.getMatrix();
     	this.scene.popMatrix();
 	}
 }
 
-/**
- * TODO: Save previous translations instead of recalculating them.
- */
+
 LinearAnimation.prototype.getTransform = function(t) {
     let traveledDistance = t * this.totalDistance;
     this.distanceAccumulator = 0;

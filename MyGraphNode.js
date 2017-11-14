@@ -3,10 +3,11 @@
  * @constructor
 **/
 
-function MyGraphNode(graph, nodeID) {
+function MyGraphNode(graph, nodeID, selectable = false) {
     this.graph = graph;
 
     this.nodeID = nodeID;
+    this.selectable = selectable;
 
     // IDs of child nodes.
     this.children = [];

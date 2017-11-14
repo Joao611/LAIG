@@ -93,6 +93,8 @@ XMLscene.prototype.onGraphLoaded = function()
     // Adds lights group.
     this.interface.addLightsGroup(this.graph.lights);
 
+	this.selectableShader = new CGFshader(this.gl, "shaders/selectable.vert", "shaders/selectable.frag");
+
     this.prevTime = Date.now();
     this.setUpdatePeriod(1000.0/60);
 }
@@ -158,6 +160,8 @@ XMLscene.prototype.display = function() {
 }
 
 XMLscene.prototype.update = function(currTime) {
+	let y = Math.abs(Math.sin(currTime));
+	this.selectableShader.setUniformsValues({'timeFactor' : y});
     let deltaMs = currTime - this.prevTime;
     this.prevTime = currTime;
     this.graph.update(deltaMs);

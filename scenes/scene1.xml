@@ -244,9 +244,15 @@
         <controlpoint xx="4" yy="0" zz="0" />
     </ANIMATION>
 
+
     <ANIMATION id="circTest" speed="1.0" type="circular"
                centerX = "0" centerY = "0" centerZ = "0"
                radius = "5" startAng = "1" rotAng = "90"/>
+
+    <ANIMATION id="transTest2" speed="1" type="linear">
+        <controlpoint xx="4" yy="0" zz="0" />
+        <controlpoint xx="4" yy="0" zz="4" />
+    </ANIMATION>
 </ANIMATIONS>
 
 <!-- The leaves -->
@@ -312,7 +318,7 @@
         </DESCENDANTS>
     </NODE>
 
-	<NODE id="PzKpfw_Tiger">
+	<NODE id="PzKpfw_Tiger" selectable="1">
 		<MATERIAL id="tigerMaterial" />
 		<TEXTURE id="tiger_solid_color" />
 
