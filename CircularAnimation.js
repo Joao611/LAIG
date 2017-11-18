@@ -19,6 +19,7 @@ class CircularAnimation extends Animation {
 }
 
 CircularAnimation.prototype.getTransform = function(t) {
+
 this.scene.pushMatrix();
 	this.scene.loadIdentity();
 		this.scene.translate(this.centerX,this.centerY,this.centerZ);
@@ -27,5 +28,6 @@ this.scene.pushMatrix();
 		this.scene.translate(-this.centerX,-this.centerY,-this.centerZ);
 	this.transformMatrix = this.scene.getMatrix();
 this.scene.popMatrix();
+
 return this.transformMatrix;
 }
