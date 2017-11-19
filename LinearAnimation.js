@@ -30,7 +30,6 @@ class LinearAnimation extends Animation {
     	for (let i = 1; i < this.controlPoints.length; i++) {
     		let portionLength = this._getDistance(this.controlPoints[i-1], this.controlPoints[i]);
 			if (this.elapsedDistance + portionLength < traveledDistance) {
-// 				this.catchUp(this.controlPoints[i], this.controlPoints[i - 1]);
 				this.elapsedDistance += portionLength;
 				this.distanceUntilCurrStart += portionLength;
 				continue;
@@ -45,17 +44,6 @@ class LinearAnimation extends Animation {
 			return this.applyCurrent(tInPortion, this.controlPoints[i], this.controlPoints[i - 1]);
     	}
 	}
-
-// 	catchUp(endControlPoint, startControlPoint) {
-// 		this.scene.pushMatrix();
-// 			this.scene.setMatrix(this.transformMatrix);
-// 			let transX = endControlPoint[0] - startControlPoint[0];
-// 			let transY = endControlPoint[1] - startControlPoint[1];
-// 			let transZ = endControlPoint[2] - startControlPoint[2];
-// 			this.scene.translate(transX, transY, transZ);
-// 			this.transformMatrix = this.scene.getMatrix();
-// 		this.scene.popMatrix();
-// 	}
 
 	applyCurrent(tInPortion, endControlPoint, startControlPoint) {
 		this.scene.pushMatrix();

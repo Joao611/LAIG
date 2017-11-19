@@ -49,7 +49,9 @@ class BezierAnimation extends Animation {
 	}
 
 	/**
-	 * Estimated distance.
+	 * Estimated distance: Average between chord and control net.
+	 * Chord = Distance between start and destination.
+	 * Control net = Sum of distances between each consecutive points.
 	 */
 	_getTotalDistance() {
 		let chord = this._getDistance(this.P4, this.P1);
