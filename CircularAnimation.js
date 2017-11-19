@@ -21,7 +21,7 @@ class CircularAnimation extends Animation {
 CircularAnimation.prototype.getTransform = function(t) {
 
 if(t == 1){
-	getAnimTransform(1);
+	getAnimTransform(1)
 }
 
 this.scene.pushMatrix();
