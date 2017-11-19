@@ -19,13 +19,9 @@ class CircularAnimation extends Animation {
 		this.totalTime = this.totalDistance / this.speed;
 	}
 
-	_getTotalDistance() {
-		return this.rotAng * this.radius;
-	}
-
 	getTransform(t) {
-		if(t == 1){
-			getAnimTransform(1);
+		if(t > 1){
+			t = 1;
 		}
 
 		this.scene.pushMatrix();
@@ -38,5 +34,9 @@ class CircularAnimation extends Animation {
 		this.scene.popMatrix();
 
 		return this.transformMatrix;
+	}
+
+	_getTotalDistance() {
+		return this.rotAng * this.radius;
 	}
 }
