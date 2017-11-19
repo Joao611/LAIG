@@ -239,6 +239,7 @@
 
 <!-- The animations -->
 <ANIMATIONS>
+
     <ANIMATION id="transTest" speed="1" type="linear">
         <controlpoint xx="0" yy="0" zz="0" />
         <controlpoint xx="4" yy="0" zz="0" />
@@ -253,6 +254,14 @@
         <controlpoint xx="4" yy="0" zz="0" />
         <controlpoint xx="4" yy="0" zz="4" />
     </ANIMATION>
+
+    <ANIMATION id="bezierTest" speed="1" type="bezier">
+        <controlpoint xx="4" yy="0" zz="0" />
+        <controlpoint xx="4" yy="1" zz="4" />
+        <controlpoint xx="4" yy="2" zz="8" />
+        <controlpoint xx="4" yy="3" zz="12" />
+    </ANIMATION>
+
 </ANIMATIONS>
 
 <!-- The leaves -->

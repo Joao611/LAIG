@@ -1210,11 +1210,27 @@ function createCircularAnim(graph, xmlAnim) {
     return new CircularAnimation(graph.scene, animSpeed, centerX, centerY, centerZ, radius, startAng, rotAng);
 }
 
-function createBezierAnim(xmlAnim) {
-    let animSpeed = this.reader.getFloat(xmlAnim, 'speed');
+function createBezierAnim(graph, xmlAnim) {
+    let animSpeed = graph.reader.getFloat(xmlAnim, 'speed');
+    let xmlPoints = xmlAnim.children;
+    let controlPoints = [];
+    for (let i = 0; i < xmlPoints.length; i++) {
+        let pointName;
+        if ((pointName = xmlPoints[i].nodeName) != "controlpoint") {
+            graph.onXMLMinorError("unknown tag <" + pointName + ">");
+        } else {
+            let x = graph.reader.getFloat(xmlPoints[i], 'xx');
+            let y = graph.reader.getFloat(xmlPoints[i], 'yy');
+            let z = graph.reader.getFloat(xmlPoints[i], 'zz');
+            let point = [];
+            point.push(x, y, z);
+            controlPoints.push(point);
+        }
+    }
+    return new BezierAnimation(graph.scene, animSpeed, controlPoints);
 }
 
-function createComboAnim(xmlAnim) {
+function createComboAnim(graph, xmlAnim) {
 
 }
 

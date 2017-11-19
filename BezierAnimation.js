@@ -1,3 +1,4 @@
+<<<<<<< HEAD
  /*
  * BezierAnimation
  * @constructor
@@ -57,4 +58,74 @@ BezierAnimation.prototype.pointCalculator = function(time){
     let y = Math.pow(1 - time, 3) * this.p1[1] + 3 * time * Math.pow(1 - time, 2) * this.p2[1] + 3 * Math.pow(time, 2) * (1 - time) * this.p3[1] + Math.pow(time, 3) * this.p4[1];
     let z = Math.pow(1 - time, 3) * this.p1[2] + 3 * time * Math.pow(1 - time, 2) * this.p2[2] + 3 * Math.pow(time, 2) * (1 - time) * this.p3[2] + Math.pow(time, 3) * this.p4[2];
     return vector3(x, y, z);
+=======
+class BezierAnimation extends Animation {
+	constructor(scene, speed, controlPoints) {
+		super(scene);
+		this.speed = speed;
+		this.P1 = controlPoints[0];
+		this.P2 = controlPoints[1];
+		this.P3 = controlPoints[2];
+		this.P4 = controlPoints[3];
+
+		this.prevCoordinates = this._getCurrentCoordinates(-0.001);
+
+		this.totalDistance = this._getTotalDistance();
+		this.totalTime = this.totalDistance / this.speed;
+	}
+
+	getTransform(t) {
+		if (t > 1) {
+			t = 1;
+		}
+		let currentCoordinates = this._getCurrentCoordinates(t);
+		let deltaCoords = currentCoordinates - this.prevCoordinates;
+
+		this.scene.pushMatrix();
+			this.scene.loadIdentity();
+			this.scene.translate(currentCoordinates[0],
+								currentCoordinates[1],
+								currentCoordinates[2]);
+			let transformMatrix = this.scene.getMatrix();
+		this.scene.popMatrix();
+
+		return transformMatrix;
+	}
+
+	_getCurrentCoordinates(t) {
+		let x = (1 - t*t*t) * this.P1[0]
+				+ (3 * t * (1 - t*t)) * this.P2[0]
+				+ (3 * t*t * (1 - t)) * this.P3[0]
+				+ (t*t*t) * this.P4[0];
+		let y = (1 - t*t*t) * this.P1[1]
+				+ (3 * t * (1 - t*t)) * this.P2[1]
+				+ (3 * t*t * (1 - t)) * this.P3[1]
+				+ (t*t*t) * this.P4[1];
+		let z = (1 - t*t*t) * this.P1[2]
+				+ (3 * t * (1 - t*t)) * this.P2[2]
+				+ (3 * t*t * (1 - t)) * this.P3[2]
+				+ (t*t*t) * this.P4[2];
+
+		return [x, y, z];
+	}
+
+	/**
+	 * Estimated distance.
+	 */
+	_getTotalDistance() {
+		let chord = this._getDistance(this.P4, this.P1);
+		let controlNet = this._getDistance(this.P1, this.P2)
+						+ this._getDistance(this.P2, this.P3)
+						+ this._getDistance(this.P3, this.P4);
+		return (chord + controlNet) / 2;
+	}
+
+	_getDistance(point1, point0) {
+		let distance = Math.pow(point1[0] - point0[0], 2);
+			distance += Math.pow(point1[1] - point0[1], 2);
+			distance += Math.pow(point1[2] - point0[2], 2);
+			distance = Math.sqrt(distance);
+		return distance;
+	}
+>>>>>>> ea5b0d8558747996c87341578ccfc203cd484280
 }
