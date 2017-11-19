@@ -24,19 +24,19 @@ class LinearAnimation extends Animation {
 
 	getTransform(t) {
 		let traveledDistance = t * this.totalDistance;
-  		this.distanceAccumulator = 0;
+  		this.distanceUntilCurrStart = 0;
     	let tInPortion = -1;
     	let currentMatrix = [];
     	for (let i = 1; i < this.controlPoints.length; i++) {
     		let portionLength = this._getDistance(this.controlPoints[i-1], this.controlPoints[i]);
 			if (this.elapsedDistance + portionLength < traveledDistance) {
-				this.catchUp(this.controlPoints[i], this.controlPoints[i - 1]);
+// 				this.catchUp(this.controlPoints[i], this.controlPoints[i - 1]);
 				this.elapsedDistance += portionLength;
-				this.distanceAccumulator += portionLength;
+				this.distanceUntilCurrStart += portionLength;
 				continue;
 			}
 		
-			let distanceInPortion = traveledDistance - this.distanceAccumulator;
+			let distanceInPortion = traveledDistance - this.distanceUntilCurrStart;
 			if (distanceInPortion > portionLength) {
 				distanceInPortion = portionLength;
 			}
@@ -46,16 +46,16 @@ class LinearAnimation extends Animation {
     	}
 	}
 
-	catchUp(endControlPoint, startControlPoint) {
-		this.scene.pushMatrix();
-			this.scene.setMatrix(this.transformMatrix);
-			let transX = endControlPoint[0] - startControlPoint[0];
-			let transY = endControlPoint[1] - startControlPoint[1];
-			let transZ = endControlPoint[2] - startControlPoint[2];
-			this.scene.translate(transX, transY, transZ);
-			this.transformMatrix = this.scene.getMatrix();
-		this.scene.popMatrix();
-	}
+// 	catchUp(endControlPoint, startControlPoint) {
+// 		this.scene.pushMatrix();
+// 			this.scene.setMatrix(this.transformMatrix);
+// 			let transX = endControlPoint[0] - startControlPoint[0];
+// 			let transY = endControlPoint[1] - startControlPoint[1];
+// 			let transZ = endControlPoint[2] - startControlPoint[2];
+// 			this.scene.translate(transX, transY, transZ);
+// 			this.transformMatrix = this.scene.getMatrix();
+// 		this.scene.popMatrix();
+// 	}
 
 	applyCurrent(tInPortion, endControlPoint, startControlPoint) {
 		this.scene.pushMatrix();
