@@ -18,17 +18,32 @@ class BezierAnimation extends Animation {
 			t = 1;
 		}
 		let currentCoordinates = this._getCurrentCoordinates(t);
-		let deltaCoords = currentCoordinates - this.prevCoordinates;
+		let deltaCoords = subtractArrays(currentCoordinates, this.prevCoordinates);
+		let angle = this._getXZOrientation(deltaCoords);
 
 		this.scene.pushMatrix();
 			this.scene.loadIdentity();
 			this.scene.translate(currentCoordinates[0],
 								currentCoordinates[1],
 								currentCoordinates[2]);
+			this.scene.rotate(angle, 0, 1, 0);
 			let transformMatrix = this.scene.getMatrix();
 		this.scene.popMatrix();
-
+		
+		if (t < 1) {
+			this.prevCoordinates = currentCoordinates;
+		}
 		return transformMatrix;
+	}
+
+	_getXZOrientation(deltaCoords) {
+		let z = deltaCoords[2];
+		let x = deltaCoords[0];
+		if (z == 0) {
+			return Math.PI / 2;
+		} else {
+			return Math.atan(x/z);
+		}
 	}
 
 	_getCurrentCoordinates(t) {
