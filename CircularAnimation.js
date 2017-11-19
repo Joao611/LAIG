@@ -1,20 +1,26 @@
+var degToRad = Math.PI / 180;
+
 /**
  * CircularAnimation
  * @constructor
  */
-var degToRad = Math.PI / 180;
-
 class CircularAnimation extends Animation {
 	constructor(scene, speed, centerX, centerY, centerZ, radius, startAng, rotAng) {
-	super(scene);
+		super(scene);
+		this.speed = speed;
+		this.centerX = centerX;
+		this.centerY = centerY;
+		this.centerZ = centerZ;
+		this.radius = radius;
+		this.startAng = startAng * degToRad;
+		this.rotAng = rotAng * degToRad;
 
-		this.speed=speed;
-		this.centerX=centerX;
-		this.centerY=centerY;
-		this.centerZ=centerZ;
-		this.radius=radius;
-		this.startAng=startAng * degToRad;
-		this.rotAng=rotAng * degToRad;
+		this.totalDistance = this._getTotalDistance();
+		this.totalTime = this.totalDistance / this.speed;
+	}
+
+	_getTotalDistance() {
+		return this.rotAng * this.radius;
 	}
 }
 
