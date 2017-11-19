@@ -1573,11 +1573,13 @@ MySceneGraph.prototype.displayScene = function() {
  */
 MySceneGraph.prototype.displayNode = function(node, materialID, textureID, ampS, ampT, appliedMaterial, isSelectable = false) {
    
-    if (node.selectable) {
+    if (node.selectable && !this.scene.isSelectableShaderSet) {
         isSelectable = true;
         this.scene.setActiveShader(this.scene.selectableShader);
-    } else if (!isSelectable) {
+        this.scene.isSelectableShaderSet = true;
+    } else if (this.scene.isSelectableShaderSet && !isSelectable) {
         this.scene.setActiveShader(this.scene.defaultShader);
+        this.scene.isSelectableShaderSet = false;
     }
     
     this.scene.pushMatrix();

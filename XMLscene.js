@@ -31,6 +31,9 @@ XMLscene.prototype.init = function(application) {
     this.gl.depthFunc(this.gl.LEQUAL);
 
     this.axis = new CGFaxis(this);
+
+    this.isSelectableShaderSet = false;
+    this.setActiveShader(this.defaultShader);
 }
 
 /**
