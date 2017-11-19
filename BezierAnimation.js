@@ -52,20 +52,18 @@ class BezierAnimation extends Animation {
 	}
 
 	_getCurrentCoordinates(t) {
-		let x = (1 - t*t*t) * this.P1[0]
-				+ (3 * t * (1 - t*t)) * this.P2[0]
-				+ (3 * t*t * (1 - t)) * this.P3[0]
-				+ (t*t*t) * this.P4[0];
-		let y = (1 - t*t*t) * this.P1[1]
-				+ (3 * t * (1 - t*t)) * this.P2[1]
-				+ (3 * t*t * (1 - t)) * this.P3[1]
-				+ (t*t*t) * this.P4[1];
-		let z = (1 - t*t*t) * this.P1[2]
-				+ (3 * t * (1 - t*t)) * this.P2[2]
-				+ (3 * t*t * (1 - t)) * this.P3[2]
-				+ (t*t*t) * this.P4[2];
+		let x = this._calcBezierCoordinate(t, 0);
+		let y = this._calcBezierCoordinate(t, 1);
+		let z = this._calcBezierCoordinate(t, 2);
 
 		return [x, y, z];
+	}
+
+	_calcBezierCoordinate(t, coordInd) {
+		return (1 - t*t*t) * this.P1[coordInd]
+				+ (3 * t * (1 - t*t)) * this.P2[coordInd]
+				+ (3 * t*t * (1 - t)) * this.P3[coordInd]
+				+ (t*t*t) * this.P4[coordInd];
 	}
 
 	/**

@@ -239,9 +239,9 @@
 
 <!-- The animations -->
 <ANIMATIONS>
-    <ANIMATION id="transTest" speed="4" type="linear">
+    <ANIMATION id="transTest" speed="8" type="linear">
+        <controlpoint xx="-4" yy="0" zz="0" />
         <controlpoint xx="0" yy="0" zz="0" />
-        <controlpoint xx="4" yy="0" zz="0" />
     </ANIMATION>
 
     <ANIMATION id="circTest" speed="5" type="circular"
@@ -329,6 +329,7 @@
 		<TEXTURE id="tiger_solid_color" />
 
         <ANIMATIONREFS>
+           <ANIMATIONREF id="transTest" />
            <ANIMATIONREF id="bezierTest" />
         </ANIMATIONREFS>
 
