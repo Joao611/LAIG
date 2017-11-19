@@ -8,6 +8,7 @@ class BezierAnimation extends Animation {
 		this.P4 = controlPoints[3];
 
 		this.prevCoordinates = this._getCurrentCoordinates(-0.001);
+		this.prevAngle = 0;
 
 		this.totalDistance = this._getTotalDistance();
 		this.totalTime = this.totalDistance / this.speed;
@@ -20,6 +21,9 @@ class BezierAnimation extends Animation {
 		let currentCoordinates = this._getCurrentCoordinates(t);
 		let deltaCoords = subtractArrays(currentCoordinates, this.prevCoordinates);
 		let angle = this._getXZOrientation(deltaCoords);
+		if (deltaCoords[0] == 0 && deltaCoords[2] == 0) {
+			angle = this.prevAngle;
+		}
 
 		this.scene.pushMatrix();
 			this.scene.loadIdentity();
@@ -32,6 +36,7 @@ class BezierAnimation extends Animation {
 		
 		if (t < 1) {
 			this.prevCoordinates = currentCoordinates;
+			this.prevAngle = angle;
 		}
 		return transformMatrix;
 	}
