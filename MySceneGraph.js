@@ -1231,7 +1231,16 @@ function createBezierAnim(graph, xmlAnim) {
 }
 
 function createComboAnim(graph, xmlAnim) {
-
+    let xmlAnimIds = xmlAnim.children;
+    let animIds = [];
+    for (let i = 0; i < xmlAnimIds.length; i++) {
+        let spanName;
+        if ((spanName =xmlAnimIds[i].nodeName) != "SPANREF") {
+            graph.onXMLMinorError("unknown tag <" + spanName + ">");
+        } else {
+            
+        }
+    }
 }
 
 /**
