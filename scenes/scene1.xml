@@ -258,11 +258,17 @@
         <controlpoint xx="8" yy="0" zz="4" />
         <controlpoint xx="0" yy="0" zz="4" />
     </ANIMATION>
-	
+
 	<ANIMATION id="comboTest" type="combo">
 		<SPANREF id="transTest" />
 		<SPANREF id="bezierTest" />
 	</ANIMATION>
+
+
+    <!-- <ANIMATION id="convoyAnim" type="combo">
+        <SPANREF id="initialRoute" />
+        <SPANREF id="" />
+    </ANIMATION> -->
 </ANIMATIONS>
 
 <!-- The leaves -->
@@ -281,7 +287,7 @@
         <TEXTURE id="null" />
 
         <DESCENDANTS>
-            <NODEREF id="PzKpfw_Tiger" />
+            <NODEREF id="tigers" />
             <NODEREF id="ground" />
             <NODEREF id="mountain" />
         </DESCENDANTS>
@@ -328,15 +334,41 @@
         </DESCENDANTS>
     </NODE>
 
+    <NODE id="tigers">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <DESCENDANTS>
+            <NODEREF id="convoy_Tiger" />
+            <NODEREF id="ambush_Tiger" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="convoy_Tiger">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <!-- <ANIMATIONREFS>
+            <ANIMATIONREF id="convoyAnim" />
+        </ANIMATIONREFS> -->
+
+        <DESCENDANTS>
+            <NODEREF id="PzKpfw_Tiger" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="ambush_Tiger">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <DESCENDANTS>
+            <NODEREF id="PzKpfw_Tiger" />
+        </DESCENDANTS>
+    </NODE>
+
 	<NODE id="PzKpfw_Tiger" selectable="1">
 		<MATERIAL id="tigerMaterial" />
 		<TEXTURE id="tiger_solid_color" />
-
-        <ANIMATIONREFS>
-           <ANIMATIONREF id="transTest" />
-           <ANIMATIONREF id="bezierTest" />
-           <!-- <ANIMATIONREF id="comboTest" /> -->
-        </ANIMATIONREFS>
 
 		<DESCENDANTS>
 			<NODEREF id="tiger_turret" />
