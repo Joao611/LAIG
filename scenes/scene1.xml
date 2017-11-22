@@ -171,7 +171,6 @@
 </TEXTURES>
 
 
-
 <MATERIALS>
 	<!-- Pyramid material -->
     <MATERIAL id="piramideMaterial">
@@ -259,6 +258,11 @@
         <controlpoint xx="8" yy="0" zz="4" />
         <controlpoint xx="0" yy="0" zz="4" />
     </ANIMATION>
+	
+	<ANIMATION id="comboTest" type="combo">
+		<SPANREF id="transTest" />
+		<SPANREF id="bezierTest" />
+	</ANIMATION>
 </ANIMATIONS>
 
 <!-- The leaves -->
@@ -324,13 +328,14 @@
         </DESCENDANTS>
     </NODE>
 
-	<NODE id="PzKpfw_Tiger" selectable="0">
+	<NODE id="PzKpfw_Tiger" selectable="1">
 		<MATERIAL id="tigerMaterial" />
 		<TEXTURE id="tiger_solid_color" />
 
         <ANIMATIONREFS>
            <ANIMATIONREF id="transTest" />
            <ANIMATIONREF id="bezierTest" />
+           <!-- <ANIMATIONREF id="comboTest" /> -->
         </ANIMATIONREFS>
 
 		<DESCENDANTS>

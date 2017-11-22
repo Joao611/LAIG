@@ -22,6 +22,7 @@ function MySceneGraph(filename, scene) {
     scene.graph = this;
 
     this.nodes = [];
+    this.selectedNodeId = "";
     this.selectableNodeIds = [];
 
     this.idRoot = null;                    // The id of the root element.
@@ -1582,7 +1583,7 @@ MySceneGraph.prototype.displayScene = function() {
  */
 MySceneGraph.prototype.displayNode = function(node, materialID, textureID, ampS, ampT, appliedMaterial, isSelectable = false) {
    
-    if (node.selectable && !this.scene.isSelectableShaderSet) {
+    if (node.nodeID == this.selectedNodeId && !this.scene.isSelectableShaderSet) {
         isSelectable = true;
         this.scene.setActiveShader(this.scene.selectableShader);
         this.scene.isSelectableShaderSet = true;
