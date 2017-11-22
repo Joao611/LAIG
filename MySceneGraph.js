@@ -23,7 +23,7 @@ function MySceneGraph(filename, scene) {
 
     this.nodes = [];
     this.selectedNodeId = "";
-    this.selectableNodeIds = [];
+    this.selectableNodeIds = ["None selected"];
 
     this.idRoot = null;                    // The id of the root element.
 

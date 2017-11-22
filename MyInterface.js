@@ -49,5 +49,5 @@ MyInterface.prototype.addLightsGroup = function(lights) {
 }
 
 MyInterface.prototype.addSelectableDropdown = function(selectableIds) {
-    this.gui.add(this.scene.graph, 'selectedNodeId', selectableIds);
+    this.gui.add(this.scene.graph, 'selectedNodeId', selectableIds).name('Select a node:');
 }
