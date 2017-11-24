@@ -56,7 +56,6 @@ MyGraphNode.prototype.getAnimTransform = function(currentSeconds) {
         if (elapsedTime + animation.totalTime > currentSeconds || i + 1 == this.animationIds.length) {
             let animT = (currentSeconds - elapsedTime) / animation.totalTime;
             return animation.getTransform(animT);
-            break;
         }
         elapsedTime += animation.totalTime;
     }

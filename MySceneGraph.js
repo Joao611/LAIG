@@ -1583,14 +1583,14 @@ MySceneGraph.prototype.displayScene = function() {
  */
 MySceneGraph.prototype.displayNode = function(node, materialID, textureID, ampS, ampT, appliedMaterial, isSelectable = false) {
    
-    if (node.nodeID == this.selectedNodeId && !this.scene.isSelectableShaderSet) {
+    if (node.nodeID == this.selectedNodeId) {// && !this.scene.isSelectableShaderSet) {
         isSelectable = true;
         this.scene.setActiveShader(this.scene.selectableShader);
         this.scene.isSelectableShaderSet = true;
-    } else if (this.scene.isSelectableShaderSet && !isSelectable) {
-        this.scene.setActiveShader(this.scene.defaultShader);
-        this.scene.isSelectableShaderSet = false;
-    }
+     }// else if (this.scene.isSelectableShaderSet && !isSelectable) {
+//         this.scene.setActiveShader(this.scene.defaultShader);
+//         this.scene.isSelectableShaderSet = false;
+//     }
     
     this.scene.pushMatrix();
    
@@ -1630,7 +1630,13 @@ MySceneGraph.prototype.displayNode = function(node, materialID, textureID, ampS,
         node.leaves[i].updateTexCoords(ampS, ampT);
         node.leaves[i].display();
     }
+
     this.scene.popMatrix();
+   
+    if (this.scene.isSelectableShaderSet && !isSelectable) {
+        this.scene.setActiveShader(this.scene.defaultShader);
+        this.scene.isSelectableShaderSet = false;        
+    }
 }
 
 /**
