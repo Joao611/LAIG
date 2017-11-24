@@ -269,6 +269,15 @@
         <SPANREF id="initialRoute" />
         <SPANREF id="" />
     </ANIMATION> -->
+
+    <ANIMATION id="initialConvoyRoute" speed="15" type="linear">
+        <controlpoint xx="0" yy="0" zz="0" />
+        <controlpoint xx="0" yy="0" zz="20" />
+    </ANIMATION>
+
+    <ANIMATION id="intersection" speed="20" type="circular"
+                centerX="25" centerY="0" centerZ="10"
+                radius="15" startAng="90" rotAng="90"/>
 </ANIMATIONS>
 
 <!-- The leaves -->
@@ -348,18 +357,34 @@
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
-        <!-- <ANIMATIONREFS>
-            <ANIMATIONREF id="convoyAnim" />
-        </ANIMATIONREFS> -->
+        <ANIMATIONREFS>
+            <!-- <ANIMATIONREF id="convoyAnim" /> -->
+            <ANIMATIONREF id="initialConvoyRoute" />
+        </ANIMATIONREFS>
 
         <DESCENDANTS>
-            <NODEREF id="PzKpfw_Tiger" />
+            <NODEREF id="PzKpfw_Tiger_rot" />
         </DESCENDANTS>
     </NODE>
 
     <NODE id="ambush_Tiger">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
+
+        <ANIMATIONREFS>
+            <ANIMATIONREF id="intersection" />
+        </ANIMATIONREFS>
+
+        <DESCENDANTS>
+            <NODEREF id="PzKpfw_Tiger" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="PzKpfw_Tiger_rot">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <ROTATION axis="y" angle="-90" />
 
         <DESCENDANTS>
             <NODEREF id="PzKpfw_Tiger" />
@@ -369,6 +394,8 @@
 	<NODE id="PzKpfw_Tiger" selectable="1">
 		<MATERIAL id="tigerMaterial" />
 		<TEXTURE id="tiger_solid_color" />
+
+        <ROTATION axis="y" angle="90" />
 
 		<DESCENDANTS>
 			<NODEREF id="tiger_turret" />
