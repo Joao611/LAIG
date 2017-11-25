@@ -1582,10 +1582,9 @@ MySceneGraph.prototype.displayScene = function() {
  * Displays the scene, processing each node, starting at the given node.
  * Must be called from displayScene to start at the root node.
  */
-MySceneGraph.prototype.displayNode = function(node, materialID, textureID, ampS, ampT, appliedMaterial, isSelectable = false) {
+MySceneGraph.prototype.displayNode = function(node, materialID, textureID, ampS, ampT, appliedMaterial) {
    
     if (node.nodeID == this.selectedNodeId) {// && !this.scene.isSelectableShaderSet) {
-        isSelectable = true;
         this.scene.setActiveShader(this.scene.selectableShader);
         this.scene.isSelectableShaderSet = true;
      }// else if (this.scene.isSelectableShaderSet && !isSelectable) {
@@ -1618,7 +1617,7 @@ MySceneGraph.prototype.displayNode = function(node, materialID, textureID, ampS,
     for (let i = 0; i < node.children.length; i++) { //missing transformations
         let childName = node.children[i];
         let child = this.nodes[childName];
-        this.displayNode(child, materialID, textureID, ampS, ampT, appliedMaterial, isSelectable);
+        this.displayNode(child, materialID, textureID, ampS, ampT, appliedMaterial);
 
     }
     for (let i = 0; i < node.leaves.length; i++) {
@@ -1634,7 +1633,7 @@ MySceneGraph.prototype.displayNode = function(node, materialID, textureID, ampS,
 
     this.scene.popMatrix();
    
-    if (this.scene.isSelectableShaderSet && !isSelectable) {
+    if (this.scene.isSelectableShaderSet && node.nodeID == this.selectedNodeId) {
         this.scene.setActiveShader(this.scene.defaultShader);
         this.scene.isSelectableShaderSet = false;        
     }
