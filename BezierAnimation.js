@@ -60,8 +60,8 @@ class BezierAnimation extends Animation {
 	}
 
 	_calcBezierCoordinate(t, coordInd) {
-		return (1 - t*t*t) * this.P1[coordInd]
-				+ (3 * t * (1 - t*t)) * this.P2[coordInd]
+		return Math.pow((1 - t), 3) * this.P1[coordInd]
+				+ (3 * t * Math.pow((1 - t), 2)) * this.P2[coordInd]
 				+ (3 * t*t * (1 - t)) * this.P3[coordInd]
 				+ (t*t*t) * this.P4[coordInd];
 	}
