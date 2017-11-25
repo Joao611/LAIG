@@ -1239,9 +1239,10 @@ function createComboAnim(graph, xmlAnim) {
         if ((spanName =xmlAnimIds[i].nodeName) != "SPANREF") {
             graph.onXMLMinorError("unknown tag <" + spanName + ">");
         } else {
-            
+            animIds.push(xmlAnimIds[i]);
         }
     }
+    return new ComboAnimation(graph.scene, animIds);
 }
 
 /**
