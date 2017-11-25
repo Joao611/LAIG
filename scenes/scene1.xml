@@ -275,9 +275,21 @@
         <controlpoint xx="0" yy="0" zz="20" />
     </ANIMATION>
 
+    <ANIMATION id="convoyBlewUp" speed="15" type="bezier">
+        <controlpoint xx="0" yy="0" zz="20" />
+        <controlpoint xx="0" yy="10" zz="20" />
+        <controlpoint xx="0" yy="10" zz="30" />
+        <controlpoint xx="0" yy="0" zz="30" />
+    </ANIMATION>
+
     <ANIMATION id="intersection" speed="20" type="circular"
                 centerX="25" centerY="0" centerZ="10"
                 radius="15" startAng="90" rotAng="90"/>
+
+    <!-- <ANIMATION id="ambushRecoil" speed="50" type="linear">
+        <controlpoint xx="25" yy="0" zz="25" />
+        <controlpoint xx="30" yy="0" zz="25" />
+    </ANIMATION> -->
 </ANIMATIONS>
 
 <!-- The leaves -->
@@ -360,10 +372,11 @@
         <ANIMATIONREFS>
             <!-- <ANIMATIONREF id="convoyAnim" /> -->
             <ANIMATIONREF id="initialConvoyRoute" />
+            <ANIMATIONREF id="convoyBlewUp" />
         </ANIMATIONREFS>
 
         <DESCENDANTS>
-            <NODEREF id="PzKpfw_Tiger_rot" />
+            <NODEREF id="PzKpfw_Tiger" />
         </DESCENDANTS>
     </NODE>
 
@@ -373,18 +386,8 @@
 
         <ANIMATIONREFS>
             <ANIMATIONREF id="intersection" />
+          <!--   <ANIMATIONREF id="ambushRecoil" /> -->
         </ANIMATIONREFS>
-
-        <DESCENDANTS>
-            <NODEREF id="PzKpfw_Tiger" />
-        </DESCENDANTS>
-    </NODE>
-
-    <NODE id="PzKpfw_Tiger_rot">
-        <MATERIAL id="null" />
-        <TEXTURE id="null" />
-
-        <ROTATION axis="y" angle="-90" />
 
         <DESCENDANTS>
             <NODEREF id="PzKpfw_Tiger" />

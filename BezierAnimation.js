@@ -44,10 +44,10 @@ class BezierAnimation extends Animation {
 	_getXZOrientation(deltaCoords) {
 		let z = deltaCoords[2];
 		let x = deltaCoords[0];
-		if (z == 0) {
-			return Math.PI / 2;
+		if (x == 0) {
+			return -Math.PI / 2;
 		} else {
-			return Math.atan(x/z);
+			return Math.atan(z/x);
 		}
 	}
 

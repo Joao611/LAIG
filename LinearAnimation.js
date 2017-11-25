@@ -63,10 +63,10 @@ class LinearAnimation extends Animation {
 	_getXZOrientation(point1, point0) {
 		let z = point1[2] - point0[2];
 		let x = point1[0] - point0[0];
-		if (z == 0) {
-			return Math.PI / 2;
+		if (x == 0) {
+			return -Math.PI / 2;
 		} else {
-			return Math.atan(x/z);
+			return Math.atan(z/x);
 		}
 	}
 
