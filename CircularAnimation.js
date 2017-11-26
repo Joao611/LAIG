@@ -35,4 +35,8 @@ class CircularAnimation extends Animation {
 	_getTotalDistance() {
 		return Math.abs(this.rotAng * this.radius);
 	}
+
+	_getTotalTime(){
+		return totalTime;
+	}
 }

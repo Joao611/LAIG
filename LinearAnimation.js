@@ -78,4 +78,8 @@ class LinearAnimation extends Animation {
 		}
 		return distance;
 	}
+
+	_getTotalTime(){
+		return totalTime;
+	}
 }

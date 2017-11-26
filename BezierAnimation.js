@@ -82,4 +82,8 @@ class BezierAnimation extends Animation {
 			distance = Math.sqrt(distance);
 		return distance;
 	}
+
+	_getTotalTime(){
+		return totalTime;
+	}
 }
