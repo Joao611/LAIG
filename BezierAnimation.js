@@ -25,14 +25,10 @@ class BezierAnimation extends Animation {
 			angle = this.prevAngle;
 		}
 
-		this.scene.pushMatrix();
-			this.scene.loadIdentity();
-			this.scene.translate(currentCoordinates[0],
-								currentCoordinates[1],
-								currentCoordinates[2]);
-			this.scene.rotate(angle, 0, 1, 0);
-			let transformMatrix = this.scene.getMatrix();
-		this.scene.popMatrix();
+		let transformMatrix = mat4.create();
+		mat4.identity(transformMatrix);
+		mat4.translate(transformMatrix, transformMatrix, currentCoordinates);
+		mat4.rotate(transformMatrix, transformMatrix, angle, [0, 1, 0]);
 		
 		if (t < 1) {
 			this.prevCoordinates = currentCoordinates;
