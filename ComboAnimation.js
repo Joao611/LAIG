@@ -1,21 +1,29 @@
 class ComboAnimation extends Animation {
-    constructor(scene, animations) {
+    constructor(scene, animationIds) {
         super(scene);
-        this.animations = animations;
-        this.elapsedTime = 0;
-        this.totalTime=0;
-        for(let i=0; i < this.animations.length; i++){
-            let animation = this.graph.animations[this.animationIds[i]];
+        this.animationIds = animationIds;
+        this.totalTime = 0;
+        for (let i = 0; i < this.animationIds.length; i++){
+            let animation = this.scene.graph.animations[this.animationIds[i]];
             this.totalTime +=  animation.totalTime;
         }
     }
 
-    getTransform(t){
-        for(let i=0; i< this.animations.length; i++){
-            this.elapsedTime +=  this.animations[i].totalTime;
-            while(t < this.elapsedTime){
-                this.animations[i].getTransform(t);
-            }
+    getTransform(t) {
+        if (t > 1) {
+            t = 1;
         }
+        let elapsedTime = 0;
+        for (let i = 0; i < this.animationIds.length; i++) {
+            let animation = this.scene.graph.animations[this.animationIds[i]];
+            let fractionOfTotal = animation.totalTime / this.totalTime;
+            if (elapsedTime + fractionOfTotal >= t) {
+                let animT = (t - elapsedTime) / fractionOfTotal;
+                return animation.getTransform(animT);
+            }
+            elapsedTime += fractionOfTotal;
+        }
+
+        return null;
     }
 }
