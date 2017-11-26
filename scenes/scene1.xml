@@ -262,6 +262,8 @@
 	<ANIMATION id="comboTest" type="combo">
 		<SPANREF id="transTest" />
 		<SPANREF id="bezierTest" />
+    <SPANREF id="transTest" />
+
 	</ANIMATION>
 
     <ANIMATION id="initialConvoyRoute" speed="15" type="linear">
