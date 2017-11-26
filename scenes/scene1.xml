@@ -264,18 +264,12 @@
 		<SPANREF id="bezierTest" />
 	</ANIMATION>
 
-
-    <!-- <ANIMATION id="convoyAnim" type="combo">
-        <SPANREF id="initialRoute" />
-        <SPANREF id="" />
-    </ANIMATION> -->
-
     <ANIMATION id="initialConvoyRoute" speed="15" type="linear">
         <controlpoint xx="0" yy="0" zz="0" />
         <controlpoint xx="0" yy="0" zz="20" />
     </ANIMATION>
 
-    <ANIMATION id="convoyBlewUp" speed="15" type="bezier">
+    <ANIMATION id="convoyBlowUp" speed="15" type="bezier">
         <controlpoint xx="0" yy="0" zz="20" />
         <controlpoint xx="0" yy="10" zz="20" />
         <controlpoint xx="0" yy="10" zz="30" />
@@ -284,12 +278,13 @@
 
     <ANIMATION id="intersection" speed="20" type="circular"
                 centerX="25" centerY="0" centerZ="10"
-                radius="15" startAng="90" rotAng="90"/>
+                radius="15" startAng="0" rotAng="90"/>
 
-    <!-- <ANIMATION id="ambushRecoil" speed="50" type="linear">
-        <controlpoint xx="25" yy="0" zz="25" />
-        <controlpoint xx="30" yy="0" zz="25" />
-    </ANIMATION> -->
+    <ANIMATION id="convoyAnim" type="combo">
+        <SPANREF id="initialRoute" />
+        <SPANREF id="convoyBlowUp" />
+    </ANIMATION>
+
 </ANIMATIONS>
 
 <!-- The leaves -->
@@ -319,11 +314,20 @@
         <TEXTURE id="field" />
 
         <SCALE sx="100" sy="1" sz="100" />
-        <TRANSLATION x="-0.5" y="0" z="0.5" />
-        <ROTATION axis="x" angle="-90" />
+        <TRANSLATION x="-0.5" y="0" z="-0.5" />
 
         <DESCENDANTS>
-            <LEAF type="rectangle" args="0 1 1 0" />
+            <LEAF type="patch" args="10 10">
+                <CPLINE>
+                    <CPOINT xx="0" yy="0" zz="0" ww="1" />
+                    <CPOINT xx="1" yy="0" zz="0" ww="1" />
+                </CPLINE>
+                <CPLINE>
+                    <CPOINT xx="0" yy="0" zz="1" ww="1" />
+                    <CPOINT xx="1" yy="0" zz="1" ww="1" />
+                </CPLINE>
+            </LEAF>
+          <!--   <LEAF type="rectangle" args="0 1 1 0" /> -->
         </DESCENDANTS>
     </NODE>
 
@@ -370,9 +374,9 @@
         <TEXTURE id="null" />
 
         <ANIMATIONREFS>
-            <!-- <ANIMATIONREF id="convoyAnim" /> -->
-            <ANIMATIONREF id="initialConvoyRoute" />
-            <ANIMATIONREF id="convoyBlewUp" />
+            <ANIMATIONREF id="convoyAnim" />
+            <!-- <ANIMATIONREF id="initialConvoyRoute" />
+            <ANIMATIONREF id="convoyBlewUp" /> -->
         </ANIMATIONREFS>
 
         <DESCENDANTS>
