@@ -281,7 +281,7 @@
                 radius="15" startAng="0" rotAng="-90"/>
 
     <ANIMATION id="convoyAnim" type="combo">
-        <SPANREF id="initialRoute" />
+        <SPANREF id="initialConvoyRoute" />
         <SPANREF id="convoyBlowUp" />
     </ANIMATION>
 
@@ -389,9 +389,10 @@
         <TEXTURE id="null" />
 
         <ANIMATIONREFS>
-            <ANIMATIONREF id="intersection" />
+            <ANIMATIONREF id="comboTest" />
           <!--   <ANIMATIONREF id="ambushRecoil" /> -->
         </ANIMATIONREFS>
+
 
         <DESCENDANTS>
             <NODEREF id="PzKpfw_Tiger" />
