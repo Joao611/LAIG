@@ -43,9 +43,9 @@ class LinearAnimation extends Animation {
 		let transformMatrix = mat4.create();
 		mat4.identity(transformMatrix);
 		let translation = [];
-		translation[0] = tInPortion * (endControlPoint[0] - startControlPoint[0]);
-		translation[1] = tInPortion * (endControlPoint[1] - startControlPoint[1]);
-		translation[2] = tInPortion * (endControlPoint[2] - startControlPoint[2]);
+		translation[0] = startControlPoint[0] + tInPortion * (endControlPoint[0] - startControlPoint[0]);
+		translation[1] = startControlPoint[1] + tInPortion * (endControlPoint[1] - startControlPoint[1]);
+		translation[2] = startControlPoint[2] + tInPortion * (endControlPoint[2] - startControlPoint[2]);
 		mat4.translate(transformMatrix, transformMatrix, translation);
 		let angle = this._getXZOrientation(endControlPoint, startControlPoint);
 		mat4.rotate(transformMatrix, transformMatrix, angle, [0, 1, 0]);
@@ -58,6 +58,8 @@ class LinearAnimation extends Animation {
 		let x = point1[0] - point0[0];
 		if (x == 0) {
 			return -Math.PI / 2;
+		} else if (x < 0 && z == 0) {
+			return Math.PI;	
 		} else {
 			return Math.atan(z/x);
 		}

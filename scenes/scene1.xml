@@ -266,7 +266,7 @@
 
 	</ANIMATION>
 
-    <ANIMATION id="convoyBezier1" speed="15" type="bezier">
+    <ANIMATION id="convoyBezier1" speed="10" type="bezier">
         <controlpoint xx="-10" yy="0" zz="-10" />
         <controlpoint xx="-5" yy="0" zz="-10" />
         <controlpoint xx="0" yy="0" zz="-5" />
@@ -285,14 +285,19 @@
         <controlpoint xx="0" yy="0" zz="30" />
     </ANIMATION>
 
-    <!-- <ANIMATION id="ambushLinear1" speed="15" type="linear">
-        <controlpoint xx="" yy="" zz="" />
-        <controlpoint xx="" yy="" zz="" />
+    <ANIMATION id="ambushLinear1" speed="15" type="linear">
+        <controlpoint xx="50" yy="0" zz="0" />
+        <controlpoint xx="50" yy="0" zz="10" />
     </ANIMATION>
 
-    <ANIMATION id="ambushCirc" speed="20" type="circular"
-                centerX="25" centerY="0" centerZ="10"
-                radius="15" startAng="0" rotAng="-90"/> -->
+    <ANIMATION id="ambushCirc" speed="15" type="circular"
+                centerX="35" centerY="0" centerZ="10"
+                radius="15" startAng="0" rotAng="-90"/>
+
+    <ANIMATION id="ambushLinear2" speed="15" type="linear">
+        <controlpoint xx="35" yy="0" zz="25" />
+        <controlpoint xx="25" yy="0" zz="25" />
+    </ANIMATION>
 
     <ANIMATION id="convoyAnim" type="combo">
         <SPANREF id="convoyBezier1" />
@@ -300,11 +305,11 @@
         <SPANREF id="convoyBlowUp" />
     </ANIMATION>
 
-    <!-- <ANIMATION id="ambushAnim" type="combo">
+    <ANIMATION id="ambushAnim" type="combo">
         <SPANREF id="ambushLinear1" />
         <SPANREF id="ambushCirc" />
         <SPANREF id="ambushLinear2" />
-    </ANIMATION> -->
+    </ANIMATION>
 
 </ANIMATIONS>
 
@@ -387,8 +392,6 @@
 
         <ANIMATIONREFS>
             <ANIMATIONREF id="convoyAnim" />
-            <!-- <ANIMATIONREF id="initialConvoyRoute" />
-            <ANIMATIONREF id="convoyBlowUp" /> -->
         </ANIMATIONREFS>
 
         <DESCENDANTS>
@@ -401,8 +404,7 @@
         <TEXTURE id="null" />
 
         <ANIMATIONREFS>
-            <!-- <ANIMATIONREF id="comboTest" /> -->
-          <!--   <ANIMATIONREF id="ambushRecoil" /> -->
+            <ANIMATIONREF id="ambushAnim" />
         </ANIMATIONREFS>
 
 
