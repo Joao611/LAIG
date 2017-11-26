@@ -278,7 +278,7 @@
 
     <ANIMATION id="intersection" speed="20" type="circular"
                 centerX="25" centerY="0" centerZ="10"
-                radius="15" startAng="0" rotAng="90"/>
+                radius="15" startAng="0" rotAng="-90"/>
 
     <ANIMATION id="convoyAnim" type="combo">
         <SPANREF id="initialRoute" />
