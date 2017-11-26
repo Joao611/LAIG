@@ -374,9 +374,9 @@
         <TEXTURE id="null" />
 
         <ANIMATIONREFS>
-            <ANIMATIONREF id="convoyAnim" />
-            <!-- <ANIMATIONREF id="initialConvoyRoute" />
-            <ANIMATIONREF id="convoyBlewUp" /> -->
+            <!-- <ANIMATIONREF id="convoyAnim" /> -->
+            <ANIMATIONREF id="initialConvoyRoute" />
+            <ANIMATIONREF id="convoyBlowUp" />
         </ANIMATIONREFS>
 
         <DESCENDANTS>
