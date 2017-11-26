@@ -14,12 +14,6 @@ class LinearAnimation extends Animation {
 	
 		this.totalDistance = this._getTotalDistance(this.controlPoints);
 		this.totalTime = this.totalDistance / this.speed;
-
-		this.scene.pushMatrix();
-        	this.scene.loadIdentity();
-        	this.scene.translate(this.controlPoints[0][0], this.controlPoints[0][1], this.controlPoints[0][2]);
-        	this.transformMatrix = this.scene.getMatrix();
-    	this.scene.popMatrix();
 	}
 
 	getTransform(t) {
@@ -46,18 +40,17 @@ class LinearAnimation extends Animation {
 	}
 
 	applyCurrent(tInPortion, endControlPoint, startControlPoint) {
-		this.scene.pushMatrix();
-			this.scene.setMatrix(this.transformMatrix);
-			let transX = tInPortion * (endControlPoint[0] - startControlPoint[0]);
-			let transY = tInPortion * (endControlPoint[1] - startControlPoint[1]);
-			let transZ = tInPortion * (endControlPoint[2] - startControlPoint[2]);
-			this.scene.translate(transX, transY, transZ);
-			let angle = this._getXZOrientation(endControlPoint, startControlPoint);
-			this.scene.rotate(angle, 0, 1, 0);
-			let resultMatrix = this.scene.getMatrix();
-		this.scene.popMatrix();
+		let transformMatrix = mat4.create();
+		mat4.identity(transformMatrix);
+		let translation = [];
+		translation[0] = tInPortion * (endControlPoint[0] - startControlPoint[0]);
+		translation[1] = tInPortion * (endControlPoint[1] - startControlPoint[1]);
+		translation[2] = tInPortion * (endControlPoint[2] - startControlPoint[2]);
+		mat4.translate(transformMatrix, transformMatrix, translation);
+		let angle = this._getXZOrientation(endControlPoint, startControlPoint);
+		mat4.rotate(transformMatrix, transformMatrix, angle, [0, 1, 0]);
 
-		return resultMatrix;
+		return transformMatrix;
 	}
 
 	_getXZOrientation(point1, point0) {
