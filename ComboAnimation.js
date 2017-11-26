@@ -5,7 +5,7 @@ class ComboAnimation extends Animation {
         this.totalTime = 0;
         for (let i = 0; i < this.animationIds.length; i++){
             let animation = this.scene.graph.animations[this.animationIds[i]];
-            this.totalTime +=  animation.totalTime;
+            this.totalTime += animation.totalTime;
         }
     }
 

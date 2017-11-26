@@ -43,7 +43,7 @@ class BezierAnimation extends Animation {
 		if (x == 0) {
 			return -Math.PI / 2;
 		} else {
-			return Math.atan(z/x);
+			return -Math.atan(z/x);
 		}
 	}
 

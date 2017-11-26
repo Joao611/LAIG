@@ -266,7 +266,14 @@
 
 	</ANIMATION>
 
-    <ANIMATION id="initialConvoyRoute" speed="15" type="linear">
+    <ANIMATION id="convoyBezier1" speed="15" type="bezier">
+        <controlpoint xx="-10" yy="0" zz="-10" />
+        <controlpoint xx="-5" yy="0" zz="-10" />
+        <controlpoint xx="0" yy="0" zz="-5" />
+        <controlpoint xx="0" yy="0" zz="0" />
+    </ANIMATION>
+
+    <ANIMATION id="convoyLinear" speed="15" type="linear">
         <controlpoint xx="0" yy="0" zz="0" />
         <controlpoint xx="0" yy="0" zz="20" />
     </ANIMATION>
@@ -278,14 +285,26 @@
         <controlpoint xx="0" yy="0" zz="30" />
     </ANIMATION>
 
-    <ANIMATION id="intersection" speed="20" type="circular"
+    <!-- <ANIMATION id="ambushLinear1" speed="15" type="linear">
+        <controlpoint xx="" yy="" zz="" />
+        <controlpoint xx="" yy="" zz="" />
+    </ANIMATION>
+
+    <ANIMATION id="ambushCirc" speed="20" type="circular"
                 centerX="25" centerY="0" centerZ="10"
-                radius="15" startAng="0" rotAng="-90"/>
+                radius="15" startAng="0" rotAng="-90"/> -->
 
     <ANIMATION id="convoyAnim" type="combo">
-        <SPANREF id="initialConvoyRoute" />
+        <SPANREF id="convoyBezier1" />
+        <SPANREF id="convoyLinear" />
         <SPANREF id="convoyBlowUp" />
     </ANIMATION>
+
+    <!-- <ANIMATION id="ambushAnim" type="combo">
+        <SPANREF id="ambushLinear1" />
+        <SPANREF id="ambushCirc" />
+        <SPANREF id="ambushLinear2" />
+    </ANIMATION> -->
 
 </ANIMATIONS>
 
@@ -316,20 +335,11 @@
         <TEXTURE id="field" />
 
         <SCALE sx="100" sy="1" sz="100" />
-        <TRANSLATION x="-0.5" y="0" z="-0.5" />
+        <TRANSLATION x="-0.5" y="0" z="0.5" />
+        <ROTATION axis="x" angle="-90" />
 
         <DESCENDANTS>
-            <LEAF type="patch" args="10 10">
-                <CPLINE>
-                    <CPOINT xx="0" yy="0" zz="0" ww="1" />
-                    <CPOINT xx="1" yy="0" zz="0" ww="1" />
-                </CPLINE>
-                <CPLINE>
-                    <CPOINT xx="0" yy="0" zz="1" ww="1" />
-                    <CPOINT xx="1" yy="0" zz="1" ww="1" />
-                </CPLINE>
-            </LEAF>
-          <!--   <LEAF type="rectangle" args="0 1 1 0" /> -->
+            <LEAF type="rectangle" args="0 1 1 0" />
         </DESCENDANTS>
     </NODE>
 
