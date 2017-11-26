@@ -12,7 +12,7 @@ class ComboAnimation extends Animation {
     getTransform(t){
         for(let i=0; i< this.animations.length; i++){
             this.elapsedTime +=  this.animations[i].totalTime;
-            while(t < elapsedTime){
+            while(t < this.elapsedTime){
                 this.animations[i].getTransform(t);
             }
         }
