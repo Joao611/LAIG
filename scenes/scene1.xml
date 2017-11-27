@@ -322,7 +322,7 @@
         </DESCENDANTS>
     </NODE>
 
-    <NODE id="convoy_Tiger">
+    <NODE id="convoy_Tiger" selectable="1">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -335,7 +335,7 @@
         </DESCENDANTS>
     </NODE>
 
-    <NODE id="ambush_Tiger">
+    <NODE id="ambush_Tiger" selectable="1">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
