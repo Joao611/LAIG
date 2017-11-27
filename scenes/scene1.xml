@@ -14,62 +14,28 @@
 
 <!-- Illumination and clear colour -->
 <ILLUMINATION>
-    <ambient r="0.2" g="0.2" b="0.2" a="1" />
+    <ambient r="0.5" g="0.5" b="0.5" a="1" />
     <background r="0" g="0" b="0" a="1" />
 </ILLUMINATION>
 
 
 <!-- Lights -->
 <LIGHTS>
-	<LIGHT id="light0">
+	<LIGHT id="ambient">
         <enable value ="1" />
-        <position  x="0" y="10" z="0" w="1" />
-        <ambient r="0.2" g="0.2" b="0.2" a="1.0" />
+        <position  x="0" y="100" z="0" w="1" />
+        <ambient r="0.5" g="0.5" b="0.5" a="1.0" />
         <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />
         <specular r="1.0" g="1.0" b="1.0" a="1.0" />
     </LIGHT>
 
-	<LIGHT id="light1">
+    <LIGHT id="light0">
         <enable value ="1" />
-        <position x="30" y="10" z="0" w="1" />
-        <ambient r="0.2" g="0.2" b="0.2" a="1.0" />
-        <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />
-        <specular r="1.0" g="1.0" b="1.0" a="1.0" />
+        <position  x="10" y="20" z="10" w="1" />
+        <ambient r="0" g="0" b="0" a="1.0" />
+        <diffuse r="0.5" g="0.5" b="0.5" a="0.5" />
+        <specular r="0.5" g="0.5" b="0.5" a="0.5" />
     </LIGHT>
-
-	<LIGHT id="light2">
-        <enable value ="1" />
-        <position x="0" y="10" z="20" w="1" />
-        <ambient r="0.2" g="0.2" b="0.2" a="1.0" />
-        <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />
-        <specular r="1.0" g="1.0" b="1.0" a="1.0" />
-    </LIGHT>
-
-    <LIGHT id="light3">
-        <enable value ="1" />
-        <position x="30" y="10" z="20" w="1" />
-        <ambient r="0.2" g="0.2" b="0.2" a="1.0" />
-        <diffuse r="0.6" g="0.6" b="0.6" a="1.0" />
-        <specular r="0.6" g="0.6" b="0.6" a="1.0" />
-    </LIGHT>
-
-       <LIGHT id="light4">
-        <enable value ="1" />
-        <position x="15" y="10" z="10" w="1" />
-        <ambient r="0.2" g="0.2" b="0.2" a="1.0" />
-        <diffuse r="0.6" g="0.6" b="0.6" a="1.0" />
-        <specular r="0.6" g="0.6" b="0.6" a="1.0" />
-    </LIGHT>
-
-     <LIGHT id="light5">
-        <enable value ="1" />
-        <position x="-10" y="10" z="10" w="1" />
-        <ambient r="0.2" g="0.2" b="0.2" a="1.0" />
-        <diffuse r="0.6" g="0.6" b="0.6" a="1.0" />
-        <specular r="0.6" g="0.6" b="0.6" a="1.0" />
-    </LIGHT>
-
-
 </LIGHTS>
 
 <!-- Textures -->
@@ -181,14 +147,29 @@
         <emission r="0.0" g="0.0" b="0.0" a="1" />
     </MATERIAL>
 
+    <MATERIAL id="fieldMaterial">
+        <shininess value="1" />
+        <specular r="0.1" g="0.1" b="0.1" a="1" />
+        <diffuse r="0.5" g="0.5" b="0.5" a="1" />
+        <ambient r="0.5" g="0.5" b="0.5" a="1" />
+        <emission r="0.0" g="0.0" b="0.0" a="1" />
+    </MATERIAL>
+
+    <MATERIAL id="mountainMaterial">
+        <shininess value="1" />
+        <specular r="0.3" g="0.3" b="0.3" a="1" />
+        <diffuse r="0.5" g="0.5" b="0.5" a="1" />
+        <ambient r="0.5" g="0.5" b="0.5" a="1" />
+        <emission r="0.0" g="0.0" b="0.0" a="1" />
+    </MATERIAL>
+
     <MATERIAL id="tigerMaterial">
         <shininess value="1" />
         <specular r="0.3" g="0.3" b="0.3" a="1" />
         <diffuse r="0.5" g="0.5" b="0.5" a="1" />
         <ambient r="0.1" g="0.1" b="0.1" a="1" />
-        <emission r="0" g="0.0" b="0.0" a="1" />
+        <emission r="0.0" g="0.0" b="0.0" a="1" />
     </MATERIAL>
-
 </MATERIALS>
 
 <!-- The animations -->
@@ -291,7 +272,7 @@
     </NODE>
 
     <NODE id="ground" selectable="1">
-        <MATERIAL id="null" />
+        <MATERIAL id="fieldMaterial" />
         <TEXTURE id="field" />
 
         <SCALE sx="100" sy="1" sz="100" />
@@ -304,7 +285,7 @@
     </NODE>
 
     <NODE id="mountain" selectable="1">
-        <MATERIAL id="null" />
+        <MATERIAL id="mountainMaterial" />
         <TEXTURE id="mountain" />
 
         <TRANSLATION x="10" y="-2" z="0" />
