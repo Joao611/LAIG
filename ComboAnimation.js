@@ -9,6 +9,10 @@ class ComboAnimation extends Animation {
         }
     }
 
+	/**
+	 * Returns a transformation matrix in function of the given time.
+	 * @param t Time between 0 and 1.
+	 */
     getTransform(t) {
         if (t > 1) {
             t = 1;

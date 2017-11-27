@@ -15,7 +15,11 @@ class LinearAnimation extends Animation {
 		this.totalDistance = this._getTotalDistance(this.controlPoints);
 		this.totalTime = this.totalDistance / this.speed;
 	}
-
+	
+	/**
+	 * Returns a transformation matrix in function of the given time.
+	 * @param t Time between 0 and 1.
+	 */
 	getTransform(t) {
 		let traveledDistance = t * this.totalDistance;
   		this.distanceUntilCurrStart = 0;
@@ -79,9 +83,5 @@ class LinearAnimation extends Animation {
 			distance += this._getDistance(controlPoints[i], controlPoints[i - 1]);
 		}
 		return distance;
-	}
-
-	_getTotalTime(){
-		return totalTime;
 	}
 }
