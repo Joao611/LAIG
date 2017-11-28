@@ -9,7 +9,6 @@ class LinearAnimation extends Animation {
 		super(scene);
 		this.controlPoints = controlPoints;
 		this.speed = speed;
-		this.elapsedDistance = 0;
 		this.rotated = false;
 	
 		this.totalDistance = this._getTotalDistance(this.controlPoints);
@@ -22,22 +21,19 @@ class LinearAnimation extends Animation {
 	 */
 	getTransform(t) {
 		let traveledDistance = t * this.totalDistance;
-  		this.distanceUntilCurrStart = 0;
-    	let tInPortion = -1;
+  		let elapsedDistance = 0;
     	let currentMatrix = [];
     	for (let i = 1; i < this.controlPoints.length; i++) {
     		let portionLength = this._getDistance(this.controlPoints[i-1], this.controlPoints[i]);
-			if (this.elapsedDistance + portionLength < traveledDistance) {
-				this.elapsedDistance += portionLength;
-				this.distanceUntilCurrStart += portionLength;
+			if (elapsedDistance + portionLength < traveledDistance) {
+				elapsedDistance += portionLength;
 				continue;
 			}
 		
-			let distanceInPortion = traveledDistance - this.distanceUntilCurrStart;
+			let distanceInPortion = traveledDistance - elapsedDistance;
 			if (distanceInPortion > portionLength) {
 				distanceInPortion = portionLength;
 			}
-			this.elapsedDistance += distanceInPortion;
 			let tInPortion = distanceInPortion / portionLength;
 			return this.applyCurrent(tInPortion, this.controlPoints[i], this.controlPoints[i - 1]);
     	}
