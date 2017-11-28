@@ -20,6 +20,9 @@ class LinearAnimation extends Animation {
 	 * @param t Time between 0 and 1.
 	 */
 	getTransform(t) {
+		if (t > 1) {
+			t = 1;
+		}
 		let traveledDistance = t * this.totalDistance;
   		let elapsedDistance = 0;
     	let currentMatrix = [];
