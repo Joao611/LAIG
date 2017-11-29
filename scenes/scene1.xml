@@ -174,12 +174,12 @@
 
 <!-- The animations -->
 <ANIMATIONS>
-    <ANIMATION id="transTest" speed="8" type="linear">
-        <controlpoint xx="-4" yy="0" zz="0" />
-        <controlpoint xx="0" yy="0" zz="0" />
+    <ANIMATION id="transTest" speed="10" rot="90" type="linear">
+        <controlpoint xx="10" yy="0" zz="20" />
+        <controlpoint xx="20" yy="0" zz="20" />
     </ANIMATION>
 
-    <ANIMATION id="circTest" speed="5" type="circular"
+    <!-- <ANIMATION id="circTest" speed="5" type="circular"
                centerX = "0" centerY = "0" centerZ = "0"
                radius = "5" startAng = "0" rotAng = "90"/>
 
@@ -246,7 +246,7 @@
         <SPANREF id="ambushCirc" />
         <SPANREF id="ambushLinear2" />
     </ANIMATION>
-
+ -->
 </ANIMATIONS>
 
 <!-- The leaves -->
@@ -327,7 +327,7 @@
         <TEXTURE id="null" />
 
         <ANIMATIONREFS>
-            <ANIMATIONREF id="convoyAnim" />
+            <ANIMATIONREF id="transTest" />
         </ANIMATIONREFS>
 
         <DESCENDANTS>
@@ -339,9 +339,9 @@
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
-        <ANIMATIONREFS>
+        <!-- <ANIMATIONREFS>
             <ANIMATIONREF id="ambushAnim" />
-        </ANIMATIONREFS>
+        </ANIMATIONREFS> -->
 
 
         <DESCENDANTS>

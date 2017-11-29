@@ -1,3 +1,5 @@
+var degToRad = Math.PI / 180;
+
 /**
  * LinearAnimation
  * @constructor
@@ -5,16 +7,17 @@
  * @param speed 3D units per second.
  */
 class LinearAnimation extends Animation {
-	constructor(scene, controlPoints, speed) {
+	constructor(scene, controlPoints, speed, rot) {
 		super(scene);
 		this.controlPoints = controlPoints;
 		this.speed = speed;
+		this.totalAngle = rot * degToRad;
 		this.rotated = false;
-	
+
 		this.totalDistance = this._getTotalDistance(this.controlPoints);
 		this.totalTime = this.totalDistance / this.speed;
 	}
-	
+
 	/**
 	 * Returns a transformation matrix in function of the given time.
 	 * @param t Time between 0 and 1.
@@ -32,17 +35,20 @@ class LinearAnimation extends Animation {
 				elapsedDistance += portionLength;
 				continue;
 			}
-		
+
 			let distanceInPortion = traveledDistance - elapsedDistance;
 			if (distanceInPortion > portionLength) {
 				distanceInPortion = portionLength;
 			}
 			let tInPortion = distanceInPortion / portionLength;
-			return this.applyCurrent(tInPortion, this.controlPoints[i], this.controlPoints[i - 1]);
+			return this.applyCurrent(t, tInPortion, this.controlPoints[i], this.controlPoints[i - 1]);
     	}
 	}
 
-	applyCurrent(tInPortion, endControlPoint, startControlPoint) {
+	applyCurrent(totalT, tInPortion, endControlPoint, startControlPoint) {
+		if (totalT > 1) {
+			totalT = 1;
+		}
 		let transformMatrix = mat4.create();
 		mat4.identity(transformMatrix);
 		let translation = [];
@@ -50,8 +56,8 @@ class LinearAnimation extends Animation {
 		translation[1] = startControlPoint[1] + tInPortion * (endControlPoint[1] - startControlPoint[1]);
 		translation[2] = startControlPoint[2] + tInPortion * (endControlPoint[2] - startControlPoint[2]);
 		mat4.translate(transformMatrix, transformMatrix, translation);
-		let angle = this._getXZOrientation(endControlPoint, startControlPoint);
-		mat4.rotate(transformMatrix, transformMatrix, angle, [0, 1, 0]);
+		// let angle = this._getXZOrientation(endControlPoint, startControlPoint);
+		mat4.rotate(transformMatrix, transformMatrix, totalT * this.totalAngle, [0, 1, 0]);
 
 		return transformMatrix;
 	}
@@ -62,7 +68,7 @@ class LinearAnimation extends Animation {
 		if (x == 0) {
 			return -Math.PI / 2;
 		} else if (x < 0 && z == 0) {
-			return Math.PI;	
+			return Math.PI;
 		} else {
 			return Math.atan(z/x);
 		}

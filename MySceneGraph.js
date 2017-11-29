@@ -1179,6 +1179,7 @@ MySceneGraph.prototype.parseMaterials = function(materialsNode) {
 
 function createLinearAnim(graph, xmlAnim) {
     let animSpeed = graph.reader.getFloat(xmlAnim, 'speed');
+    let animRot = graph.reader.getFloat(xmlAnim, 'rot');
     let xmlPoints = xmlAnim.children;
     let controlPoints = [];
     for (let i = 0; i < xmlPoints.length; i++) {
@@ -1194,7 +1195,7 @@ function createLinearAnim(graph, xmlAnim) {
             controlPoints.push(point);
         }
     }
-    return new LinearAnimation(graph.scene, controlPoints, animSpeed);
+    return new LinearAnimation(graph.scene, controlPoints, animSpeed, animRot);
 }
 
 function createCircularAnim(graph, xmlAnim) {
