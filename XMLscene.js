@@ -25,7 +25,6 @@ XMLscene.prototype.init = function(application) {
 
     this.enableTextures(true);
 	this.sandMask = new CGFtexture(this, "scenes/images/sandMask.jpg");
-	this.sandMask.bind(1);
 
     this.gl.clearDepth(100.0);
     this.gl.enable(this.gl.DEPTH_TEST);
@@ -96,8 +95,8 @@ XMLscene.prototype.onGraphLoaded = function()
     this.initLights();
 
     this.interface.addLightsGroup(this.graph.lights);
-	this.interface.addSelectableDropdown(this.graph.selectableNodeIds);	
-	
+	this.interface.addSelectableDropdown(this.graph.selectableNodeIds);
+
 	this.selectableShader = new CGFshader(this.gl, "shaders/beachShader.vert", "shaders/beachShader.frag");
 	this.selectableShader.setUniformsValues({uSampler2: 1});
 

@@ -1584,14 +1584,16 @@ MySceneGraph.prototype.displayScene = function() {
  * Must be called from displayScene to start at the root node.
  */
 MySceneGraph.prototype.displayNode = function(node, materialID, textureID, ampS, ampT, appliedMaterial) {
-   
+
+    this.scene.sandMask.bind(1);
+
     if (node.nodeID == this.selectedNodeId) {
         this.scene.setActiveShader(this.scene.selectableShader);
         this.scene.isSelectableShaderSet = true;
      }
-    
+
     this.scene.pushMatrix();
-   
+
     this.scene.multMatrix(node.transformMatrix);
     let animTransform = node.getAnimTransform(this.elapsedSeconds);
     if (animTransform != null) {
@@ -1607,7 +1609,7 @@ MySceneGraph.prototype.displayNode = function(node, materialID, textureID, ampS,
     }
 
     if (node.textureID == "clear" && textureID != null) {
-        this.textures[textureID][0].unbind();
+        this.textures[textureID][0].unbind(0);
         textureID = null;
         node.textureID = null;
     }
@@ -1623,17 +1625,17 @@ MySceneGraph.prototype.displayNode = function(node, materialID, textureID, ampS,
             this.materials[materialID].apply();
         }
         if (textureID != null) {
-            this.textures[textureID][0].bind();
+            this.textures[textureID][0].bind(0);
         }
         node.leaves[i].updateTexCoords(ampS, ampT);
         node.leaves[i].display();
     }
 
     this.scene.popMatrix();
-   
+
     if (this.scene.isSelectableShaderSet && node.nodeID == this.selectedNodeId) {
         this.scene.setActiveShader(this.scene.defaultShader);
-        this.scene.isSelectableShaderSet = false;        
+        this.scene.isSelectableShaderSet = false;
     }
 }
 
