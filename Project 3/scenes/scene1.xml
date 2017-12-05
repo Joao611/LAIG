@@ -49,8 +49,13 @@
         <file path="images/mountain.jpg" />
         <amplif_factor s="1" t="1" />
     </TEXTURE>
-</TEXTURES>
 
+
+    <TEXTURE id="board">
+        <file path="images/board.jpg" />
+        <amplif_factor s="1" t="1" />
+    </TEXTURE>
+</TEXTURES>
 
 <MATERIALS>
     <!-- A default material -->
@@ -100,9 +105,82 @@
 
         <DESCENDANTS>
             <NODEREF id="ground" />
-            <NODEREF id="mountain" />
+            <NODEREF id="board" />
         </DESCENDANTS>
     </NODE>
+
+    <NODE id="board">
+        <MATERIAL id="defaultMaterial" />
+        <TEXTURE id="board" />
+        <TRANSLATION x="0" y="0.3" z="0" />
+        <SCALE sx="20" sy="20" sz="20" />
+        <ROTATION axis="x" angle="-90" />
+        <ROTATION axis="z" angle="-90" />
+
+        <DESCENDANTS>
+          <NODEREF id="center"/>
+          <NODEREF id="margins"/>
+        </DESCENDANTS>
+    </NODE>
+
+
+    <NODE id="center">
+        <MATERIAL id="defaultMaterial" />
+        <TEXTURE id="board" />
+
+        <DESCENDANTS>
+          <LEAF type="rectangle" args="0 1 1 0" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="margins">
+        <MATERIAL id="defaultMaterial" />
+        <TEXTURE id="null" />
+
+        <DESCENDANTS>
+          <NODEREF id="margin1"/>
+          <NODEREF id="margin2"/>
+          <NODEREF id="margin3"/>
+          <NODEREF id="margin4"/>
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="margin1">
+        <MATERIAL id="defaultMaterial" />
+        <TEXTURE id="null" />
+
+        <DESCENDANTS>
+          <LEAF type="rectangle" args="0 1 1 0" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="margin2">
+        <MATERIAL id="defaultMaterial" />
+        <TEXTURE id="null" />
+
+        <DESCENDANTS>
+          <LEAF type="rectangle" args="0 1 1 0" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="margin3">
+        <MATERIAL id="defaultMaterial" />
+        <TEXTURE id="null" />
+
+        <DESCENDANTS>
+          <LEAF type="rectangle" args="0 1 1 0" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="margin4">
+        <MATERIAL id="defaultMaterial" />
+        <TEXTURE id="null" />
+
+        <DESCENDANTS>
+          <LEAF type="rectangle" args="0 1 1 0" />
+        </DESCENDANTS>
+    </NODE>
+
 
     <NODE id="ground" selectable="1">
         <MATERIAL id="fieldMaterial" />
@@ -117,33 +195,7 @@
         </DESCENDANTS>
     </NODE>
 
-    <NODE id="mountain" selectable="1">
-        <MATERIAL id="mountainMaterial" />
-        <TEXTURE id="mountain" />
 
-        <TRANSLATION x="10" y="-2" z="0" />
-        <SCALE sx="2" sy="1" sz="2" />
-
-        <DESCENDANTS>
-            <LEAF type="patch" args="20 20">
-                <CPLINE>
-					<CPOINT xx="0" yy="0" zz="0" ww="1" />
-					<CPOINT xx="5" yy="0" zz="0" ww="1" />
-					<CPOINT xx="10" yy="0" zz="0" ww="1" />
-				</CPLINE>
-				<CPLINE>
-					<CPOINT xx="0" yy="0" zz="5" ww="1" />
-					<CPOINT xx="5" yy="12" zz="5" ww="5" />
-					<CPOINT xx="10" yy="0" zz="5" ww="1" />
-				</CPLINE>
-                <CPLINE>
-					<CPOINT xx="0" yy="0" zz="10" ww="1" />
-					<CPOINT xx="5" yy="0" zz="10" ww="1" />
-					<CPOINT xx="10" yy="0" zz="10" ww="1" />
-				</CPLINE>
-			</LEAF>
-        </DESCENDANTS>
-    </NODE>
 
     <NODE id="cube">
         <MATERIAL id="null" />
