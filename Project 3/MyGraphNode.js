@@ -61,3 +61,7 @@ MyGraphNode.prototype.getAnimTransform = function(currentSeconds) {
     }
     return null;
 }
+
+MyGraphNode.prototype.display = function() {
+  
+}

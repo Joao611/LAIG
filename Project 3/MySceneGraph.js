@@ -1575,6 +1575,8 @@ MySceneGraph.generateRandomString = function(length) {
  * Displays the scene, processing each node, starting in the root node.
  */
 MySceneGraph.prototype.displayScene = function() {
+  this.scene.board.update();
+  this.scene.board.display();
 	let rootNode = this.nodes[this.idRoot];
 	this.displayNode(rootNode, null, null, 1, 1, false);
 }
@@ -1584,14 +1586,14 @@ MySceneGraph.prototype.displayScene = function() {
  * Must be called from displayScene to start at the root node.
  */
 MySceneGraph.prototype.displayNode = function(node, materialID, textureID, ampS, ampT, appliedMaterial) {
-   
+
     if (node.nodeID == this.selectedNodeId) {
         this.scene.setActiveShader(this.scene.selectableShader);
         this.scene.isSelectableShaderSet = true;
      }
-    
+
     this.scene.pushMatrix();
-   
+
     this.scene.multMatrix(node.transformMatrix);
     let animTransform = node.getAnimTransform(this.elapsedSeconds);
     if (animTransform != null) {
@@ -1630,10 +1632,10 @@ MySceneGraph.prototype.displayNode = function(node, materialID, textureID, ampS,
     }
 
     this.scene.popMatrix();
-   
+
     if (this.scene.isSelectableShaderSet && node.nodeID == this.selectedNodeId) {
         this.scene.setActiveShader(this.scene.defaultShader);
-        this.scene.isSelectableShaderSet = false;        
+        this.scene.isSelectableShaderSet = false;
     }
 }
 

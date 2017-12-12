@@ -55,6 +55,16 @@
         <file path="images/board.jpg" />
         <amplif_factor s="1" t="1" />
     </TEXTURE>
+
+    <TEXTURE id="whiteCellTexture">
+      <file path="images/whiteCellTexture.png" />
+      <amplif_factor s="1" t="1" />
+    </TEXTURE>
+
+    <TEXTURE id="blackCellTexture">
+      <file path="images/blackCellTexture.png" />
+      <amplif_factor s="1" t="1" />
+    </TEXTURE>
 </TEXTURES>
 
 <MATERIALS>
@@ -105,11 +115,11 @@
 
         <DESCENDANTS>
             <NODEREF id="ground" />
-            <NODEREF id="board" />
+            <!-- <NODEREF id="board" /> -->
         </DESCENDANTS>
     </NODE>
 
-    <NODE id="board">
+    <!-- <NODE id="board">
         <MATERIAL id="defaultMaterial" />
         <TEXTURE id="board" />
         <TRANSLATION x="0" y="0.3" z="0" />
@@ -121,19 +131,37 @@
           <NODEREF id="center"/>
           <NODEREF id="margins"/>
         </DESCENDANTS>
-    </NODE>
+    </NODE> -->
 
 
-    <NODE id="center">
+    <!-- <NODE id="center">
         <MATERIAL id="defaultMaterial" />
         <TEXTURE id="board" />
 
         <DESCENDANTS>
           <LEAF type="rectangle" args="0 1 1 0" />
         </DESCENDANTS>
+    </NODE> -->
+
+    <NODE id="whiteCell">
+      <MATERIAL id="null" />
+      <TEXTURE id="whiteCellTexture" />
+
+      <DESCENDANTS>
+        <LEAF type="rectangle" args="0 1 1 0" />
+      </DESCENDANTS>
     </NODE>
 
-    <NODE id="margins">
+    <NODE id="blackCell">
+      <MATERIAL id="null" />
+      <TEXTURE id="blackCellTexture" />
+
+      <DESCENDANTS>
+        <LEAF type="rectangle" args="0 1 1 0" />
+      </DESCENDANTS>
+    </NODE>
+
+    <!-- <NODE id="margins">
         <MATERIAL id="defaultMaterial" />
         <TEXTURE id="null" />
 
@@ -143,9 +171,9 @@
           <NODEREF id="margin3"/>
           <NODEREF id="margin4"/>
         </DESCENDANTS>
-    </NODE>
+    </NODE> -->
 
-    <NODE id="margin1">
+    <!-- <NODE id="margin1">
         <MATERIAL id="defaultMaterial" />
         <TEXTURE id="null" />
 
@@ -179,7 +207,7 @@
         <DESCENDANTS>
           <LEAF type="rectangle" args="0 1 1 0" />
         </DESCENDANTS>
-    </NODE>
+    </NODE> -->
 
 
     <NODE id="ground" selectable="1">
