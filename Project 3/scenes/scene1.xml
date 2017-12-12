@@ -41,8 +41,8 @@
 <!-- Textures -->
 <TEXTURES>
 	<TEXTURE id="field">
-        <file path="images/field3.jpg" />
-        <amplif_factor s="0.3" t="0.3" />
+        <file path="images/grey-ceramic-tiles.jpg" />
+        <amplif_factor s="0.05" t="0.05" />
     </TEXTURE>
 
     <TEXTURE id="mountain">
@@ -55,7 +55,20 @@
         <file path="images/board.jpg" />
         <amplif_factor s="1" t="1" />
     </TEXTURE>
+
+  <TEXTURE id="tabletop">
+      <file path="images/tabletop.jpg" />
+      <amplif_factor s="1" t="1" />
+  </TEXTURE>
+
+  <TEXTURE id="tablelegs">
+      <file path="images/wood.jpg" />
+      <amplif_factor s="1" t="1" />
+  </TEXTURE>
+
 </TEXTURES>
+
+
 
 <MATERIALS>
     <!-- A default material -->
@@ -106,20 +119,21 @@
         <DESCENDANTS>
             <NODEREF id="ground" />
             <NODEREF id="board" />
+            <NODEREF id="table" />
         </DESCENDANTS>
     </NODE>
 
     <NODE id="board">
         <MATERIAL id="defaultMaterial" />
         <TEXTURE id="board" />
-        <TRANSLATION x="0" y="0.3" z="0" />
-        <SCALE sx="20" sy="20" sz="20" />
+        <TRANSLATION x="1.6" y="9.3" z="1.6" />
+        <SCALE sx="8" sy="8" sz="8" />
         <ROTATION axis="x" angle="-90" />
         <ROTATION axis="z" angle="-90" />
 
         <DESCENDANTS>
           <NODEREF id="center"/>
-          <NODEREF id="margins"/>
+          <!-- <NODEREF id="margins"/> -->
         </DESCENDANTS>
     </NODE>
 
@@ -132,7 +146,7 @@
           <LEAF type="rectangle" args="0 1 1 0" />
         </DESCENDANTS>
     </NODE>
-
+<!--
     <NODE id="margins">
         <MATERIAL id="defaultMaterial" />
         <TEXTURE id="null" />
@@ -148,6 +162,7 @@
     <NODE id="margin1">
         <MATERIAL id="defaultMaterial" />
         <TEXTURE id="null" />
+        <TRANSLATION x="0" y="2" z="0" />
 
         <DESCENDANTS>
           <LEAF type="rectangle" args="0 1 1 0" />
@@ -179,8 +194,100 @@
         <DESCENDANTS>
           <LEAF type="rectangle" args="0 1 1 0" />
         </DESCENDANTS>
+    </NODE> -->
+
+    <NODE id="table">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <DESCENDANTS>
+          <NODEREF id="table_top" />
+          <NODEREF id="table_legs" />
+        </DESCENDANTS>
+
     </NODE>
 
+    <!-- Table Top -->
+    <NODE id="table_top">
+        <MATERIAL id="null" />
+        <TEXTURE id="tabletop" />
+
+        <TRANSLATION x="0" y="8" z="0" />
+        <SCALE sx="11.5" sy="1.2" sz="11.5" />
+
+        <DESCENDANTS>
+            <NODEREF id="cube" />
+        </DESCENDANTS>
+    </NODE>
+
+    <!-- Table Legs -->
+    <NODE id="table_legs">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <DESCENDANTS>
+            <NODEREF id="table_leg1" />
+            <NODEREF id="table_leg2" />
+            <NODEREF id="table_leg3" />
+            <NODEREF id="table_leg4" />
+        </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="table_leg1">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="0" y="0" z="0" />
+
+        <DESCENDANTS>
+            <NODEREF id="leg" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="table_leg2">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="10.5" y="0" z="0" />
+
+        <DESCENDANTS>
+            <NODEREF id="leg" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="table_leg3">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="10.5" y="0" z="10.5" />
+
+        <DESCENDANTS>
+            <NODEREF id="leg" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="table_leg4">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="0" y="0" z="10.5" />
+
+        <DESCENDANTS>
+            <NODEREF id="leg" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="leg">
+        <MATERIAL id="null" />
+        <TEXTURE id="tablelegs" />
+
+        <SCALE sx="0.8" sy="8" sz="0.8" />
+
+        <DESCENDANTS>
+            <NODEREF id="cube" />
+        </DESCENDANTS>
+    </NODE>
 
     <NODE id="ground" selectable="1">
         <MATERIAL id="fieldMaterial" />
