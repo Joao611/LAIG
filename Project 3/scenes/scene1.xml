@@ -165,6 +165,15 @@
       </DESCENDANTS>
     </NODE>
 
+    <NODE id="blackKing">
+        <MATERIAL id="null">
+        <TEXTURE id="null">
+
+        <DESCENDANTS>
+            <NODEREF id="cube" />
+        </DESCENDANTS>
+    </NODE>
+
     <!-- <NODE id="margins">
         <MATERIAL id="defaultMaterial" />
         <TEXTURE id="null" />

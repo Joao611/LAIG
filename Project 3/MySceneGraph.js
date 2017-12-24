@@ -1590,7 +1590,7 @@ MySceneGraph.prototype.displayNode = function(node, materialID = null, textureID
     if (node.nodeID == this.selectedNodeId) {
         this.scene.setActiveShader(this.scene.selectableShader);
         this.scene.isSelectableShaderSet = true;
-     }
+    }
 
     this.scene.pushMatrix();
 
