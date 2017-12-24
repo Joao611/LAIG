@@ -147,6 +147,7 @@
       <MATERIAL id="null" />
       <TEXTURE id="whiteCellTexture" />~
 
+      <TRANSLATION x="0" y="0" z="1" />
       <ROTATION axis="x" angle="-90" />
 
       <DESCENDANTS>
@@ -158,6 +159,7 @@
       <MATERIAL id="null" />
       <TEXTURE id="blackCellTexture" />
 
+      <TRANSLATION x="0" y="0" z="1" />
       <ROTATION axis="x" angle="-90" />
 
       <DESCENDANTS>
@@ -166,8 +168,8 @@
     </NODE>
 
     <NODE id="blackKing">
-        <MATERIAL id="null">
-        <TEXTURE id="null">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
 
         <DESCENDANTS>
             <NODEREF id="cube" />
