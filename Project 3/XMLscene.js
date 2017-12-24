@@ -34,6 +34,8 @@ XMLscene.prototype.init = function(application) {
 
     this.isSelectableShaderSet = false;
     this.setActiveShader(this.defaultShader);
+    
+    this.comms = new MyCommunications(this);
 }
 
 /**
@@ -102,7 +104,6 @@ XMLscene.prototype.onGraphLoaded = function()
     this.setUpdatePeriod(1000.0/60);
 
     this.board = new MyBoard(this);
-    this.comms = new MyCommunications(this);
 }
 
 XMLscene.prototype.logPicking = function ()
