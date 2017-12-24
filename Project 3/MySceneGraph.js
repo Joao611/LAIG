@@ -1575,8 +1575,8 @@ MySceneGraph.generateRandomString = function(length) {
  * Displays the scene, processing each node, starting in the root node.
  */
 MySceneGraph.prototype.displayScene = function() {
-  this.scene.board.update();
-  this.scene.board.display();
+    this.scene.board.update();
+    this.scene.board.display();
 	let rootNode = this.nodes[this.idRoot];
 	this.displayNode(rootNode, null, null, 1, 1, false);
 }
@@ -1585,7 +1585,7 @@ MySceneGraph.prototype.displayScene = function() {
  * Displays the scene, processing each node, starting at the given node.
  * Must be called from displayScene to start at the root node.
  */
-MySceneGraph.prototype.displayNode = function(node, materialID, textureID, ampS, ampT, appliedMaterial) {
+MySceneGraph.prototype.displayNode = function(node, materialID = null, textureID = null, ampS = 1, ampT = 1, appliedMaterial = false) {
 
     if (node.nodeID == this.selectedNodeId) {
         this.scene.setActiveShader(this.scene.selectableShader);

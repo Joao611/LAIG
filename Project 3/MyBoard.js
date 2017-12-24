@@ -1,4 +1,6 @@
-function toJSON(proto) {
+'use strict';
+
+/* function toJSON(proto) {
     let jsoned = {};
     let toConvert = proto || this;
     Object.getOwnPropertyNames(toConvert).forEach((prop) => {
@@ -27,7 +29,7 @@ function toJSON(proto) {
         });
     }
     return jsoned;
-}
+} */
 
 class MyBoard {
   constructor(scene) {
@@ -45,30 +47,30 @@ class MyBoard {
   }
 
   display() {
-    this.scene.clearPickRegistration();
-
     for (let line = 0; line < this.boardLength; line++) {
       for (let col = 0; col < this.boardLength; col++) {
         this.scene.pushMatrix();
           this.scene.translate(this.cellWidth * col, 0, this.cellWidth * line);
           this.scene.registerForPick(this._getPickId(line, col), this.board[line][col]);
-          this.board[line][col].display();
+          this.scene.graph.displayNode(this.board[line][col]);
         this.scene.popMatrix();
       }
     }
   }
 
   _buildBoard() {
-    let blackTurn = true;
+    let outerBlackTurn = true;
     let board = [];
     for (let line = 0; line < this.boardLength; line++) {
+      let blackTurn = outerBlackTurn;
       let boardLine = [];
       for (let col = 0; col < this.boardLength; col++) {
-        let cell = MyGraphNode.assign({}, (blackTurn ? this.blackCell : this.whiteCell));
+        let cell = (blackTurn ? this.blackCell : this.whiteCell);
         blackTurn = !blackTurn;
         boardLine.push(cell);
       }
       board.push(boardLine);
+      outerBlackTurn = !outerBlackTurn;
     }
 
     return board;
