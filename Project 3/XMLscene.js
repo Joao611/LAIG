@@ -102,6 +102,7 @@ XMLscene.prototype.onGraphLoaded = function()
     this.setUpdatePeriod(1000.0/60);
 
     this.board = new MyBoard(this);
+    this.comms = new MyCommunications(this);
 }
 
 XMLscene.prototype.logPicking = function ()
@@ -125,6 +126,7 @@ XMLscene.prototype.logPicking = function ()
  * Displays the scene.
  */
 XMLscene.prototype.display = function() {
+    this.board.update();
     this.logPicking();
 	this.clearPickRegistration();
 

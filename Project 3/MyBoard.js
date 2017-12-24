@@ -58,6 +58,10 @@ class MyBoard {
     }
   }
 
+  updatePieces(prologPieces) {
+    console.log(prologPieces);
+  }
+
   _buildBoard() {
     let outerBlackTurn = true;
     let board = [];
@@ -72,7 +76,7 @@ class MyBoard {
       board.push(boardLine);
       outerBlackTurn = !outerBlackTurn;
     }
-
+    this.scene.comms.requestBoard();
     return board;
   }
 
