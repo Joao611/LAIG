@@ -4,6 +4,8 @@
 % gameData(Board, Mode, Difficulty, NextToPlay).
 
 initGame(Mode, Difficulty) :-
+    now(X),
+	setrand(X),
     board(X),
     assert(gameData(X, Mode, Difficulty, w)).
 
@@ -22,9 +24,9 @@ getNextToPlay(Next) :-
 
 
 makePlay(npc) :-
-    gameData([Board, npc, Difficulty, Color]),
+    gameData(Board, npc, Difficulty, Color),
     moveNPC_Logic(Color, Difficulty, Board, NewBoard),
-    retract(gameData(_)),
+    retract(gameData(_, _, _, _)),
     ite(Color == w, NextColor = b, NextColor = w),
     assert(gameData(NewBoard, npc, Difficulty, NextColor)).
     
@@ -32,3 +34,7 @@ makePlay(npc) :-
 makePlay(single).
 
 makePlay(multi).
+
+
+freeGame :-
+    retractall(gameData(_, _, _, _)).

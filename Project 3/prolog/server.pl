@@ -107,7 +107,8 @@ print_header_line(_).
 
 parse_input(handshake, handshake).
 parse_input(test(C,N), Res) :- test(C,Res,N).
-parse_input(quit, goodbye).
+
+parse_input(quit, goodbye) :- freeGame.
 
 parse_input(initGame(Mode, Difficulty), ok) :-
 	initGame(Mode, Difficulty).
@@ -117,6 +118,7 @@ parse_input(getMode(M), M) :- getMode(M).
 parse_input(getDifficulty(D), D) :- getDifficulty(D).
 parse_input(getNextToPlay(N), N) :- getNextToPlay(N).
 
+parse_input(makePlay(Mode), ok) :- makePlay(Mode).
 
 test(_,[],N) :- N =< 0.
 test(A,[A|Bs],N) :- N1 is N-1, test(A,Bs,N1).
