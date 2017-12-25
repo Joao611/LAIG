@@ -35,7 +35,17 @@ XMLscene.prototype.init = function(application) {
     this.isSelectableShaderSet = false;
     this.setActiveShader(this.defaultShader);
     
+    this.selectedMode = "npc";
+    this.selectedDifficulty = "1";
+
+    this.selectableModes = ['npc', 'single', 'multi'];
+    this.selectableDifficulties = ['1', '2'];
+
     this.comms = new MyCommunications(this);
+
+    this.startButton = function() {
+        this.comms.requestGameInitialization(this.selectedMode, 1); // Always choose 'easy' due to a severe memory leak in Prolog.
+    }
 }
 
 /**
@@ -96,7 +106,7 @@ XMLscene.prototype.onGraphLoaded = function()
     this.initLights();
 
     this.interface.addLightsGroup(this.graph.lights);
-	this.interface.addSelectableDropdown(this.graph.selectableNodeIds);
+    this.interface.addSelectableDropdown(this.graph.selectableNodeIds);
 
 	this.selectableShader = new CGFshader(this.gl, "shaders/selectable.vert", "shaders/selectable.frag");
 
@@ -104,6 +114,8 @@ XMLscene.prototype.onGraphLoaded = function()
     this.setUpdatePeriod(1000.0/60);
 
     this.board = new MyBoard(this);
+
+    this.interface.addGameControls();
 }
 
 XMLscene.prototype.logPicking = function ()

@@ -76,7 +76,6 @@ class MyBoard {
       board.push(boardLine);
       outerBlackTurn = !outerBlackTurn;
     }
-    this.scene.comms.requestBoard();
     return board;
   }
 

@@ -4,10 +4,11 @@
 % gameData(Board, Mode, Difficulty, NextToPlay).
 
 initGame(Mode, Difficulty) :-
+    retractall(gameData(_, _, _, _)),
     now(X),
 	setrand(X),
-    board(X),
-    assert(gameData(X, Mode, Difficulty, w)).
+    board(Board),
+    assert(gameData(Board, Mode, Difficulty, w)).
 
 
 getBoard(Board) :-

@@ -6,7 +6,6 @@ function MyInterface() {
     //call CGFinterface constructor 
     CGFinterface.call(this);
 }
-;
 
 MyInterface.prototype = Object.create(CGFinterface.prototype);
 MyInterface.prototype.constructor = MyInterface;
@@ -50,4 +49,13 @@ MyInterface.prototype.addLightsGroup = function(lights) {
 
 MyInterface.prototype.addSelectableDropdown = function(selectableIds) {
     this.gui.add(this.scene.graph, 'selectedNodeId', selectableIds).name('Select a node:');
+}
+
+MyInterface.prototype.addGameControls = function() {
+    let group = this.gui.addFolder("Game Controls");
+    group.open();
+
+    group.add(this.scene, 'selectedMode', this.scene.selectableModes).name('Mode:');
+    group.add(this.scene, 'selectedDifficulty', this.scene.selectableDifficulties).name('Difficulty:');
+    group.add(this.scene, 'startButton').name('Start Game');
 }

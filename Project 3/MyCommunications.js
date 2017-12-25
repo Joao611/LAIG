@@ -14,7 +14,7 @@ class MyCommunications {
 
     _requestToProlog(requestStr, eventListener) {
         let request = new XMLHttpRequest();
-        request.scene = this.scene;
+        request.comms = this;
         request.open("GET", "http://localhost:" + this.port + "/" + requestStr, true);
         request.addEventListener("load", eventListener);
         request.send();
@@ -24,9 +24,10 @@ class MyCommunications {
         if (this.responseText != "ok") {
             console.log("Server: Error initializing game.");
         }
+        this.comms.requestBoard();
     }
 
     _updatePiecesListener(event) {
-        this.scene.board.updatePieces(this.responseText);
+        this.comms.scene.board.updatePieces(this.responseText);
     }
 }
