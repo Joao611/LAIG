@@ -52,10 +52,14 @@ MyInterface.prototype.addSelectableDropdown = function(selectableIds) {
 }
 
 MyInterface.prototype.addGameControls = function() {
-    let group = this.gui.addFolder("Game Controls");
-    group.open();
+    let mainGroup = this.gui.addFolder("Main Menu");
+    mainGroup.open();
+    mainGroup.add(this.scene, 'selectedMode', this.scene.selectableModes).name('Mode:');
+    mainGroup.add(this.scene, 'selectedDifficulty', this.scene.selectableDifficulties).name('Difficulty:');
+    mainGroup.add(this.scene, 'startButton').name('Start Game');
 
-    group.add(this.scene, 'selectedMode', this.scene.selectableModes).name('Mode:');
-    group.add(this.scene, 'selectedDifficulty', this.scene.selectableDifficulties).name('Difficulty:');
-    group.add(this.scene, 'startButton').name('Start Game');
+    let ingameGroup = this.gui.addFolder("In Game");
+    ingameGroup.open();
+    ingameGroup.add(this.scene, 'nextPlayButton').name('Next Turn');
+    //ingameGroup.add(this.scene, 'undoButton').name('Undo');
 }

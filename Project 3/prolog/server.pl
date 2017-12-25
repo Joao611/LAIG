@@ -113,10 +113,10 @@ parse_input(quit, goodbye) :- freeGame.
 parse_input(initGame(Mode, Difficulty), ok) :-
 	initGame(Mode, Difficulty).
 
-parse_input(getBoard(B), B) :- getBoard(B).
-parse_input(getMode(M), M) :- getMode(M).
-parse_input(getDifficulty(D), D) :- getDifficulty(D).
-parse_input(getNextToPlay(N), N) :- getNextToPlay(N).
+parse_input(getBoard, B) :- getBoard(B).
+parse_input(getMode, M) :- getMode(M).
+parse_input(getDifficulty, D) :- getDifficulty(D).
+parse_input(getNextToPlay, N) :- getNextToPlay(N).
 
 parse_input(makePlay(Mode), ok) :- makePlay(Mode).
 

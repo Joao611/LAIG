@@ -39,6 +39,7 @@ class MyBoard {
     this.blackCell = scene.graph.nodes['blackCell'];
     this.whiteCell = scene.graph.nodes['whiteCell'];
     this.board = this._buildBoard();
+    this.boardPieces = this._initBoardPieces();
   }
 
   update() {
@@ -53,6 +54,9 @@ class MyBoard {
           this.scene.translate(this.cellWidth * col, 0, this.cellWidth * line);
           this.scene.registerForPick(this._getPickId(line, col), this.board[line][col]);
           this.scene.graph.displayNode(this.board[line][col]);
+          if (this.boardPieces[line][col].node != null) {
+            this.scene.graph.displayNode(this.boardPieces[line][col].node);
+          }
         this.scene.popMatrix();
       }
     }
@@ -60,6 +64,18 @@ class MyBoard {
 
   updatePieces(prologPieces) {
     console.log(prologPieces);
+    prologPieces = prologPieces.slice(2);
+    prologPieces = prologPieces.slice(0, -2);
+    let piecesLines = prologPieces.split("],[");
+    
+    for (let line = 0; line < this.boardLength; line++) {
+      let pieces = piecesLines[line].split(",");
+      for (let col = 0; col < this.boardLength; col++) {
+        this.boardPieces[line][col].setPiece(pieces[col]);
+      }
+    }
+
+    console.log(this.boardPieces);
   }
 
   _buildBoard() {
@@ -77,6 +93,18 @@ class MyBoard {
       outerBlackTurn = !outerBlackTurn;
     }
     return board;
+  }
+
+  _initBoardPieces() {
+    let boardPieces = [];
+    for (let line = 0; line < this.boardLength; line++) {
+      let piecesLine = [];
+      for (let col = 0; col < this.boardLength; col++) {
+        piecesLine[col] = new MyPiece(this.scene);
+      }
+      boardPieces.push(piecesLine);
+    }
+    return boardPieces;
   }
 
   _getPickId(line, col) {

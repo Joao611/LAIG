@@ -9,7 +9,7 @@ class MyCommunications {
     }
 
     requestBoard() {
-        this._requestToProlog("getBoard(B)", this._updatePiecesListener);
+        this._requestToProlog("getBoard", this._updatePiecesListener);
     }
 
     _requestToProlog(requestStr, eventListener) {
