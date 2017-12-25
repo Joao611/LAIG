@@ -169,7 +169,16 @@
 
     <NODE id="blackKing">
         <MATERIAL id="null" />
-        <TEXTURE id="null" />
+        <TEXTURE id="blackCellTexture" />
+
+        <DESCENDANTS>
+            <NODEREF id="cube" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="whiteKing">
+        <MATERIAL id="null" />
+        <TEXTURE id="whiteCellTexture" />
 
         <DESCENDANTS>
             <NODEREF id="cube" />
