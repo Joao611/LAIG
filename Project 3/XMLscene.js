@@ -46,6 +46,10 @@ XMLscene.prototype.init = function(application) {
     this.startButton = function() {
         this.comms.requestGameInitialization(this.selectedMode, 1); // Always choose 'easy' due to a severe memory leak in Prolog.
     }
+
+    this.nextTurnButton = function() {
+        this.comms.requestNextTurn();
+    }
 }
 
 /**

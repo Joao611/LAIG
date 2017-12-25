@@ -60,6 +60,6 @@ MyInterface.prototype.addGameControls = function() {
 
     let ingameGroup = this.gui.addFolder("In Game");
     ingameGroup.open();
-    ingameGroup.add(this.scene, 'nextPlayButton').name('Next Turn');
+    ingameGroup.add(this.scene, 'nextTurnButton').name('Next Turn');
     //ingameGroup.add(this.scene, 'undoButton').name('Undo');
 }

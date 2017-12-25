@@ -12,6 +12,10 @@ class MyCommunications {
         this._requestToProlog("getBoard", this._updatePiecesListener);
     }
 
+    requestNextTurn() {
+        this._requestToProlog("makePlay", this._nextTurnListener);
+    }
+
     _requestToProlog(requestStr, eventListener) {
         let request = new XMLHttpRequest();
         request.comms = this;
@@ -29,5 +33,9 @@ class MyCommunications {
 
     _updatePiecesListener(event) {
         this.comms.scene.board.updatePieces(this.responseText);
+    }
+
+    _nextTurnListener(event) {
+        this.comms.requestBoard();
     }
 }
