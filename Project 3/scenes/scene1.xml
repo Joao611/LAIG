@@ -56,13 +56,13 @@
         <amplif_factor s="1" t="1" />
     </TEXTURE>
 
-    <TEXTURE id="whiteCellTexture">
-      <file path="images/whiteCellTexture.png" />
+    <TEXTURE id="blackCellTexture">
+      <file path="images/blackCellTexture.png" />
       <amplif_factor s="1" t="1" />
     </TEXTURE>
 
-    <TEXTURE id="blackCellTexture">
-      <file path="images/blackCellTexture.png" />
+    <TEXTURE id="whiteCellTexture">
+      <file path="images/whiteCellTexture.png" />
       <amplif_factor s="1" t="1" />
     </TEXTURE>
 </TEXTURES>
@@ -176,7 +176,79 @@
         </DESCENDANTS>
     </NODE>
 
+    <NODE id="blackQueen">
+        <MATERIAL id="null" />
+        <TEXTURE id="blackCellTexture" />
+
+        <DESCENDANTS>
+            <NODEREF id="cube" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="blackBishop">
+        <MATERIAL id="null" />
+        <TEXTURE id="blackCellTexture" />
+
+        <DESCENDANTS>
+            <NODEREF id="cube" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="blackTower">
+        <MATERIAL id="null" />
+        <TEXTURE id="blackCellTexture" />
+
+        <DESCENDANTS>
+            <NODEREF id="cube" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="blackHorse">
+        <MATERIAL id="null" />
+        <TEXTURE id="blackCellTexture" />
+
+        <DESCENDANTS>
+            <NODEREF id="cube" />
+        </DESCENDANTS>
+    </NODE>
+
     <NODE id="whiteKing">
+        <MATERIAL id="null" />
+        <TEXTURE id="whiteCellTexture" />
+
+        <DESCENDANTS>
+            <NODEREF id="cube" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="whiteQueen">
+        <MATERIAL id="null" />
+        <TEXTURE id="whiteCellTexture" />
+
+        <DESCENDANTS>
+            <NODEREF id="cube" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="whiteBishop">
+        <MATERIAL id="null" />
+        <TEXTURE id="whiteCellTexture" />
+
+        <DESCENDANTS>
+            <NODEREF id="cube" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="whiteTower">
+        <MATERIAL id="null" />
+        <TEXTURE id="whiteCellTexture" />
+
+        <DESCENDANTS>
+            <NODEREF id="cube" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="whiteHorse">
         <MATERIAL id="null" />
         <TEXTURE id="whiteCellTexture" />
 
