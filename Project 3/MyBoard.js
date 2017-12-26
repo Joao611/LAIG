@@ -53,7 +53,13 @@ class MyBoard {
         this.scene.pushMatrix();
           this.scene.translate(this.cellWidth * col, 0, this.cellWidth * line);
           this.scene.registerForPick(this._getPickId(line, col), this.board[line][col]);
+          if (this.scene.pickedId == this._getPickId(line, col)) {
+            this.scene.setActiveShader(this.scene.pickedShader);
+          }
           this.scene.graph.displayNode(this.board[line][col]);
+          if (this.scene.pickedId == this._getPickId(line, col)) {
+            this.scene.setActiveShader(this.scene.defaultShader);
+          }
           if (this.boardPieces[line][col].node != null) {
             this.scene.graph.displayNode(this.boardPieces[line][col].node);
           }

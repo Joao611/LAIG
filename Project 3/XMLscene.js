@@ -33,6 +33,7 @@ XMLscene.prototype.init = function(application) {
     this.axis = new CGFaxis(this);
 
     this.isSelectableShaderSet = false;
+    this.isPickedShaderSet = false;
     this.setActiveShader(this.defaultShader);
     
     this.selectedMode = "npc";
@@ -112,7 +113,8 @@ XMLscene.prototype.onGraphLoaded = function()
     this.interface.addLightsGroup(this.graph.lights);
     this.interface.addSelectableDropdown(this.graph.selectableNodeIds);
 
-	this.selectableShader = new CGFshader(this.gl, "shaders/selectable.vert", "shaders/selectable.frag");
+    this.selectableShader = new CGFshader(this.gl, "shaders/selectable.vert", "shaders/selectable.frag");
+    this.pickedShader = new CGFshader(this.gl, "shaders/picked.vert", "shaders/picked.frag");
 
     this.prevTime = Date.now();
     this.setUpdatePeriod(1000.0/60);
@@ -126,12 +128,29 @@ XMLscene.prototype.logPicking = function ()
 {
 	if (this.pickMode == false) {
 		if (this.pickResults != null && this.pickResults.length > 0) {
-			for (var i=0; i< this.pickResults.length; i++) {
-				var obj = this.pickResults[i][0];
+			for (let i=0; i< this.pickResults.length; i++) {
+				let obj = this.pickResults[i][0];
 				if (obj)
 				{
-					var customId = this.pickResults[i][1];				
+					let customId = this.pickResults[i][1];				
 					console.log("Picked object: " + obj + ", with pick id " + customId);
+				}
+			}
+			this.pickResults.splice(0,this.pickResults.length);
+		}		
+	}
+}
+
+XMLscene.prototype.handlePicking = function ()
+{
+	if (this.pickMode == false) {
+		if (this.pickResults != null && this.pickResults.length > 0) {
+			for (let i=0; i< this.pickResults.length; i++) {
+				let obj = this.pickResults[i][0];
+				if (obj) {
+                    let customId = this.pickResults[i][1];				
+					console.log("Picked object: " + obj + ", with pick id " + customId);
+                    this.pickedId = customId;
 				}
 			}
 			this.pickResults.splice(0,this.pickResults.length);
@@ -144,7 +163,8 @@ XMLscene.prototype.logPicking = function ()
  */
 XMLscene.prototype.display = function() {
     this.board.update();
-    this.logPicking();
+    //this.logPicking();
+    this.handlePicking();
 	this.clearPickRegistration();
 
     // ---- BEGIN Background, camera and axis setup
@@ -206,6 +226,7 @@ XMLscene.prototype.display = function() {
 XMLscene.prototype.update = function(currTime) {
 	let y = (Math.sin(currTime / 75) / 2) + 0.5;
 	this.selectableShader.setUniformsValues({timeFactor: y, saturatedColor: [1, 0, 1, 1]});
+    this.pickedShader.setUniformsValues({pickedColor: [1, 0, 0, 1]});
     let deltaMs = currTime - this.prevTime;
     this.prevTime = currTime;
     this.graph.update(deltaMs);
