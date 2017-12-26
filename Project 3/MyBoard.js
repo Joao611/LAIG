@@ -32,7 +32,12 @@
 } */
 
 class MyBoard {
+  /**
+   * 
+   * @param {XMLscene} scene 
+   */
   constructor(scene) {
+    'use strict';
     this.scene = scene;
     this.cellWidth = 1;
     this.boardLength = 8;
@@ -68,6 +73,10 @@ class MyBoard {
     }
   }
 
+  /**
+   * 
+   * @param {string} prologPieces Prolong representation of board.
+   */
   updatePieces(prologPieces) {
     prologPieces = prologPieces.slice(2);
     prologPieces = prologPieces.slice(0, -2);
@@ -79,6 +88,17 @@ class MyBoard {
         this.boardPieces[line][col].setPiece(pieces[col]);
       }
     }
+  }
+
+  /**
+   * Returns an object with 'line' and 'col' attributes.
+   * @param {number} pickedId 
+   */
+  getCoordsOfPickedId(pickedId) {
+    let coords = new Object();
+    coords.line = Math.floor(pickedId / this.boardLength);
+    coords.col = pickedId % this.boardLength;
+    return coords;
   }
 
   _buildBoard() {
@@ -110,7 +130,12 @@ class MyBoard {
     return boardPieces;
   }
 
+  /**
+   * 
+   * @param {number} line 
+   * @param {number} col 
+   */
   _getPickId(line, col) {
-    return line * this.boardLength + col + 1;
+    return line * this.boardLength + col;
   }
 }

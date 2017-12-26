@@ -23,14 +23,13 @@ class MyCommunications {
 
     /**
      * 
-     * @param {string} color w for white, b for black.
      * @param {number} colStart 
      * @param {number} rowStart 
      * @param {number} colDest 
      * @param {number} rowDest 
      */
-    requestPlayerTurn(color, colStart, rowStart, colDest, rowDest) {
-        this._requestToProlog("playerPlay(color,colStart,rowStart,colDest,rowDest)", this._playerTurnListener);
+    requestPlayerTurn(startCoords, destCoords) {
+        this._requestToProlog("playerPlay("+startCoords.col+","+startCoords.line+","+destCoords.col+","+destCoords.line+")", this._playerTurnListener);
     }
 
     _requestToProlog(requestStr, eventListener) {

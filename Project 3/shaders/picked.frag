@@ -12,13 +12,5 @@ uniform vec4 pickedColor;
 
 
 void main() {
-    // Branching should be reduced to a minimal. 
-	// When based on a non-changing uniform, it is usually optimized.
-	/* if (uUseTexture)
-	{
-		vec4 textureColor = texture2D(uSampler, vTextureCoord);
-		gl_FragColor = textureColor * pickedColor;
-	}
-	else */
-		gl_FragColor = pickedColor;
+	gl_FragColor = pickedColor;
 }

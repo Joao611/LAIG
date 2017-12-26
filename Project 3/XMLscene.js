@@ -42,6 +42,8 @@ XMLscene.prototype.init = function(application) {
     this.selectableModes = ['npc', 'single', 'multi'];
     this.selectableDifficulties = ['1', '2'];
 
+    this.pickedId = null;
+
     this.comms = new MyCommunications(this);
 
     this.startButton = function() {
@@ -124,7 +126,7 @@ XMLscene.prototype.onGraphLoaded = function()
     this.interface.addGameControls();
 }
 
-XMLscene.prototype.logPicking = function ()
+/* XMLscene.prototype.logPicking = function ()
 {
 	if (this.pickMode == false) {
 		if (this.pickResults != null && this.pickResults.length > 0) {
@@ -139,7 +141,7 @@ XMLscene.prototype.logPicking = function ()
 			this.pickResults.splice(0,this.pickResults.length);
 		}		
 	}
-}
+} */
 
 XMLscene.prototype.handlePicking = function ()
 {
@@ -149,13 +151,28 @@ XMLscene.prototype.handlePicking = function ()
 				let obj = this.pickResults[i][0];
 				if (obj) {
                     let customId = this.pickResults[i][1];				
-					console.log("Picked object: " + obj + ", with pick id " + customId);
-                    this.pickedId = customId;
+                    console.log("Picked object: " + obj + ", with pick id " + customId);
+                    this._handlePlayerMoves(customId);
 				}
 			}
 			this.pickResults.splice(0,this.pickResults.length);
-		}		
+		}
 	}
+}
+
+XMLscene.prototype._handlePlayerMoves = function(newPickedId) {
+    if (this.pickedId != null && this.pickedId != newPickedId) {
+        let startCoords = this.board.getCoordsOfPickedId(this.pickedId);
+        let destCoords = this.board.getCoordsOfPickedId(newPickedId);
+        startCoords.line++;
+        startCoords.col++;
+        destCoords.line++;
+        destCoords.col++;
+        this.comms.requestPlayerTurn(startCoords, destCoords);
+        this.pickedId = null;
+    } else {
+        this.pickedId = newPickedId;
+    }
 }
 
 /**
