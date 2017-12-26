@@ -63,7 +63,6 @@ class MyBoard {
   }
 
   updatePieces(prologPieces) {
-    console.log(prologPieces);
     prologPieces = prologPieces.slice(2);
     prologPieces = prologPieces.slice(0, -2);
     let piecesLines = prologPieces.split("],[");
@@ -74,8 +73,6 @@ class MyBoard {
         this.boardPieces[line][col].setPiece(pieces[col]);
       }
     }
-
-    console.log(this.boardPieces);
   }
 
   _buildBoard() {
