@@ -118,13 +118,19 @@ parse_input(getMode, M) :- getMode(M).
 parse_input(getDifficulty, D) :- getDifficulty(D).
 parse_input(getNextToPlay, N) :- getNextToPlay(N).
 
-parse_input(npcPlay, ok) :- 
+/**
+ * BotColor is the color assigned to the NPC in singleplayer. This is ignored in other modes.
+ */
+parse_input(npcPlay(BotColor), ok) :- 
 	getMode(Mode),
-	makePlay(Mode).
+	makePlay(Mode, BotColor).
 
-parse_input(playerPlay(Col_Start, Row_Start, Col_Dest, Row_Dest), ok) :-
+/**
+ * PlayerColor is the color assigned to the Player in singleplayer. This is ignored in other modes.
+ */
+parse_input(playerPlay(PlayerColor, Col_Start, Row_Start, Col_Dest, Row_Dest), ok) :-
 	getMode(Mode),
-	makePlay(Mode, Col_Start, Row_Start, Col_Dest, Row_Dest).
+	makePlay(Mode, PlayerColor, Col_Start, Row_Start, Col_Dest, Row_Dest).
 
 test(_,[],N) :- N =< 0.
 test(A,[A|Bs],N) :- N1 is N-1, test(A,Bs,N1).

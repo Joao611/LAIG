@@ -17,19 +17,25 @@ class MyCommunications {
         this._requestToProlog("getBoard", this._updatePiecesListener);
     }
 
-    requestNextTurn() {
-        this._requestToProlog("npcPlay", this._nextTurnListener);
+    /**
+     * 
+     * @param {string} botColor Color assigned to the NPC in singleplayer. This may be anything in other modes.
+     */
+    requestNextTurn(botColor) {
+        this._requestToProlog("npcPlay("+botColor+")", this._nextTurnListener);
     }
 
     /**
      * 
+     * @param {string} playerColor Color assigned to the Player in singleplayer. This may be anything in other modes.
      * @param {number} colStart 
      * @param {number} rowStart 
      * @param {number} colDest 
      * @param {number} rowDest 
      */
-    requestPlayerTurn(startCoords, destCoords) {
-        this._requestToProlog("playerPlay("+startCoords.col+","+startCoords.line+","+destCoords.col+","+destCoords.line+")", this._playerTurnListener);
+    requestPlayerTurn(playerColor, startCoords, destCoords) {
+        let requestStr = "playerPlay("+playerColor+","+startCoords.col+","+startCoords.line+","+destCoords.col+","+destCoords.line+")";
+        this._requestToProlog(requestStr, this._playerTurnListener);
     }
 
     _requestToProlog(requestStr, eventListener) {

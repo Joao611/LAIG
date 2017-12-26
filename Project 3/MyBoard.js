@@ -39,6 +39,8 @@ class MyBoard {
   constructor(scene) {
     'use strict';
     this.scene = scene;
+    this.playerColor = 'w'; //white
+    this.botColor = 'b'; //black
     this.cellWidth = 1;
     this.boardLength = 8;
     this.blackCell = scene.graph.nodes['blackCell'];

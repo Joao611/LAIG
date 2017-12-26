@@ -24,21 +24,39 @@ getNextToPlay(Next) :-
     gameData(_, _, _, Next).
 
 
-makePlay(npc) :-
+/**
+ * For bot movement in NPC vs NPC mode.
+ */
+makePlay(npc, _) :-
     gameData(Board, npc, Difficulty, Color),
     moveNPC_Logic(Color, Difficulty, Board, NewBoard),
     retractall(gameData(_, _, _, _)),
     ite(Color == w, NextColor = b, NextColor = w),
     assert(gameData(NewBoard, npc, Difficulty, NextColor)).
-    
 
-makePlay(single, Col_Start, Row_Start, Col_Dest, Row_Dest).
+makePlay(single, BotColor) :-
+    gameData(Board, single, Difficulty, BotColor),
+    moveNPC_Logic(BotColor, Difficulty, Board, NewBoard),
+    retractall(gameData(_, _, _, _)),
+    ite(BotColor == w, NextColor = b, NextColor = w),
+    assert(gameData(NewBoard, single, Difficulty, NextColor)).
+
+/**
+ * Color is the Player's color, to guarantee the Player doesn't move the bot's pieces.
+ */
+makePlay(single, Color, Col_Start, Row_Start, Col_Dest, Row_Dest) :-
+    gameData(Board, single, Difficulty, Color),
+    move(Color, Board, Col_Start, Row_Start, Col_Dest, Row_Dest, NewBoard),
+    retractall(gameData(_, _, _, _)),
+    ite(Color == w, NextColor = b, NextColor = w),
+    assert(gameData(NewBoard, single, Difficulty, NextColor)).
+
 
 
 /**
  * Makes a player move. If the move cannot be made, it fails and the board isn't changed.
  */
-makePlay(multi, Col_Start, Row_Start, Col_Dest, Row_Dest) :-
+makePlay(multi, _, Col_Start, Row_Start, Col_Dest, Row_Dest) :-
     gameData(Board, multi, Difficulty, Color),
     move(Color, Board, Col_Start, Row_Start, Col_Dest, Row_Dest, NewBoard),
     retractall(gameData(_, _, _, _)),

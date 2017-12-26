@@ -51,7 +51,7 @@ XMLscene.prototype.init = function(application) {
     }
 
     this.nextTurnButton = function() {
-        this.comms.requestNextTurn();
+        this.comms.requestNextTurn(this.board.botColor);
     }
 }
 
@@ -168,7 +168,7 @@ XMLscene.prototype._handlePlayerMoves = function(newPickedId) {
         startCoords.col++;
         destCoords.line++;
         destCoords.col++;
-        this.comms.requestPlayerTurn(startCoords, destCoords);
+        this.comms.requestPlayerTurn(this.board.playerColor, startCoords, destCoords);
         this.pickedId = null;
     } else {
         this.pickedId = newPickedId;
