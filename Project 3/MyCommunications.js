@@ -28,14 +28,23 @@ class MyCommunications {
     /**
      * 
      * @param {string} playerColor Color assigned to the Player in singleplayer. This may be anything in other modes.
-     * @param {number} colStart 
-     * @param {number} rowStart 
-     * @param {number} colDest 
-     * @param {number} rowDest 
+     * @param {object} colStart Object with 'line' and 'col' attributes.
+     * @param {object} rowStart Object with 'line' and 'col' attributes.
      */
     requestPlayerTurn(playerColor, startCoords, destCoords) {
         let requestStr = "playerPlay("+playerColor+","+startCoords.col+","+startCoords.line+","+destCoords.col+","+destCoords.line+")";
         this._requestToProlog(requestStr, this._playerTurnListener);
+    }
+
+    /**
+     * 
+     * @param {string} nextColor 
+     * @param {object} colStart Object with 'line' and 'col' attributes.
+     * @param {object} rowStart Object with 'line' and 'col' attributes.
+     */
+    requestForceMove(nextColor, startCoords, destCoords) {
+        let requestStr = "forceMove("+nextColor+","+startCoords.col+","+startCoords.line+","+destCoords.col+","+destCoords.line+")";
+        this._requestToProlog(requestStr, this._forceMoveListener);
     }
 
     _requestToProlog(requestStr, eventListener) {
@@ -58,10 +67,26 @@ class MyCommunications {
     }
 
     _nextTurnListener(event) {
+        let play = _getPlayFromProlog(this.responseText);
+        this.comms.scene.board.addPlay(play);
         this.comms.requestBoard();
     }
 
     _playerTurnListener(event) {
         this.comms.requestBoard();
+    }
+
+    _forceMoveListener(event) {
+        this.comms.requestBoard();
+    }
+
+    /**
+     * 
+     * @param {string} prologPlay String in the format '[Col_Start,Row_Start,Col_Dest,Row_Dest]'
+     */
+    _getPlayFromProlog(prologPlay) {
+        let coords = JSON.parse(prologPlay);
+        let play = new MyPlay(coords[1], coords[0], coords[3], coords[2]);
+        return play;
     }
 }

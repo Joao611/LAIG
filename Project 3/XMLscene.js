@@ -55,7 +55,7 @@ XMLscene.prototype.init = function(application) {
     }
 
     this.undoButton = function() {
-        this.comms.requestForceMove();
+        this.comms.requestForceMove(this.board.playSequence.pop());
     }
 }
 
