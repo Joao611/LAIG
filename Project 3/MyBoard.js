@@ -19,11 +19,6 @@ class MyBoard {
     this.playSequence = [];
   }
 
-  update() {
-    // get pieces in each position
-    // make move
-  }
-
   display() {
     for (let line = 0; line < this.boardLength; line++) {
       for (let col = 0; col < this.boardLength; col++) {

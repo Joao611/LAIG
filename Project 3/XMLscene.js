@@ -183,8 +183,6 @@ XMLscene.prototype._handlePlayerMoves = function(newPickedId) {
  * Displays the scene.
  */
 XMLscene.prototype.display = function() {
-    this.board.update();
-    //this.logPicking();
     this.handlePicking();
 	this.clearPickRegistration();
 
