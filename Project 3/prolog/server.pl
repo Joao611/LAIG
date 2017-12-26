@@ -121,16 +121,18 @@ parse_input(getNextToPlay, N) :- getNextToPlay(N).
 /**
  * BotColor is the color assigned to the NPC in singleplayer. This is ignored in other modes.
  */
-parse_input(npcPlay(BotColor), [Col_Start, Row_Start, Col_Dest, Row_Dest]) :- 
+parse_input(npcPlay(BotColor), [RealBotColorStr, Col_Start, Row_Start, Col_Dest, Row_Dest]) :- 
 	getMode(Mode),
-	makeBotPlay(Mode, BotColor, [Col_Start, Row_Start, Col_Dest, Row_Dest]).
+	makeBotPlay(Mode, BotColor, [RealBotColor, Col_Start, Row_Start, Col_Dest, Row_Dest]),
+	atom_codes(RealBotColor, RealBotColorStr).
 
 /**
  * PlayerColor is the color assigned to the Player in singleplayer. This is ignored in other modes.
  */
-parse_input(playerPlay(PlayerColor, Col_Start, Row_Start, Col_Dest, Row_Dest), [Col_Start, Row_Start, Col_Dest, Row_Dest]) :-
+parse_input(playerPlay(PlayerColor, Col_Start, Row_Start, Col_Dest, Row_Dest), [RealPlayerColorStr, Col_Start, Row_Start, Col_Dest, Row_Dest]) :-
 	getMode(Mode),
-	makePlayerPlay(Mode, PlayerColor, Col_Start, Row_Start, Col_Dest, Row_Dest).
+	makePlayerPlay(Mode, PlayerColor, [RealPlayerColor, Col_Start, Row_Start, Col_Dest, Row_Dest]),
+	atom_codes(RealPlayerColor, RealPlayerColorStr).
 
 /**
  * Meant to undo moves by playing their reverse. Bypasses legality checks.

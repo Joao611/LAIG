@@ -55,7 +55,16 @@ XMLscene.prototype.init = function(application) {
     }
 
     this.undoButton = function() {
-        this.comms.requestForceMove(this.board.playSequence.pop());
+        let lastPlay = this.board.playSequence.pop();
+
+        let startCoords = new Object();
+        startCoords.line = lastPlay.destLine;
+        startCoords.col = lastPlay.destCol;
+        let destCoords = new Object();
+        destCoords.line = lastPlay.startLine;
+        destCoords.col = lastPlay.startCol;
+
+        this.comms.requestForceMove(lastPlay.moveColor, startCoords, destCoords);
     }
 }
 

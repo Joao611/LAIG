@@ -67,7 +67,7 @@ class MyCommunications {
     }
 
     _nextTurnListener(event) {
-        let play = _getPlayFromProlog(this.responseText);
+        let play = this.comms._getPlayFromProlog(this.responseText);
         this.comms.scene.board.addPlay(play);
         this.comms.requestBoard();
     }
@@ -82,11 +82,11 @@ class MyCommunications {
 
     /**
      * 
-     * @param {string} prologPlay String in the format '[Col_Start,Row_Start,Col_Dest,Row_Dest]'
+     * @param {string} prologPlay String in the format '[Color,Col_Start,Row_Start,Col_Dest,Row_Dest]'
      */
     _getPlayFromProlog(prologPlay) {
-        let coords = JSON.parse(prologPlay);
-        let play = new MyPlay(coords[1], coords[0], coords[3], coords[2]);
+        let playArray = JSON.parse(prologPlay);
+        let play = new MyPlay(String.fromCharCode(playArray[0][0]), playArray[1], playArray[2], playArray[3], playArray[4]);
         return play;
     }
 }
