@@ -118,9 +118,13 @@ parse_input(getMode, M) :- getMode(M).
 parse_input(getDifficulty, D) :- getDifficulty(D).
 parse_input(getNextToPlay, N) :- getNextToPlay(N).
 
-parse_input(makePlay, ok) :- 
+parse_input(npcPlay, ok) :- 
 	getMode(Mode),
 	makePlay(Mode).
+
+parse_input(playerPlay(Color, Col_Start, Row_Start, Col_Dest, Row_Dest), ok) :-
+	getMode(Mode),
+	makePlay(Mode, Color, Col_Start, Row_Start, Col_Dest, Row_Dest).
 
 test(_,[],N) :- N =< 0.
 test(A,[A|Bs],N) :- N1 is N-1, test(A,Bs,N1).

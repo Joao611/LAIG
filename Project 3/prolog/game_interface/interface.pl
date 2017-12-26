@@ -27,14 +27,24 @@ getNextToPlay(Next) :-
 makePlay(npc) :-
     gameData(Board, npc, Difficulty, Color),
     moveNPC_Logic(Color, Difficulty, Board, NewBoard),
-    retract(gameData(_, _, _, _)),
+    retractall(gameData(_, _, _, _)),
     ite(Color == w, NextColor = b, NextColor = w),
     assert(gameData(NewBoard, npc, Difficulty, NextColor)).
     
 
-makePlay(single).
+makePlay(single, Color, Col_Start, Row_Start, Col_Dest, Row_Dest).
 
-makePlay(multi).
+
+/**
+ * Makes a player move. If the move cannot be made, it fails and the board isn't changed.
+ * +Color is the current player's color.
+ */
+makePlay(multi, Color, Col_Start, Row_Start, Col_Dest, Row_Dest) :-
+    gameData(Board, multi, Difficulty, Color),
+    move(Color, Board, Col_Start, Row_Start, Col_Dest, Row_Dest, NewBoard),
+    retractall(gameData(_, _, _, _)),
+    ite(Color == w, NextColor = b, NextColor = w),
+    assert(gameData(NewBoard, multi, Difficulty, NextColor)).
 
 
 freeGame :-

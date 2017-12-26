@@ -4,6 +4,11 @@ class MyCommunications {
         this.port = 8081;
     }
 
+    /**
+     * 
+     * @param {string} mode npc, single, multi.
+     * @param {number} difficulty 1 for easy, 2 for hard.
+     */
     requestGameInitialization(mode, difficulty) {
         this._requestToProlog("initGame("+mode+","+difficulty+")", this._initGameListener);
     }
@@ -13,7 +18,19 @@ class MyCommunications {
     }
 
     requestNextTurn() {
-        this._requestToProlog("makePlay", this._nextTurnListener);
+        this._requestToProlog("npcPlay", this._nextTurnListener);
+    }
+
+    /**
+     * 
+     * @param {string} color w for white, b for black.
+     * @param {number} colStart 
+     * @param {number} rowStart 
+     * @param {number} colDest 
+     * @param {number} rowDest 
+     */
+    requestPlayerTurn(color, colStart, rowStart, colDest, rowDest) {
+        this._requestToProlog("playerPlay(color,colStart,rowStart,colDest,rowDest)", this._playerTurnListener);
     }
 
     _requestToProlog(requestStr, eventListener) {
@@ -36,6 +53,10 @@ class MyCommunications {
     }
 
     _nextTurnListener(event) {
+        this.comms.requestBoard();
+    }
+
+    _playerTurnListener(event) {
         this.comms.requestBoard();
     }
 }
