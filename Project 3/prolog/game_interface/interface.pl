@@ -51,8 +51,6 @@ makePlay(single, Color, Col_Start, Row_Start, Col_Dest, Row_Dest) :-
     ite(Color == w, NextColor = b, NextColor = w),
     assert(gameData(NewBoard, single, Difficulty, NextColor)).
 
-
-
 /**
  * Makes a player move. If the move cannot be made, it fails and the board isn't changed.
  */
@@ -62,6 +60,17 @@ makePlay(multi, _, Col_Start, Row_Start, Col_Dest, Row_Dest) :-
     retractall(gameData(_, _, _, _)),
     ite(Color == w, NextColor = b, NextColor = w),
     assert(gameData(NewBoard, multi, Difficulty, NextColor)).
+
+
+/**
+ * Meant to undo moves by playing their reverse. Bypasses legality checks.
+ * Should never be used for regular moves as it may break the game flow.
+ */
+forceMove(NextColor, Col_Start, Row_Start, Col_Dest, Row_Dest) :-
+    gameData(Board, Mode, Difficulty, _),
+    moveGeneral(Board, Col_Start, Row_Start, Col_Dest, Row_Dest, NewBoard),
+    retractall(gameData(_, _, _, _)),
+    assert(gameData(NewBoard, Mode, Difficulty, NextColor)).
 
 
 freeGame :-

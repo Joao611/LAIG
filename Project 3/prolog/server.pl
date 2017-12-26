@@ -132,6 +132,12 @@ parse_input(playerPlay(PlayerColor, Col_Start, Row_Start, Col_Dest, Row_Dest), o
 	getMode(Mode),
 	makePlay(Mode, PlayerColor, Col_Start, Row_Start, Col_Dest, Row_Dest).
 
+/**
+ * Meant to undo moves by playing their reverse. Bypasses legality checks.
+ */
+parse_input(forceMove(NextColor, Col_Start, Row_Start, Col_Dest, Row_Dest), ok) :-
+	forceMove(NextColor, Col_Start, Row_Start, Col_Dest, Row_Dest).
+
 test(_,[],N) :- N =< 0.
 test(A,[A|Bs],N) :- N1 is N-1, test(A,Bs,N1).
 	

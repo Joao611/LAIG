@@ -47,6 +47,7 @@ class MyBoard {
     this.whiteCell = scene.graph.nodes['whiteCell'];
     this.board = this._buildBoard();
     this.boardPieces = this._initBoardPieces();
+    this.playSequence = [];
   }
 
   update() {

@@ -53,6 +53,10 @@ XMLscene.prototype.init = function(application) {
     this.nextTurnButton = function() {
         this.comms.requestNextTurn(this.board.botColor);
     }
+
+    this.undoButton = function() {
+        this.comms.requestForceMove();
+    }
 }
 
 /**
