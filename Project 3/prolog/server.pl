@@ -144,6 +144,9 @@ parse_input(gameIsOver, [IsDraw, WhiteWon, BlackWon]) :-
     gameData(Board, _, _, _),
 	gameIsOver(Board, IsDraw, WhiteWon, BlackWon).
 
+parse_input(changePlayer, NewPlayerColor) :-
+	changePlayer(NewPlayerColor).
+
 test(_,[],N) :- N =< 0.
 test(A,[A|Bs],N) :- N1 is N-1, test(A,Bs,N1).
 	

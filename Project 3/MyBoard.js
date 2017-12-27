@@ -5,9 +5,14 @@ class MyBoard {
    * 
    * @param {XMLscene} scene 
    */
-  constructor(scene) {
+  constructor(scene, maxTimePerPlay) {
     'use strict';
     this.scene = scene;
+    this.maxTimePerPlay = maxTimePerPlay;
+    this.timeOfLastPlay = Date.now();
+
+    this.requestingPlayerChange = false;
+
     this.playerColor = 'w'; //white
     this.botColor = 'b'; //black
     this.cellWidth = 1;
@@ -42,6 +47,13 @@ class MyBoard {
   }
 
   /**
+   * Checks if current player hasn't timed out.
+   */
+  canStillPlay() {
+    return (Date.now() - this.timeOfLastPlay <= this.maxTimePerPlay * 1000);
+  }
+
+  /**
    * 
    * @param {string} prologPieces Prolong representation of board.
    */
@@ -49,7 +61,7 @@ class MyBoard {
     if (this.gameState.isOver()) {
       return;
     }
-    
+
     prologPieces = prologPieces.slice(2);
     prologPieces = prologPieces.slice(0, -2);
     let piecesLines = prologPieces.split("],[");
@@ -91,10 +103,15 @@ class MyBoard {
     if (gameState.isDraw) {
       alert("Draw");
     } else if (gameState.whiteWon) {
-      alert("White won");
+      alert("Whites won");
     } else if (gameState.blackWon) {
-      alert("Black won");
+      alert("Blacks won");
     }
+  }
+
+  resetPlayerTime() {
+    this.timeOfLastPlay = Date.now();
+    this.requestingPlayerChange = false;
   }
 
   _buildBoard() {

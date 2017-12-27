@@ -51,6 +51,10 @@ class MyCommunications {
         this._requestToProlog("gameIsOver", this._gameIsOverListener);
     }
 
+    requestPlayerChange() {
+        this._requestToProlog("changePlayer", this._playerChangeListener);
+    }
+
     _requestToProlog(requestStr, eventListener) {
         let request = new XMLHttpRequest();
         request.comms = this;
@@ -89,6 +93,11 @@ class MyCommunications {
         let gameState = this.comms._getGameStateFromProlog(event.target.response);
         this.comms.scene.board.updateState(gameState);
     }
+
+    _playerChangeListener(event) {
+        this.comms.scene.board.resetPlayerTime();
+    }
+
 
     /**
      * 

@@ -85,5 +85,12 @@ gameIsOver(Board, 0, 0, 1) :-
 
 gameIsOver(_, 0, 0, 0).
 
+changePlayer(NewPlayerColor) :-
+    gameData(Board, Mode, Difficulty, OldColor),
+    ite(OldColor == w, NewPlayerColor = b, NewPlayerColor = w),
+    retractall(gameData(_, _, _, _)),
+    assert(gameData(Board, Mode, Difficulty, NewPlayerColor)).
+
+
 freeGame :-
     retractall(gameData(_, _, _, _)).

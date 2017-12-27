@@ -48,7 +48,7 @@ XMLscene.prototype.init = function(application) {
     this.comms = new MyCommunications(this);
 
     this.startButton = function() {
-        this.board = new MyBoard(this);
+        this.board = new MyBoard(this, this.playTimeLimit);
         this.comms.requestGameInitialization(this.selectedMode, 1); // Always choose 'easy' due to a severe memory leak in Prolog.
     }
 
@@ -136,27 +136,10 @@ XMLscene.prototype.onGraphLoaded = function()
     this.prevTime = Date.now();
     this.setUpdatePeriod(1000.0/60);
 
-    this.board = new MyBoard(this);
+    this.board = new MyBoard(this, this.playTimeLimit);
 
     this.interface.addGameControls();
 }
-
-/* XMLscene.prototype.logPicking = function ()
-{
-	if (this.pickMode == false) {
-		if (this.pickResults != null && this.pickResults.length > 0) {
-			for (let i=0; i< this.pickResults.length; i++) {
-				let obj = this.pickResults[i][0];
-				if (obj)
-				{
-					let customId = this.pickResults[i][1];				
-					console.log("Picked object: " + obj + ", with pick id " + customId);
-				}
-			}
-			this.pickResults.splice(0,this.pickResults.length);
-		}		
-	}
-} */
 
 XMLscene.prototype.handlePicking = function ()
 {
@@ -257,6 +240,10 @@ XMLscene.prototype.display = function() {
 }
 
 XMLscene.prototype.update = function(currTime) {
+    if (!this.board.canStillPlay() && !this.board.requestingPlayerChange) {
+        this.board.requestingPlayerChange = true;
+        this.comms.requestPlayerChange();
+    }
 	let y = (Math.sin(currTime / 75) / 2) + 0.5;
 	this.selectableShader.setUniformsValues({timeFactor: y, saturatedColor: [1, 0, 1, 1]});
     this.pickedShader.setUniformsValues({pickedColor: [1, 0, 0, 1]});
