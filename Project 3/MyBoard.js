@@ -17,6 +17,7 @@ class MyBoard {
     this.board = this._buildBoard();
     this.boardPieces = this._initBoardPieces();
     this.playSequence = [];
+    this.gameState = new MyGameState();
   }
 
   display() {
@@ -45,6 +46,10 @@ class MyBoard {
    * @param {string} prologPieces Prolong representation of board.
    */
   updatePieces(prologPieces) {
+    if (this.gameState.isOver()) {
+      return;
+    }
+    
     prologPieces = prologPieces.slice(2);
     prologPieces = prologPieces.slice(0, -2);
     let piecesLines = prologPieces.split("],[");
@@ -74,6 +79,22 @@ class MyBoard {
    */
   addPlay(play) {
     this.playSequence.push(play);
+  }
+
+  /**
+   * 
+   * @param {MyGameState} gameState 
+   */
+  updateState(gameState) {
+    this.gameState = gameState;
+
+    if (gameState.isDraw) {
+      alert("Draw");
+    } else if (gameState.whiteWon) {
+      alert("White won");
+    } else if (gameState.blackWon) {
+      alert("Black won");
+    }
   }
 
   _buildBoard() {

@@ -212,14 +212,17 @@ XMLscene.prototype.display = function() {
 
     if (this.graph.loadedOk)
     {
+
         // Applies initial transformations.
         this.multMatrix(this.graph.initialTransforms);
 
 		// Draw axis
-		this.axis.display();
+        this.axis.display();
+        
+        this.board.display();
 
-        var i = 0;
-        for (var key in this.lightValues) {
+        let i = 0;
+        for (let key in this.lightValues) {
             if (this.lightValues.hasOwnProperty(key)) {
                 if (this.lightValues[key]) {
                     this.lights[i].setVisible(true);

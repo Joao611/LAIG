@@ -1575,7 +1575,6 @@ MySceneGraph.generateRandomString = function(length) {
  * Displays the scene, processing each node, starting in the root node.
  */
 MySceneGraph.prototype.displayScene = function() {
-    this.scene.board.display();
 	let rootNode = this.nodes[this.idRoot];
 	this.displayNode(rootNode, null, null, 1, 1, false);
 }

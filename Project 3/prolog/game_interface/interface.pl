@@ -73,5 +73,17 @@ forceMove(NextColor, Col_Start, Row_Start, Col_Dest, Row_Dest) :-
     assert(gameData(NewBoard, Mode, Difficulty, NextColor)).
 
 
+% IsDraw, WhiteWon, BlackWon.
+gameIsOver(Board, 1, 0, 0) :-
+    isDraw(Board), !.
+
+gameIsOver(Board, 0, 1, 0) :-
+    win(w, Board), !.
+
+gameIsOver(Board, 0, 0, 1) :-
+    win(b, Board), !.
+
+gameIsOver(_, 0, 0, 0).
+
 freeGame :-
     retractall(gameData(_, _, _, _)).

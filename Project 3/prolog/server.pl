@@ -140,6 +140,10 @@ parse_input(playerPlay(PlayerColor, Col_Start, Row_Start, Col_Dest, Row_Dest), [
 parse_input(forceMove(NextColor, Col_Start, Row_Start, Col_Dest, Row_Dest), ok) :-
 	forceMove(NextColor, Col_Start, Row_Start, Col_Dest, Row_Dest).
 
+parse_input(gameIsOver, [IsDraw, WhiteWon, BlackWon]) :-
+    gameData(Board, _, _, _),
+	gameIsOver(Board, IsDraw, WhiteWon, BlackWon).
+
 test(_,[],N) :- N =< 0.
 test(A,[A|Bs],N) :- N1 is N-1, test(A,Bs,N1).
 	

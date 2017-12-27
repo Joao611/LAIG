@@ -47,6 +47,10 @@ class MyCommunications {
         this._requestToProlog(requestStr, this._forceMoveListener);
     }
 
+    requestGameIsOver() {
+        this._requestToProlog("gameIsOver", this._gameIsOverListener);
+    }
+
     _requestToProlog(requestStr, eventListener) {
         let request = new XMLHttpRequest();
         request.comms = this;
@@ -64,6 +68,7 @@ class MyCommunications {
 
     _updatePiecesListener(event) {
         this.comms.scene.board.updatePieces(this.responseText);
+        this.comms.requestGameIsOver();
     }
 
     _nextTurnListener(event) {
@@ -80,6 +85,11 @@ class MyCommunications {
         this.comms.requestBoard();
     }
 
+    _gameIsOverListener(event) {
+        let gameState = this.comms._getGameStateFromProlog(event.target.response);
+        this.comms.scene.board.updateState(gameState);
+    }
+
     /**
      * 
      * @param {string} prologPlay String in the format '[Color,Col_Start,Row_Start,Col_Dest,Row_Dest]'
@@ -88,5 +98,13 @@ class MyCommunications {
         let playArray = JSON.parse(prologPlay);
         let play = new MyPlay(String.fromCharCode(playArray[0][0]), playArray[1], playArray[2], playArray[3], playArray[4]);
         return play;
+    }
+
+    _getGameStateFromProlog(prologState) {
+        let stateArray = JSON.parse(prologState);
+        let isDraw = stateArray[0];
+        let whiteWon = stateArray[1];
+        let blackWon = stateArray[2];
+        return new MyGameState(isDraw, whiteWon, blackWon);
     }
 }
