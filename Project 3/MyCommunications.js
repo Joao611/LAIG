@@ -83,6 +83,8 @@ class MyCommunications {
     }
 
     _playerTurnListener(event) {
+        let play = this.comms._getPlayFromProlog(this.responseText);
+        this.comms.scene.board.addPlay(play);
         this.comms.requestBoard();
     }
 
