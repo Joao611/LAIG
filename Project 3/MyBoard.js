@@ -67,6 +67,8 @@ class MyBoard {
       return;
     }
 
+    this.resetPlayerTime();
+
     prologPieces = prologPieces.slice(2);
     prologPieces = prologPieces.slice(0, -2);
     let piecesLines = prologPieces.split("],[");

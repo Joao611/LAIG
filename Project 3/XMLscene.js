@@ -54,6 +54,7 @@ XMLscene.prototype.init = function(application) {
 
     this.nextTurnButton = function() {
         if (this.board.activeGame) {
+            this.board.resetPlayerTime();
             this.comms.requestNextTurn(this.board.botColor);
         }
     }
@@ -71,6 +72,7 @@ XMLscene.prototype.init = function(application) {
         destCoords.line = lastPlay.startLine;
         destCoords.col = lastPlay.startCol;
 
+        this.board.resetPlayerTime();
         this.comms.requestForceMove(lastPlay.moveColor, startCoords, destCoords);
     }
 }
