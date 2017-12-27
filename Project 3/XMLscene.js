@@ -38,6 +38,7 @@ XMLscene.prototype.init = function(application) {
     
     this.selectedMode = "npc";
     this.selectedDifficulty = "1";
+    this.playTimeLimit = 10;
 
     this.selectableModes = ['npc', 'single', 'multi'];
     this.selectableDifficulties = ['1', '2'];

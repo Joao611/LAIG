@@ -56,6 +56,7 @@ MyInterface.prototype.addGameControls = function() {
     mainGroup.open();
     mainGroup.add(this.scene, 'selectedMode', this.scene.selectableModes).name('Mode:');
     mainGroup.add(this.scene, 'selectedDifficulty', this.scene.selectableDifficulties).name('Difficulty:');
+    mainGroup.add(this.scene, 'playTimeLimit', 1, 20).name('Play Time Limit');
     mainGroup.add(this.scene, 'startButton').name('Start Game');
 
     let ingameGroup = this.gui.addFolder("In Game");
