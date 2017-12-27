@@ -47,6 +47,7 @@ XMLscene.prototype.init = function(application) {
     this.comms = new MyCommunications(this);
 
     this.startButton = function() {
+        this.board = new MyBoard(this);
         this.comms.requestGameInitialization(this.selectedMode, 1); // Always choose 'easy' due to a severe memory leak in Prolog.
     }
 
