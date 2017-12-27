@@ -95,6 +95,13 @@ class MyCommunications {
     }
 
     _playerChangeListener(event) {
+        let player;
+        if (event.target.response == "b") {
+            player = "blacks";
+        } else {
+            player = "whites";
+        }
+        alert("Changed turn to " + player);
         this.comms.scene.board.resetPlayerTime();
     }
 
