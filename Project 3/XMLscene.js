@@ -53,10 +53,15 @@ XMLscene.prototype.init = function(application) {
     }
 
     this.nextTurnButton = function() {
-        this.comms.requestNextTurn(this.board.botColor);
+        if (this.board.activeGame) {
+            this.comms.requestNextTurn(this.board.botColor);
+        }
     }
 
     this.undoButton = function() {
+        if (!this.board.activeGame) {
+            return;
+        }
         let lastPlay = this.board.playSequence.pop();
 
         let startCoords = new Object();
@@ -240,7 +245,7 @@ XMLscene.prototype.display = function() {
 }
 
 XMLscene.prototype.update = function(currTime) {
-    if (!this.board.canStillPlay() && !this.board.requestingPlayerChange) {
+    if (!this.board.canStillPlay() && !this.board.requestingPlayerChange && this.board.activeGame) {
         this.board.requestingPlayerChange = true;
         this.comms.requestPlayerChange();
     }

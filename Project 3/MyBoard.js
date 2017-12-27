@@ -11,6 +11,7 @@ class MyBoard {
     this.maxTimePerPlay = maxTimePerPlay;
     this.timeOfLastPlay = Date.now();
 
+    this.activeGame = false;
     this.requestingPlayerChange = false;
 
     this.playerColor = 'w'; //white
@@ -44,6 +45,10 @@ class MyBoard {
         this.scene.popMatrix();
       }
     }
+  }
+
+  setActiveGame() {
+    this.activeGame = true;
   }
 
   /**

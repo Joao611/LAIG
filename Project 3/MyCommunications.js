@@ -67,6 +67,7 @@ class MyCommunications {
         if (this.responseText != "ok") {
             console.log("Server: Error initializing game.");
         }
+        this.comms.scene.board.setActiveGame();
         this.comms.requestBoard();
     }
 
