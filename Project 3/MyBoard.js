@@ -31,8 +31,11 @@ class MyBoard {
   display() {
     for (let line = 0; line < this.boardLength; line++) {
       for (let col = 0; col < this.boardLength; col++) {
-        this._displayCell(line, col);
-        this._displayPiece(line, col);
+        this.scene.pushMatrix();
+          this.scene.translate(this.cellWidth * col, 0, this.cellWidth * line);
+          this._displayCell(line, col);
+          this._displayPiece(line, col);
+        this.scene.popMatrix();
       }
     }
   }
@@ -149,7 +152,6 @@ class MyBoard {
   _displayCell(line, col) {
     this.scene.pushMatrix();
 
-      this.scene.translate(this.cellWidth * col, 0, this.cellWidth * line);
       this.scene.registerForPick(this._getPickId(line, col), this.board[line][col]);
       if (this.scene.pickedId == this._getPickId(line, col)) {
         this.scene.setActiveShader(this.scene.pickedShader);
@@ -169,8 +171,6 @@ class MyBoard {
         let currAnimTime = Date.now() / 1000 - this.boardPieces[line][col].animationsStartTime;
         let animTransform = this.boardPieces[line][col].getAnimTransform(currAnimTime);
         this.scene.multMatrix(animTransform);
-      } else {
-        this.scene.translate(this.cellWidth * col, 0, this.cellWidth * line);
       }
 
       if (this.boardPieces[line][col].node != null) {
@@ -196,10 +196,11 @@ class MyBoard {
   _makeAnimation(play) {
     let startCoords = {'x': this.cellWidth * play.startCol, 'y': 0, 'z': this.cellWidth * play.startLine};
     let destCoords = {'x': this.cellWidth * play.destCol, 'y': 0, 'z': this.cellWidth * play.destLine};
-    let P1 = [startCoords.x, startCoords.y, startCoords.z];
-    let P2 = [startCoords.x, startCoords.y + 10, startCoords.z];
-    let P3 = [destCoords.x, destCoords.y + 10, destCoords.z];
-    let P4 = [destCoords.x, destCoords.y, destCoords.z];
+    let deltaCoords = {'x': destCoords.x - startCoords.x, 'y': destCoords.y - startCoords.y, 'z': destCoords.z - startCoords.z};
+    let P1 = [0, 0, 0];
+    let P2 = [0, 10, 0];
+    let P3 = [deltaCoords.x, deltaCoords.y + 10, deltaCoords.z];
+    let P4 = [deltaCoords.x, deltaCoords.y, deltaCoords.z];
     
     let anim = new BezierAnimation(this.scene, 10, [P1, P2, P3, P4]);
     if (this.boardPieces[play.startLine][play.startCol].animations.length == 0) {
