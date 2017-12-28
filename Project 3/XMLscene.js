@@ -72,11 +72,11 @@ XMLscene.prototype.init = function(application) {
         let lastPlay = this.board.playSequence.pop();
 
         let startCoords = new Object();
-        startCoords.line = lastPlay.destLine;
-        startCoords.col = lastPlay.destCol;
+        startCoords.line = lastPlay.destLine + 1;
+        startCoords.col = lastPlay.destCol + 1;
         let destCoords = new Object();
-        destCoords.line = lastPlay.startLine;
-        destCoords.col = lastPlay.startCol;
+        destCoords.line = lastPlay.startLine + 1;
+        destCoords.col = lastPlay.startCol + 1;
 
         this.board.resetPlayerTime();
         this.comms.requestForceMove(lastPlay.moveColor, startCoords, destCoords);
