@@ -202,7 +202,7 @@ class MyBoard {
     let P3 = [deltaCoords.x, deltaCoords.y + 10, deltaCoords.z];
     let P4 = [deltaCoords.x, deltaCoords.y, deltaCoords.z];
     
-    let anim = new BezierAnimation(this.scene, 10, [P1, P2, P3, P4]);
+    let anim = new BezierAnimation(this.scene, 10, [P1, P2, P3, P4], false);
     if (this.boardPieces[play.startLine][play.startCol].animations.length == 0) {
       this.boardPieces[play.startLine][play.startCol].animationsStartTime = Date.now() / 1000;
     }

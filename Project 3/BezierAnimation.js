@@ -1,5 +1,12 @@
 class BezierAnimation extends Animation {
-	constructor(scene, speed, controlPoints) {
+	/**
+	 * 
+	 * @param {XMLscene} scene 
+	 * @param {number} speed 
+	 * @param {*} controlPoints 
+	 * @param {boolean} rotateAlongAxis If true, rotate object so it follows its direction.
+	 */
+	constructor(scene, speed, controlPoints, rotateAlongAxis = true) {
 		super(scene);
 		this.speed = speed;
 		this.P1 = controlPoints[0];
@@ -12,6 +19,8 @@ class BezierAnimation extends Animation {
 
 		this.totalDistance = this._getTotalDistance();
 		this.totalTime = this.totalDistance / this.speed;
+
+		this.rotateAlongAxis = rotateAlongAxis;
 	}
 
 	/**
@@ -32,7 +41,9 @@ class BezierAnimation extends Animation {
 		let transformMatrix = mat4.create();
 		mat4.identity(transformMatrix);
 		mat4.translate(transformMatrix, transformMatrix, currentCoordinates);
-		mat4.rotate(transformMatrix, transformMatrix, angle, [0, 1, 0]);
+		if (this.rotateAlongAxis) {
+			mat4.rotate(transformMatrix, transformMatrix, angle, [0, 1, 0]);
+		}
 		
 		if (t < 1) {
 			this.prevCoordinates = currentCoordinates;
