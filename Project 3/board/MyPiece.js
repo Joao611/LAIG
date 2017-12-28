@@ -21,6 +21,34 @@ class MyPiece {
         return new MyPiece(this.scene, this.type, this.color);
     }
 
+    isKing() {
+        return this.type == 'K';
+    }
+
+    isQueen() {
+        return this.type == 'Q';
+    }
+
+    isBishop() {
+        return this.type == 'B';
+    }
+
+    isTower() {
+        return this.type == 'T';
+    }
+
+    isHorse() {
+        return this.type == 'H';
+    }
+
+    isWhite() {
+        return this.color == 'w';
+    }
+
+    isBlack() {
+        return this.color == 'b';
+    }
+
     /**
      * @param {string} str First char is type (K/Q/T/B/H), second is color (w/b).
      */

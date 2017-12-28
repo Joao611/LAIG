@@ -102,6 +102,11 @@ class MyBoard {
     this.playSequence.push(play);
     this._endAnimations();
     this._makeAnimation(play);
+    
+    if (this.boardPieces[play.destLine][play.destCol].pieceIsSet()) {
+      this._animateEatenPiece(play);
+      this.secondaryBoard.placePiece(this.boardPieces[play.destLine][play.destCol]);
+    }
   }
 
   /**
@@ -216,6 +221,27 @@ class MyBoard {
 
   _endAnimations() {
     this.boardPieces = this._copyBoardPieces(this.queuedBoardPieces);
+    this.secondaryBoard.updateQueued();
+  }
+
+  /**
+   * 
+   * @param {MyPlay} play 
+   */
+  _animateEatenPiece(play) {
+    let pieceCoords = {'x': this.cellWidth * play.destCol, 'y': 0, 'z': this.cellWidth * play.destLine};
+    let secCoords = {'x': this.cellWidth * play.destCol, 'y': 0, 'z': this.cellWidth * play.destLine};
+    let deltaCoords = {'x': secCoords.x - pieceCoords.x, 'y': secCoords.y - pieceCoords.y, 'z': secCoords.z - pieceCoords.z};
+    let P1 = [0, 0, 0];
+    let P2 = [0, 10, 0];
+    let P3 = [deltaCoords.x, deltaCoords.y + 10, deltaCoords.z];
+    let P4 = [deltaCoords.x, deltaCoords.y, deltaCoords.z];
+
+    let anim = new BezierAnimation(this.scene, 10, [P1, P2, P3, P4], false);
+    if (this.boardPieces[play.destLine][play.destCol].animations.length == 0) {
+      this.boardPieces[play.destLine][play.destCol].animationsStartTime = Date.now() / 1000;
+    }
+    this.boardPieces[play.destLine][play.destCol].addAnimation(anim);
   }
 
   _copyBoardPieces(boardPieces) {
