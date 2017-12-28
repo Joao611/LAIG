@@ -12,6 +12,13 @@ class MyPiece {
         this.type = type;
         this.color = color;
         this.node = this._getPieceNode();
+
+        this.animations = [];
+        this.animationsStartTime = null;
+    }
+
+    clone() {
+        return new MyPiece(this.scene, this.type, this.color);
     }
 
     /**
@@ -29,6 +36,35 @@ class MyPiece {
         this.color = str[1];
         
         this.node = this._getPieceNode();
+    }
+
+    pieceIsSet() {
+        return this.node != null;
+    }
+
+    /**
+     * Adds an animation to the Piece.
+     * @param {Animation} anim
+     */
+    addAnimation(anim) {
+        this.animations.push(anim);
+    }
+
+    /**
+     * Gets the transformation matrix for the animation being run at a certain time.
+     * @param {number} currentSeconds Seconds since the start of the first animation.
+     */
+    getAnimTransform(currentSeconds) {
+        let elapsedTime = 0;
+        for (let i = 0; i < this.animations.length; i++) {
+            let animation = this.animations[i];
+            if (elapsedTime + animation.totalTime > currentSeconds || i + 1 == this.animations.length) {
+                let animT = (currentSeconds - elapsedTime) / animation.totalTime;
+                return animation.getTransform(animT);
+            }
+            elapsedTime += animation.totalTime;
+        }
+        return null;
     }
 
     /**

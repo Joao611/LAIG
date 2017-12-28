@@ -22,6 +22,8 @@ class MyBoard {
     this.whiteCell = scene.graph.nodes['whiteCell'];
     this.board = this._buildBoard();
     this.boardPieces = this._initBoardPieces();
+    this.queuedBoardPieces = this._initBoardPieces();
+    this.initedBoard = false;
     this.playSequence = [];
     this.gameState = new MyGameState();
   }
@@ -29,20 +31,8 @@ class MyBoard {
   display() {
     for (let line = 0; line < this.boardLength; line++) {
       for (let col = 0; col < this.boardLength; col++) {
-        this.scene.pushMatrix();
-          this.scene.translate(this.cellWidth * col, 0, this.cellWidth * line);
-          this.scene.registerForPick(this._getPickId(line, col), this.board[line][col]);
-          if (this.scene.pickedId == this._getPickId(line, col)) {
-            this.scene.setActiveShader(this.scene.pickedShader);
-          }
-          this.scene.graph.displayNode(this.board[line][col]);
-          if (this.scene.pickedId == this._getPickId(line, col)) {
-            this.scene.setActiveShader(this.scene.defaultShader);
-          }
-          if (this.boardPieces[line][col].node != null) {
-            this.scene.graph.displayNode(this.boardPieces[line][col].node);
-          }
-        this.scene.popMatrix();
+        this._displayCell(line, col);
+        this._displayPiece(line, col);
       }
     }
   }
@@ -76,9 +66,13 @@ class MyBoard {
     for (let line = 0; line < this.boardLength; line++) {
       let pieces = piecesLines[line].split(",");
       for (let col = 0; col < this.boardLength; col++) {
-        this.boardPieces[line][col].setPiece(pieces[col]);
+        this.queuedBoardPieces[line][col].setPiece(pieces[col]);
+        if (!this.initedBoard) {
+          this.boardPieces[line][col].setPiece(pieces[col]);
+        }
       }
     }
+    this.initedBoard = true;
   }
 
   /**
@@ -98,6 +92,8 @@ class MyBoard {
    */
   addPlay(play) {
     this.playSequence.push(play);
+    this._endAnimations();
+    this._makeAnimation(play);
   }
 
   /**
@@ -150,6 +146,40 @@ class MyBoard {
     return boardPieces;
   }
 
+  _displayCell(line, col) {
+    this.scene.pushMatrix();
+
+      this.scene.translate(this.cellWidth * col, 0, this.cellWidth * line);
+      this.scene.registerForPick(this._getPickId(line, col), this.board[line][col]);
+      if (this.scene.pickedId == this._getPickId(line, col)) {
+        this.scene.setActiveShader(this.scene.pickedShader);
+      }
+      this.scene.graph.displayNode(this.board[line][col]);
+      if (this.scene.pickedId == this._getPickId(line, col)) {
+        this.scene.setActiveShader(this.scene.defaultShader);
+      }
+    
+    this.scene.popMatrix();
+  }
+
+  _displayPiece(line, col) {
+    this.scene.pushMatrix();
+    
+      if (this.boardPieces[line][col].node != null && this.boardPieces[line][col].animations.length > 0) {
+        let currAnimTime = Date.now() / 1000 - this.boardPieces[line][col].animationsStartTime;
+        let animTransform = this.boardPieces[line][col].getAnimTransform(currAnimTime);
+        this.scene.multMatrix(animTransform);
+      } else {
+        this.scene.translate(this.cellWidth * col, 0, this.cellWidth * line);
+      }
+
+      if (this.boardPieces[line][col].node != null) {
+        this.scene.graph.displayNode(this.boardPieces[line][col].node);
+      }
+
+    this.scene.popMatrix();
+  }
+
   /**
    * 
    * @param {number} line 
@@ -157,5 +187,46 @@ class MyBoard {
    */
   _getPickId(line, col) {
     return line * this.boardLength + col;
+  }
+
+  /**
+   * 
+   * @param {MyPlay} play 
+   */
+  _makeAnimation(play) {
+    let startCoords = {'x': this.cellWidth * play.startCol, 'y': 0, 'z': this.cellWidth * play.startLine};
+    let destCoords = {'x': this.cellWidth * play.destCol, 'y': 0, 'z': this.cellWidth * play.destLine};
+    let P1 = [startCoords.x, startCoords.y, startCoords.z];
+    let P2 = [startCoords.x, startCoords.y + 10, startCoords.z];
+    let P3 = [destCoords.x, destCoords.y + 10, destCoords.z];
+    let P4 = [destCoords.x, destCoords.y, destCoords.z];
+    
+    let anim = new BezierAnimation(this.scene, 10, [P1, P2, P3, P4]);
+    if (this.boardPieces[play.startLine][play.startCol].animations.length == 0) {
+      this.boardPieces[play.startLine][play.startCol].animationsStartTime = Date.now() / 1000;
+    }
+    this.boardPieces[play.startLine][play.startCol].addAnimation(anim);
+  }
+
+  _endAnimations() {
+    this.boardPieces = this._copyBoardPieces(this.queuedBoardPieces);
+
+    for (let line = 0; line < this.boardLength; line++) {
+      for (let col = 0; col < this.boardLength; col++) {
+        this.boardPieces[line][col].animations = [];
+      }
+    }
+  }
+
+  _copyBoardPieces(boardPieces) {
+    let newBoardPieces = [];
+    for (let line = 0; line < boardPieces.length; line++) {
+      let newBoardLine = [];
+      for (let col = 0; col < boardPieces[line].length; col++) {
+        newBoardLine[col] = boardPieces[line][col].clone();
+      }
+      newBoardPieces.push(newBoardLine);
+    }
+    return newBoardPieces;
   }
 }

@@ -115,7 +115,7 @@ class MyCommunications {
      */
     _getPlayFromProlog(prologPlay) {
         let playArray = JSON.parse(prologPlay);
-        let play = new MyPlay(String.fromCharCode(playArray[0][0]), playArray[1], playArray[2], playArray[3], playArray[4]);
+        let play = new MyPlay(String.fromCharCode(playArray[0][0]), playArray[1] - 1, playArray[2] - 1, playArray[3] - 1, playArray[4] - 1);
         return play;
     }
 

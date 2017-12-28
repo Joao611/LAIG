@@ -137,8 +137,10 @@ parse_input(playerPlay(PlayerColor, Col_Start, Row_Start, Col_Dest, Row_Dest), [
 /**
  * Meant to undo moves by playing their reverse. Bypasses legality checks.
  */
-parse_input(forceMove(NextColor, Col_Start, Row_Start, Col_Dest, Row_Dest), ok) :-
-	forceMove(NextColor, Col_Start, Row_Start, Col_Dest, Row_Dest).
+parse_input(forceMove(NextColor, Col_Start, Row_Start, Col_Dest, Row_Dest), [NextColorStr, Col_Start, Row_Start, Col_Dest, Row_Dest]) :-
+	forceMove(NextColor, Col_Start, Row_Start, Col_Dest, Row_Dest),
+	atom_codes(NextColor, NextColorStr).
+	
 
 parse_input(gameIsOver, [IsDraw, WhiteWon, BlackWon]) :-
     gameData(Board, _, _, _),
