@@ -66,7 +66,7 @@ XMLscene.prototype.init = function(application) {
     }
 
     this.undoButton = function() {
-        if (!this.board.activeGame) {
+        if (!this.board.activeGame || this.board.playSequence.length == 0) {
             return;
         }
         let lastPlay = this.board.playSequence.pop();
