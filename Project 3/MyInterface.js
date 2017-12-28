@@ -51,6 +51,17 @@ MyInterface.prototype.addSelectableDropdown = function(selectableIds) {
     this.gui.add(this.scene.graph, 'selectedNodeId', selectableIds).name('Select a node:');
 }
 
+MyInterface.prototype.addOptions = function() {
+    let optionsGroup = this.gui.addFolder("Options");
+    optionsGroup.open();
+
+    let cameraOption = optionsGroup.add(this.scene, 'selectedCameraPos', this.scene.cameraPositions).name('Perspective:');
+    cameraOption.onChange((value) => {
+        let array = JSON.parse(value);
+        this.scene.setupMoveCamera(array);
+    });
+}
+
 MyInterface.prototype.addGameControls = function() {
     let mainGroup = this.gui.addFolder("Main Menu");
     mainGroup.open();

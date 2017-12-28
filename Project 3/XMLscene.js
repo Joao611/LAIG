@@ -36,6 +36,12 @@ XMLscene.prototype.init = function(application) {
     this.isPickedShaderSet = false;
     this.setActiveShader(this.defaultShader);
     
+    this.selectedCameraPos = null;
+    this.cameraPositions = {
+        'Default': '[0.5, 10, 10]',
+        'Top': '[0.5, 10, 1]'
+    };
+
     this.selectedMode = "npc";
     this.selectedDifficulty = "1";
     this.playTimeLimit = 10;
@@ -81,16 +87,16 @@ XMLscene.prototype.init = function(application) {
  * Initializes the scene lights with the values read from the LSX file.
  */
 XMLscene.prototype.initLights = function() {
-    var i = 0;
+    let i = 0;
     // Lights index.
 
     // Reads the lights from the scene graph.
-    for (var key in this.graph.lights) {
+    for (let key in this.graph.lights) {
         if (i >= 8)
             break;              // Only eight lights allowed by WebGL.
 
         if (this.graph.lights.hasOwnProperty(key)) {
-            var light = this.graph.lights[key];
+            let light = this.graph.lights[key];
 
             this.lights[i].setPosition(light[1][0], light[1][1], light[1][2], light[1][3]);
             this.lights[i].setAmbient(light[2][0], light[2][1], light[2][2], light[2][3]);
@@ -115,7 +121,21 @@ XMLscene.prototype.initLights = function() {
  * Initializes the scene cameras.
  */
 XMLscene.prototype.initCameras = function() {
-    this.camera = new CGFcamera(0.4,0.1,500,vec3.fromValues(15, 15, 15),vec3.fromValues(0, 0, 0));
+    this.camera = new CGFcamera(0.4,0.1,500,vec3.fromValues(0.5, 10, 10),vec3.fromValues(0.5, 0, 0));
+}
+
+/**
+ * Smoothly move the camera to a new position.
+ * @param {vec3} newPosition 
+ */
+XMLscene.prototype.setupMoveCamera = function(newPosition) {
+    let delta = [], deltaInc = [];
+    delta = vec3.subtract(delta, newPosition, this.camera.position);
+    deltaInc = vec3.scale(deltaInc, delta, 1/1000);
+    let res = [];
+    for (let i = 0; i <= 1000; i++) {
+        this.camera.setPosition(vec3.add(res, this.camera.position, deltaInc));
+    }
 }
 
 /* Handler called when the graph is finally loaded.
@@ -125,6 +145,7 @@ XMLscene.prototype.onGraphLoaded = function()
 {
     this.camera.near = this.graph.near;
     this.camera.far = this.graph.far;
+    
     this.axis = new CGFaxis(this,this.graph.referenceLength);
 
     this.setGlobalAmbientLight(this.graph.ambientIllumination[0], this.graph.ambientIllumination[1],
@@ -136,6 +157,7 @@ XMLscene.prototype.onGraphLoaded = function()
 
     this.interface.addLightsGroup(this.graph.lights);
     this.interface.addSelectableDropdown(this.graph.selectableNodeIds);
+    this.interface.addOptions();
 
     this.selectableShader = new CGFshader(this.gl, "shaders/selectable.vert", "shaders/selectable.frag");
     this.pickedShader = new CGFshader(this.gl, "shaders/picked.vert", "shaders/picked.frag");
