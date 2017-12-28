@@ -26,7 +26,8 @@ class MySecondaryBoard {
                 for (let col = 0; col < this.secondaryBoardColumns; col++) {
                     this.scene.pushMatrix();
                         this.scene.translate(this.cellWidth * col, 0, this.cellWidth * line);
-                        this.scene.graph.displayNode(this.boardCells[line][col]);
+                        this._displayCell(line, col);
+                        this._displayPiece(line, col);
                     this.scene.popMatrix();
                 }
             }
@@ -59,26 +60,26 @@ class MySecondaryBoard {
         } else if (piece.isQueen()) {
             line = 1;
         } else if (piece.isBishop()) {
-            if (queuedBoardPieces[2][col].pieceIsSet()) {
+            if (this.queuedBoardPieces[2][col].pieceIsSet()) {
                 line = 3;
             } else {
                 line = 2;
             }
         } else if (piece.isTower()) {
-            if (queuedBoardPieces[4][col].pieceIsSet()) {
+            if (this.queuedBoardPieces[4][col].pieceIsSet()) {
                 line = 5;
             } else {
                 line = 4;
             }
         } else if (piece.isHorse()) {
-            if (queuedBoardPieces[6][col].pieceIsSet()) {
+            if (this.queuedBoardPieces[6][col].pieceIsSet()) {
                 line = 7;
             } else {
                 line = 6;
             }
         }
 
-        queuedBoardPieces[line][col].setPiece("" + piece.type + piece.color);
+        this.queuedBoardPieces[line][col].setPiece("" + piece.type + piece.color);
     }
 
     _buildSecondaryBoard() {
@@ -120,5 +121,15 @@ class MySecondaryBoard {
           newBoardPieces.push(newBoardLine);
         }
         return newBoardPieces;
-      }
+    }
+
+    _displayCell(line, col) {
+        this.scene.graph.displayNode(this.boardCells[line][col]);
+    }
+
+    _displayPiece(line, col) {
+        if (this.boardPieces[line][col].node != null) {
+            this.scene.graph.displayNode(this.boardPieces[line][col].node);
+        }
+    }
 }
