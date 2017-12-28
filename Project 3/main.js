@@ -21,6 +21,7 @@ serialInclude(['../lib/CGF.js', 'XMLscene.js', 'MySceneGraph.js',
 			 'ComboAnimation.js', 'MyBoard.js',
 			 'MyCommunications.js', 'board/MyPiece.js',
 			 'board/MyPlay.js', 'board/MyGameState.js',
+			 'MySecondaryBoard.js',
 
 main=function()
 {

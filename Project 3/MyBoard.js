@@ -26,6 +26,9 @@ class MyBoard {
     this.initedBoard = false;
     this.playSequence = [];
     this.gameState = new MyGameState();
+
+    let secondaryOffset = {'x': -5, 'y': 0, 'z': 0};
+    this.secondaryBoard = new MySecondaryBoard(this.scene, secondaryOffset);
   }
 
   display() {
@@ -38,6 +41,8 @@ class MyBoard {
         this.scene.popMatrix();
       }
     }
+
+    this.secondaryBoard.display();
   }
 
   setActiveGame() {
@@ -211,12 +216,6 @@ class MyBoard {
 
   _endAnimations() {
     this.boardPieces = this._copyBoardPieces(this.queuedBoardPieces);
-
-    for (let line = 0; line < this.boardLength; line++) {
-      for (let col = 0; col < this.boardLength; col++) {
-        this.boardPieces[line][col].animations = [];
-      }
-    }
   }
 
   _copyBoardPieces(boardPieces) {
