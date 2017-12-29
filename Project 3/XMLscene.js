@@ -81,6 +81,7 @@ XMLscene.prototype.init = function(application) {
         this.board.resetPlayerTime();
         this.comms.requestForceMove(lastPlay.moveColor, startCoords, destCoords);
         if (lastPlay.eatenPiece != null) {
+            this.board.bringBackEatenPiece(lastPlay.eatenPiece, lastPlay.eatenAtCol, lastPlay.eatenAtLine);
             this.comms.requestPlacePiece(lastPlay.eatenPiece, lastPlay.eatenAtCol + 1, lastPlay.eatenAtLine + 1, true);
         }
     }

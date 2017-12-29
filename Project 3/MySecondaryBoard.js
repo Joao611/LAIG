@@ -90,6 +90,42 @@ class MySecondaryBoard {
         return coords;
     }
 
+    getCoordsOfPiece(piece) {
+        let coords = {};
+
+        if (piece.isWhite()) {
+            coords.col = 0;
+        } else if (piece.isBlack()) {
+            coords.col = 1;
+        }
+
+        if (piece.isKing()) {
+            coords.line = 0;
+        } else if (piece.isQueen()) {
+            coords.line = 1;
+        } else if (piece.isBishop()) {
+            if (this.queuedBoardPieces[2][coords.col].pieceIsSet()) {
+                coords.line = 2;
+            } else {
+                coords.line = 3;
+            }
+        } else if (piece.isTower()) {
+            if (this.queuedBoardPieces[4][coords.col].pieceIsSet()) {
+                coords.line = 4;
+            } else {
+                coords.line = 5;
+            }
+        } else if (piece.isHorse()) {
+            if (this.queuedBoardPieces[6][coords.col].pieceIsSet()) {
+                coords.line = 6;
+            } else {
+                coords.line = 7;
+            }
+        }
+
+        return coords;
+    }
+
     _buildSecondaryBoard() {
         let outerBlackTurn = true;
         let board = [];
@@ -136,8 +172,18 @@ class MySecondaryBoard {
     }
 
     _displayPiece(line, col) {
-        if (this.boardPieces[line][col].node != null) {
-            this.scene.graph.displayNode(this.boardPieces[line][col].node);
-        }
+        this.scene.pushMatrix();
+
+            if (this.boardPieces[line][col].node != null && this.boardPieces[line][col].animations.length > 0) {
+                let currAnimTime = Date.now() / 1000 - this.boardPieces[line][col].animationsStartTime;
+                let animTransform = this.boardPieces[line][col].getAnimTransform(currAnimTime);
+                this.scene.multMatrix(animTransform);
+            }
+        
+            if (this.boardPieces[line][col].node != null) {
+                this.scene.graph.displayNode(this.boardPieces[line][col].node);
+            }
+
+        this.scene.popMatrix();
     }
 }

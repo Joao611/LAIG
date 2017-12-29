@@ -131,6 +131,10 @@ class MyBoard {
     this.requestingPlayerChange = false;
   }
 
+  bringBackEatenPiece(eatenPiece, col, line) {
+    this._animateResurrectingPiece(eatenPiece, line, col);
+  }
+
   _buildBoard() {
     let outerBlackTurn = true;
     let board = [];
@@ -245,6 +249,30 @@ class MyBoard {
       this.boardPieces[play.destLine][play.destCol].animationsStartTime = Date.now() / 1000;
     }
     this.boardPieces[play.destLine][play.destCol].addAnimation(anim);
+  }
+
+  /**
+   * 
+   * @param {MyPiece} piece
+   * @param {number} mainLine 
+   * @param {number} mainCol 
+   */
+  _animateResurrectingPiece(piece, mainLine, mainCol) {
+    let coordsInsideSecBoard = this.secondaryBoard.getCoordsOfPiece(piece);
+
+    let mainCoords = {'x': this.cellWidth * mainCol, 'y': 0, 'z': this.cellWidth * mainLine};
+    let secCoords = {'x': this.cellWidth * coordsInsideSecBoard.col + this.secondaryOffset.x, 'y': this.secondaryOffset.y, 'z': this.cellWidth * coordsInsideSecBoard.line + this.secondaryOffset.z};
+    let deltaCoords = {'x': mainCoords.x - secCoords.x, 'y': mainCoords.y - secCoords.y, 'z': mainCoords.z - secCoords.z};
+    let P1 = [0, 0, 0];
+    let P2 = [0, 10, 0];
+    let P3 = [deltaCoords.x, deltaCoords.y + 10, deltaCoords.z];
+    let P4 = [deltaCoords.x, deltaCoords.y, deltaCoords.z];
+
+    let anim = new BezierAnimation(this.scene, 10, [P1, P2, P3, P4], false);
+    if (this.secondaryBoard.boardPieces[coordsInsideSecBoard.line][coordsInsideSecBoard.col].animations.length == 0) {
+      this.secondaryBoard.boardPieces[coordsInsideSecBoard.line][coordsInsideSecBoard.col].animationsStartTime = Date.now() / 1000;
+    }
+    this.secondaryBoard.boardPieces[coordsInsideSecBoard.line][coordsInsideSecBoard.col].addAnimation(anim);
   }
 
   _copyBoardPieces(boardPieces) {
