@@ -58,6 +58,8 @@ XMLscene.prototype.init = function(application) {
 
     this.startButton = function() {
         this.board = new MyBoard(this, this.playTimeLimit);
+        this.whiteScore = 0;
+        this.blackScore = 0;
         this.comms.requestGameInitialization(this.selectedMode, 1); // Always choose 'easy' due to a severe memory leak in Prolog.
     }
 

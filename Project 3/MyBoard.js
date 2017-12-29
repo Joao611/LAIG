@@ -114,7 +114,6 @@ class MyBoard {
       play.eatPiece(this.boardPieces[play.destLine][play.destCol], play.destLine, play.destCol);
       if (this.boardPieces[play.destLine][play.destCol].isWhite()) {
         this.scene.blackScore++;
-        gui_updateBlackScore(this.blackScore);
       } else {
         this.scene.whiteScore++;       
       }
@@ -147,7 +146,6 @@ class MyBoard {
   bringBackEatenPiece(eatenPiece, col, line) {
     if (eatenPiece.isWhite()) {
       this.scene.blackScore--;
-      gui_updateBlackScore(this.blackScore);
     } else {
       this.scene.whiteScore--;
     }
