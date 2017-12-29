@@ -27,8 +27,8 @@ class MyBoard {
     this.playSequence = [];
     this.gameState = new MyGameState();
 
-    let secondaryOffset = {'x': -5, 'y': 0, 'z': 0};
-    this.secondaryBoard = new MySecondaryBoard(this.scene, secondaryOffset);
+    this.secondaryOffset = {'x': -5, 'y': 0, 'z': 0};
+    this.secondaryBoard = new MySecondaryBoard(this.scene, this.secondaryOffset);
   }
 
   display() {
@@ -229,8 +229,10 @@ class MyBoard {
    * @param {MyPlay} play 
    */
   _animateEatenPiece(play) {
+    let coordsInsideSecBoard = this.secondaryBoard.getCoordsToPlacePieceOn(this.boardPieces[play.destLine][play.destCol]);
+
     let pieceCoords = {'x': this.cellWidth * play.destCol, 'y': 0, 'z': this.cellWidth * play.destLine};
-    let secCoords = {'x': this.cellWidth * play.destCol, 'y': 0, 'z': this.cellWidth * play.destLine};
+    let secCoords = {'x': this.cellWidth * coordsInsideSecBoard.col + this.secondaryOffset.x, 'y': this.secondaryOffset.y, 'z': this.cellWidth * coordsInsideSecBoard.line + this.secondaryOffset.z};
     let deltaCoords = {'x': secCoords.x - pieceCoords.x, 'y': secCoords.y - pieceCoords.y, 'z': secCoords.z - pieceCoords.z};
     let P1 = [0, 0, 0];
     let P2 = [0, 10, 0];

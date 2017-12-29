@@ -47,39 +47,47 @@ class MySecondaryBoard {
      * @param {MyPiece} piece 
      */
     placePiece(piece) {
-        let line, col;
+        let coords = this.getCoordsToPlacePieceOn(piece);
+
+        
+
+        this.queuedBoardPieces[coords.line][coords.col].setPiece("" + piece.type + piece.color);
+    }
+
+    getCoordsToPlacePieceOn(piece) {
+        let coords = {};
 
         if (piece.isWhite()) {
-            col = 0;
+            coords.col = 0;
         } else if (piece.isBlack()) {
-            col = 1;
+            coords.col = 1;
         }
 
         if (piece.isKing()) {
-            line = 0;
+            coords.line = 0;
         } else if (piece.isQueen()) {
-            line = 1;
+            coords.line = 1;
         } else if (piece.isBishop()) {
-            if (this.queuedBoardPieces[2][col].pieceIsSet()) {
-                line = 3;
+            if (this.queuedBoardPieces[2][coords.col].pieceIsSet()) {
+                coords.line = 3;
             } else {
-                line = 2;
+                coords.line = 2;
             }
         } else if (piece.isTower()) {
-            if (this.queuedBoardPieces[4][col].pieceIsSet()) {
-                line = 5;
+            if (this.queuedBoardPieces[4][coords.col].pieceIsSet()) {
+                coords.line = 5;
             } else {
-                line = 4;
+                coords.line = 4;
             }
         } else if (piece.isHorse()) {
-            if (this.queuedBoardPieces[6][col].pieceIsSet()) {
-                line = 7;
+            if (this.queuedBoardPieces[6][coords.col].pieceIsSet()) {
+                coords.line = 7;
             } else {
-                line = 6;
+                coords.line = 6;
             }
         }
 
-        this.queuedBoardPieces[line][col].setPiece("" + piece.type + piece.color);
+        return coords;
     }
 
     _buildSecondaryBoard() {
