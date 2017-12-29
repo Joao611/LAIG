@@ -89,6 +89,9 @@ class MyCommunications {
     }
 
     _forceMoveListener(event) {
+        let play = this.comms._getPlayFromProlog(this.responseText);
+        this.comms.scene.board._endAnimations();
+        this.comms.scene.board._makeAnimation(play);
         this.comms.requestBoard();
     }
 
