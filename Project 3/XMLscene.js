@@ -32,6 +32,9 @@ XMLscene.prototype.init = function(application) {
 
     this.axis = new CGFaxis(this);
 
+    this.whiteScore = 0;
+    this.blackScore = 0;
+
     this.isSelectableShaderSet = false;
     this.isPickedShaderSet = false;
     this.setActiveShader(this.defaultShader);
@@ -84,6 +87,16 @@ XMLscene.prototype.init = function(application) {
             this.board.secondaryBoard.updateQueued();
             this.board.bringBackEatenPiece(lastPlay.eatenPiece, lastPlay.eatenAtCol, lastPlay.eatenAtLine);
             this.comms.requestPlacePiece(lastPlay.eatenPiece, lastPlay.eatenAtCol + 1, lastPlay.eatenAtLine + 1, true);
+        }
+    }
+
+    this.movieButton = function() {
+        if (this.board.playSequence.length == 0) {
+            return;
+        }
+
+        for (let i = 0; i < this.board.playSequence.length; i++) {
+            window.setTimeout(movieMakePlay);
         }
     }
 }

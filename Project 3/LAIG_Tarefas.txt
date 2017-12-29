@@ -40,6 +40,7 @@ X Undo peças apagadas - Feito dia 29
 X Rotação da câmara entre pontos de vista pré-definidos - Feito dia 29
 -Modelação
 30:
+X Marcador - Feito dia 29
 -Iluminação
 -Ambientes de jogo
 31:

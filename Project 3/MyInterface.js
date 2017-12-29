@@ -69,24 +69,12 @@ MyInterface.prototype.addGameControls = function() {
     mainGroup.add(this.scene, 'selectedDifficulty', this.scene.selectableDifficulties).name('Difficulty:');
     mainGroup.add(this.scene, 'playTimeLimit', 1, 20).name('Play Time Limit');
     mainGroup.add(this.scene, 'startButton').name('Start Game');
-    //mainGroup.add(this.scene, 'movieButton').name('Show Last Game');
+    mainGroup.add(this.scene, 'movieButton').name('Show Last Game');
 
     let ingameGroup = this.gui.addFolder("In Game");
     ingameGroup.open();
-    ingameGroup.add(this.scene.board, 'whiteScore').name('White score:').listen();
-    ingameGroup.add(this.scene.board, 'blackScore').name('Black score:').listen();
+    ingameGroup.add(this.scene, 'whiteScore').name('White score:').listen();
+    ingameGroup.add(this.scene, 'blackScore').name('Black score:').listen();
     ingameGroup.add(this.scene, 'nextTurnButton').name('Next Turn');
     ingameGroup.add(this.scene, 'undoButton').name('Undo');
-}
-
-var interface = this;
-
-let gui_updateWhiteScore = function(whiteScore) {
-    /* requestAnimationFrame(gui_updateWhiteScore);
-    this.scene.board.whiteScore = whiteScore; */
-}
-
-let gui_updateBlackScore = function(blackScore) {
-    /* requestAnimationFrame(gui_updateBlackScore);
-    this.scene.board.blackScore = blackScore; */
 }
