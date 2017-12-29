@@ -136,7 +136,8 @@ XMLscene.prototype.initCameras = function() {
 XMLscene.prototype.setupMoveCamera = function(newPosition) {
     this.delta = [];
     this.delta = vec3.subtract(this.delta, newPosition, this.camera.position);
-    this.remainingCameraMs = 1000;
+    this.totalCameraMovementTime = 500;
+    this.remainingCameraMs = this.totalCameraMovementTime;
 }
 
 /* Handler called when the graph is finally loaded.
@@ -299,7 +300,7 @@ XMLscene.prototype._cameraIncrement = function(deltaMs) {
     }
 
     let deltaInc = [];
-    deltaInc = vec3.scale(deltaInc, this.delta, msToMove / 1000);
+    deltaInc = vec3.scale(deltaInc, this.delta, msToMove / this.totalCameraMovementTime);
     let res = [];
     this.camera.setPosition(vec3.add(res, this.camera.position, deltaInc));
     this.remainingCameraMs -= msToMove;
