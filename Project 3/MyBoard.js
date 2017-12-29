@@ -104,6 +104,7 @@ class MyBoard {
     this._makeAnimation(play);
     
     if (this.boardPieces[play.destLine][play.destCol].pieceIsSet()) {
+      play.eatPiece(this.boardPieces[play.destLine][play.destCol], play.destLine, play.destCol);
       this._animateEatenPiece(play);
       this.secondaryBoard.placePiece(this.boardPieces[play.destLine][play.destCol]);
     }

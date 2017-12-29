@@ -21,6 +21,10 @@ class MyPiece {
         return new MyPiece(this.scene, this.type, this.color);
     }
 
+    getPrologRepresentation() {
+        return "" + this.type + this.color;
+    }
+
     isKing() {
         return this.type == 'K';
     }

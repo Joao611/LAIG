@@ -14,4 +14,16 @@ class MyPlay {
         this.destCol = destCol;
         this.destLine = destLine;
     }
+
+    /**
+     * 
+     * @param {MyPiece} piece 
+     * @param {number} line 
+     * @param {number} col 
+     */
+    eatPiece(piece, line, col) {
+        this.eatenPiece = piece;
+        this.eatenAtLine = line;
+        this.eatenAtCol = col;
+    }
 }

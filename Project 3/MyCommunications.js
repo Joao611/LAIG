@@ -2,6 +2,7 @@ class MyCommunications {
     constructor(scene) {
         this.scene = scene;
         this.port = 8081;
+        this.commsQueueAfterReqBoard = [];
     }
 
     /**
@@ -55,6 +56,22 @@ class MyCommunications {
         this._requestToProlog("changePlayer", this._playerChangeListener);
     }
 
+    /**
+     * 
+     * @param {MyPiece} piece 
+     * @param {number} col
+     * @param {number} line
+     * @param {boolean} waitForRequestBoard
+     */
+    requestPlacePiece(piece, col, line, waitForRequestBoard = false) {
+        let requestStr = "placePiece('"+piece.getPrologRepresentation()+"',"+col+","+line+")";
+        if (waitForRequestBoard) {
+            this.commsQueueAfterReqBoard.push({'requestStr': requestStr, 'listener': this._placePieceListener});
+        } else {
+            this._requestToProlog(requestStr, this._placePieceListener);
+        }
+    }
+
     _requestToProlog(requestStr, eventListener) {
         let request = new XMLHttpRequest();
         request.comms = this;
@@ -73,6 +90,10 @@ class MyCommunications {
 
     _updatePiecesListener(event) {
         this.comms.scene.board.updatePieces(this.responseText);
+        if (this.comms.commsQueueAfterReqBoard.length > 0) {
+            let requestData = this.comms.commsQueueAfterReqBoard.pop();
+            this.comms._requestToProlog(requestData.requestStr, requestData.listener);
+        }
         this.comms.requestGameIsOver();
     }
 
@@ -109,6 +130,10 @@ class MyCommunications {
         }
         alert("Changed turn to " + player);
         this.comms.scene.board.resetPlayerTime();
+    }
+
+    _placePieceListener(event) {
+        this.comms.requestBoard();
     }
 
 
