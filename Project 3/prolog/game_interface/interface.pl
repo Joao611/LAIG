@@ -72,6 +72,12 @@ forceMove(NextColor, Col_Start, Row_Start, Col_Dest, Row_Dest) :-
     retractall(gameData(_, _, _, _)),
     assert(gameData(NewBoard, Mode, Difficulty, NextColor)).
 
+placePiece(Piece, Col, Row) :-
+    gameData(Board, Mode, Difficulty, Color),
+    setPiece(Board, Row, Col, Piece, NewBoard),
+    retractall(gameData(_, _, _, _)),
+    assert(gameData(NewBoard, Mode, Difficulty, Color)).
+
 
 % IsDraw, WhiteWon, BlackWon.
 gameIsOver(Board, 1, 0, 0) :-

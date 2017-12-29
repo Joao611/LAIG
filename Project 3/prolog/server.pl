@@ -140,6 +140,9 @@ parse_input(playerPlay(PlayerColor, Col_Start, Row_Start, Col_Dest, Row_Dest), [
 parse_input(forceMove(NextColor, Col_Start, Row_Start, Col_Dest, Row_Dest), [NextColorStr, Col_Start, Row_Start, Col_Dest, Row_Dest]) :-
 	forceMove(NextColor, Col_Start, Row_Start, Col_Dest, Row_Dest),
 	atom_codes(NextColor, NextColorStr).
+
+parse_input(placePiece(Piece, Col, Row), [Col, Row]) :-
+	placePiece(Piece, Col, Row).
 	
 
 parse_input(gameIsOver, [IsDraw, WhiteWon, BlackWon]) :-
