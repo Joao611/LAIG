@@ -36,11 +36,11 @@ XMLscene.prototype.init = function(application) {
     this.isPickedShaderSet = false;
     this.setActiveShader(this.defaultShader);
     
-    this.selectedCameraPos = null;
     this.cameraPositions = {
         'Default': '[0.5, 10, 10]',
         'Top': '[0.5, 10, 1]'
     };
+    this.selectedCameraPos = this.cameraPositions['Default'];
 
     this.selectedMode = "npc";
     this.selectedDifficulty = "1";
@@ -134,13 +134,9 @@ XMLscene.prototype.initCameras = function() {
  * @param {vec3} newPosition 
  */
 XMLscene.prototype.setupMoveCamera = function(newPosition) {
-    let delta = [], deltaInc = [];
-    delta = vec3.subtract(delta, newPosition, this.camera.position);
-    deltaInc = vec3.scale(deltaInc, delta, 1/1000);
-    let res = [];
-    for (let i = 0; i <= 1000; i++) {
-        this.camera.setPosition(vec3.add(res, this.camera.position, deltaInc));
-    }
+    this.delta = [];
+    this.delta = vec3.subtract(this.delta, newPosition, this.camera.position);
+    this.remainingCameraMs = 1000;
 }
 
 /* Handler called when the graph is finally loaded.
@@ -284,4 +280,27 @@ XMLscene.prototype.update = function(currTime) {
     let deltaMs = currTime - this.prevTime;
     this.prevTime = currTime;
     this.graph.update(deltaMs);
+    this._cameraIncrement(deltaMs);
+}
+
+XMLscene.prototype._cameraIncrement = function(deltaMs) {
+    if (this.delta == null) {
+        return;
+    }
+
+    let msToMove;
+
+    if (this.remainingCameraMs >= deltaMs) {
+        msToMove = deltaMs;
+    } else if (this.remainingCameraMs > 0) {
+        msToMove = this.remainingCameraMs;
+    } else {
+        msToMove = 0;
+    }
+
+    let deltaInc = [];
+    deltaInc = vec3.scale(deltaInc, this.delta, msToMove / 1000);
+    let res = [];
+    this.camera.setPosition(vec3.add(res, this.camera.position, deltaInc));
+    this.remainingCameraMs -= msToMove;
 }

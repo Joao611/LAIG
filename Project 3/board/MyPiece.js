@@ -15,12 +15,19 @@ class MyPiece {
 
         this.animations = [];
         this.animationsStartTime = null;
+        this.movingToLine = null;
+        this.movingToCol = null;
+
+        this.movingToMainBoard = false;
     }
 
     clone() {
         let newPiece = new MyPiece(this.scene, this.type, this.color);
         newPiece.animations = this.animations.slice();
         newPiece.animationsStartTime = this.animationsStartTime;
+        newPiece.movingToMainBoard = this.movingToMainBoard;
+        newPiece.movingToLine = this.movingToLine;
+        newPiece.movingToCol = this.movingToCol;
         return newPiece;
     }
 
@@ -73,6 +80,12 @@ class MyPiece {
         this.node = this._getPieceNode();
     }
 
+    unsetPiece() {
+        this.type = null;
+        this.color = null;
+        this.node = null;
+    }
+    
     pieceIsSet() {
         return this.node != null;
     }
@@ -80,9 +93,18 @@ class MyPiece {
     /**
      * Adds an animation to the Piece.
      * @param {Animation} anim
+     * @param {number} destLine
+     * @param {number} destCol
      */
-    addAnimation(anim) {
+    addAnimation(anim, destLine = null, destCol = null) {
         this.animations.push(anim);
+        this.movingToLine = destLine;
+        this.movingToCol = destCol;
+        if (destLine != null) {
+            this.movingToMainBoard = true;
+        } else {
+            this.movingToMainBoard = false;
+        }
     }
 
     /**

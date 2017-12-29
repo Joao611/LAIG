@@ -35,6 +35,13 @@ class MyBoard {
     for (let line = 0; line < this.boardLength; line++) {
       for (let col = 0; col < this.boardLength; col++) {
         this.scene.pushMatrix();
+          if (this.boardPieces[line][col].movingToMainBoard) {
+            let animDestLine = this.boardPieces[line][col].movingToLine;
+            let animDestCol = this.boardPieces[line][col].movingToCol;
+            this.scene.registerForPick(this._getPickId(animDestLine, animDestCol), this.board[line][col]);
+          } else {
+            this.scene.registerForPick(this._getPickId(line, col), this.board[line][col]);
+          }
           this.scene.translate(this.cellWidth * col, 0, this.cellWidth * line);
           this._displayCell(line, col);
           this._displayPiece(line, col);
@@ -167,7 +174,6 @@ class MyBoard {
   _displayCell(line, col) {
     this.scene.pushMatrix();
 
-      this.scene.registerForPick(this._getPickId(line, col), this.board[line][col]);
       if (this.scene.pickedId == this._getPickId(line, col)) {
         this.scene.setActiveShader(this.scene.pickedShader);
       }
@@ -221,11 +227,12 @@ class MyBoard {
     if (this.boardPieces[play.startLine][play.startCol].animations.length == 0) {
       this.boardPieces[play.startLine][play.startCol].animationsStartTime = Date.now() / 1000;
     }
-    this.boardPieces[play.startLine][play.startCol].addAnimation(anim);
+    this.boardPieces[play.startLine][play.startCol].addAnimation(anim, play.destLine, play.destCol);
   }
 
   _endAnimations() {
     this.boardPieces = this._copyBoardPieces(this.queuedBoardPieces);
+    //this.secondaryBoard.removePiecesGoingToMainBoard();
     this.secondaryBoard.updateQueued();
   }
 
@@ -273,8 +280,8 @@ class MyBoard {
       this.secondaryBoard.queuedBoardPieces[coordsInsideSecBoard.line][coordsInsideSecBoard.col].animationsStartTime = Date.now() / 1000;
       this.secondaryBoard.boardPieces[coordsInsideSecBoard.line][coordsInsideSecBoard.col].animationsStartTime = Date.now() / 1000;
     }
-    this.secondaryBoard.queuedBoardPieces[coordsInsideSecBoard.line][coordsInsideSecBoard.col].addAnimation(anim);
-    this.secondaryBoard.boardPieces[coordsInsideSecBoard.line][coordsInsideSecBoard.col].addAnimation(anim);
+    this.secondaryBoard.queuedBoardPieces[coordsInsideSecBoard.line][coordsInsideSecBoard.col].addAnimation(anim, mainLine, mainCol);
+    this.secondaryBoard.boardPieces[coordsInsideSecBoard.line][coordsInsideSecBoard.col].addAnimation(anim, mainLine, mainCol);
   }
 
   _copyBoardPieces(boardPieces) {

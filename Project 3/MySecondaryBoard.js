@@ -25,6 +25,11 @@ class MySecondaryBoard {
             for (let line = 0; line < this.secondaryBoardLines; line++) {
                 for (let col = 0; col < this.secondaryBoardColumns; col++) {
                     this.scene.pushMatrix();
+                        if (this.boardPieces[line][col].movingToMainBoard) {
+                            let animDestLine = this.boardPieces[line][col].movingToLine;
+                            let animDestCol = this.boardPieces[line][col].movingToCol;
+                            this.scene.registerForPick(this.scene.board._getPickId(animDestLine, animDestCol), this.scene.board.board[line][col]);
+                        }
                         this.scene.translate(this.cellWidth * col, 0, this.cellWidth * line);
                         this._displayCell(line, col);
                         this._displayPiece(line, col);
@@ -124,6 +129,17 @@ class MySecondaryBoard {
         }
 
         return coords;
+    }
+
+    removePiecesGoingToMainBoard() {
+        for (let line = 0; line < this.secondaryBoardLines; line++) {
+            for (let col = 0; col < this.secondaryBoardColumns; col++) {
+                if (this.queuedBoardPieces[line][col].movingToMainBoard) {
+                    //this.boardPieces[line][col].unsetPiece();
+                    this.queuedBoardPieces[line][col].unsetPiece();
+                }
+            }
+        }
     }
 
     _buildSecondaryBoard() {
