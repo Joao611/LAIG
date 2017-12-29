@@ -209,7 +209,7 @@ XMLscene.prototype._handlePlayerMoves = function(newPickedId) {
  */
 XMLscene.prototype.display = function() {
     this.handlePicking();
-	this.clearPickRegistration();
+    this.clearPickRegistration();
 
     // ---- BEGIN Background, camera and axis setup
 

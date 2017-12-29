@@ -27,6 +27,9 @@ class MyBoard {
     this.playSequence = [];
     this.gameState = new MyGameState();
 
+    this.whiteScore = 0;
+    this.blackScore = 0;
+
     this.secondaryOffset = {'x': -5, 'y': 0, 'z': 0};
     this.secondaryBoard = new MySecondaryBoard(this.scene, this.secondaryOffset);
   }
@@ -112,6 +115,13 @@ class MyBoard {
     
     if (this.boardPieces[play.destLine][play.destCol].pieceIsSet()) {
       play.eatPiece(this.boardPieces[play.destLine][play.destCol], play.destLine, play.destCol);
+      if (this.boardPieces[play.destLine][play.destCol].isWhite()) {
+        this.blackScore++;
+        gui_updateBlackScore(this.blackScore);
+      } else {
+        this.whiteScore++;
+        gui_updateWhiteScore(this.whiteScore);
+      }
       this._animateEatenPiece(play);
       this.secondaryBoard.placePiece(this.boardPieces[play.destLine][play.destCol]);
     }
@@ -139,6 +149,13 @@ class MyBoard {
   }
 
   bringBackEatenPiece(eatenPiece, col, line) {
+    if (eatenPiece.isWhite()) {
+      this.blackScore--;
+      gui_updateBlackScore(this.blackScore);
+    } else {
+      this.whiteScore--;
+      gui_updateWhiteScore(this.whiteScore);
+    }
     this._animateResurrectingPiece(eatenPiece, line, col);
   }
 
