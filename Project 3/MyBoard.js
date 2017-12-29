@@ -270,8 +270,10 @@ class MyBoard {
 
     let anim = new BezierAnimation(this.scene, 10, [P1, P2, P3, P4], false);
     if (this.secondaryBoard.boardPieces[coordsInsideSecBoard.line][coordsInsideSecBoard.col].animations.length == 0) {
+      this.secondaryBoard.queuedBoardPieces[coordsInsideSecBoard.line][coordsInsideSecBoard.col].animationsStartTime = Date.now() / 1000;
       this.secondaryBoard.boardPieces[coordsInsideSecBoard.line][coordsInsideSecBoard.col].animationsStartTime = Date.now() / 1000;
     }
+    this.secondaryBoard.queuedBoardPieces[coordsInsideSecBoard.line][coordsInsideSecBoard.col].addAnimation(anim);
     this.secondaryBoard.boardPieces[coordsInsideSecBoard.line][coordsInsideSecBoard.col].addAnimation(anim);
   }
 

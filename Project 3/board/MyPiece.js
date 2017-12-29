@@ -18,7 +18,10 @@ class MyPiece {
     }
 
     clone() {
-        return new MyPiece(this.scene, this.type, this.color);
+        let newPiece = new MyPiece(this.scene, this.type, this.color);
+        newPiece.animations = this.animations.slice();
+        newPiece.animationsStartTime = this.animationsStartTime;
+        return newPiece;
     }
 
     getPrologRepresentation() {
