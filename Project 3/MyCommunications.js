@@ -93,6 +93,7 @@ class MyCommunications {
         if (this.comms.commsQueueAfterReqBoard.length > 0) {
             let requestData = this.comms.commsQueueAfterReqBoard.pop();
             this.comms._requestToProlog(requestData.requestStr, requestData.listener);
+            this.comms.scene.board.secondaryBoard.updateQueued();
         }
         this.comms.requestGameIsOver();
     }
