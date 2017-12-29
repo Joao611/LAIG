@@ -33,14 +33,17 @@ X Condições fim de jogo - Feito dia 27
 X Medição do tempo de jogo - Feito dia 27
 28:
 X Movimento e animação por imagens chave - Feito dia 28
--Tabuleiro secundário
--Undo peças apagadas
+X Tabuleiro secundário - Feito dia 29
+X Undo peças apagadas - Feito dia 29
 29:
 -Filme do jogo
--Rotação da câmara entre pontos de vista pré-definidos
+X Rotação da câmara entre pontos de vista pré-definidos - Feito dia 29
 -Modelação
 30:
 -Iluminação
 -Ambientes de jogo
 31:
 -FDS NÃO
+
+BUGS:
+- Peças não desaparecem internamente do secondary board quando voltam ao main board. Resulta em duplicação de peças no mesmo sítio, uma do main e outra do secondary animada para o main.
