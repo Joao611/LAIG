@@ -233,7 +233,7 @@ class MyBoard {
     let P3 = [deltaCoords.x, deltaCoords.y + 10, deltaCoords.z];
     let P4 = [deltaCoords.x, deltaCoords.y, deltaCoords.z];
     
-    let anim = new BezierAnimation(this.scene, 10, [P1, P2, P3, P4], false);
+    let anim = new BezierAnimation(this.scene, 20, [P1, P2, P3, P4], false);
     if (this.boardPieces[play.startLine][play.startCol].animations.length == 0) {
       this.boardPieces[play.startLine][play.startCol].animationsStartTime = Date.now() / 1000;
     }
@@ -261,7 +261,7 @@ class MyBoard {
     let P3 = [deltaCoords.x, deltaCoords.y + 10, deltaCoords.z];
     let P4 = [deltaCoords.x, deltaCoords.y, deltaCoords.z];
 
-    let anim = new BezierAnimation(this.scene, 10, [P1, P2, P3, P4], false);
+    let anim = new BezierAnimation(this.scene, 20, [P1, P2, P3, P4], false);
     if (this.boardPieces[play.destLine][play.destCol].animations.length == 0) {
       this.boardPieces[play.destLine][play.destCol].animationsStartTime = Date.now() / 1000;
     }
@@ -285,7 +285,7 @@ class MyBoard {
     let P3 = [deltaCoords.x, deltaCoords.y + 10, deltaCoords.z];
     let P4 = [deltaCoords.x, deltaCoords.y, deltaCoords.z];
 
-    let anim = new BezierAnimation(this.scene, 10, [P1, P2, P3, P4], false);
+    let anim = new BezierAnimation(this.scene, 20, [P1, P2, P3, P4], false);
     if (this.secondaryBoard.boardPieces[coordsInsideSecBoard.line][coordsInsideSecBoard.col].animations.length == 0) {
       this.secondaryBoard.queuedBoardPieces[coordsInsideSecBoard.line][coordsInsideSecBoard.col].animationsStartTime = Date.now() / 1000;
       this.secondaryBoard.boardPieces[coordsInsideSecBoard.line][coordsInsideSecBoard.col].animationsStartTime = Date.now() / 1000;
