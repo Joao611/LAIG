@@ -38,11 +38,10 @@ XMLscene.prototype.init = function(application) {
     this.setActiveShader(this.defaultShader);
     
     this.cameraPositions = {
-        'Default': '[0, 5, 5]',
-        'Top': '[0, 5, 1]'
+        'Default': '[-3, 4, 4]',
+        'Top': '[-1, 2, 1]'
     };
     this.selectedCameraPos = this.cameraPositions['Default'];
-
     this.initCameras();
 
     this.selectedMode = "npc";
@@ -162,7 +161,7 @@ XMLscene.prototype.initLights = function() {
  * Initializes the scene cameras.
  */
 XMLscene.prototype.initCameras = function() {
-    this.camera = new CGFcamera(0.4,0.1,500,JSON.parse(this.selectedCameraPos),vec3.fromValues(0, 0, 0));
+    this.camera = new CGFcamera(0.4,0.1,500,JSON.parse(this.selectedCameraPos),vec3.fromValues(-1, 0, 0.2));
 }
 
 /**
