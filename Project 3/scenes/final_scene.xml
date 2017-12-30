@@ -166,6 +166,16 @@
         <file path="images/tiger_barrel_big_section.png" />
         <amplif_factor s="1" t="1" />
     </TEXTURE>
+
+    <TEXTURE id="room_tabletop">
+        <file path="images/tabletop.jpg" />
+        <amplif_factor s="1" t="1" />
+    </TEXTURE>
+
+    <TEXTURE id="tablelegs">
+        <file path="images/wood.jpg" />
+        <amplif_factor s="1" t="1" />
+    </TEXTURE>
 </TEXTURES>
 
 <MATERIALS>
