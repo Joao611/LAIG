@@ -51,3 +51,4 @@ BUGS:
 
 TODO:
 - Material do board.
+- Picking a começar a 0.

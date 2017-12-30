@@ -107,7 +107,8 @@
 <NODES>
 
     <BOARD>
-        <TRANSLATION x="-10" y="0" z="0" />
+        <!-- <TRANSLATION x="-10" y="0" z="0" /> -->
+        <!-- <ROTATION axis="z" angle="90" /> -->
     </BOARD>
 
     <ROOT id="root" />
