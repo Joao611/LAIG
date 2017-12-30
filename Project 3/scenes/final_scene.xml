@@ -45,6 +45,11 @@
         <amplif_factor s="0.01" t="0.01" />
     </TEXTURE>
 
+    <TEXTURE id="room_ground">
+        <file path="images/grey_ceramic_tiles.jpg" />
+        <amplif_factor s="0.3" t="0.3" />
+    </TEXTURE>
+
     <TEXTURE id="mountain">
         <file path="images/mountain.jpg" />
         <amplif_factor s="1" t="1" />

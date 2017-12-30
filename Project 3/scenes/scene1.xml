@@ -41,13 +41,8 @@
 <!-- Textures -->
 <TEXTURES>
 	<TEXTURE id="field">
-        <file path="images/field3.jpg" />
-        <amplif_factor s="0.3" t="0.3" />
-    </TEXTURE>
-
-    <TEXTURE id="room_ground">
-        <file path="images/grey_ceramic_tiles.jpg" />
-        <amplif_factor s="0.3" t="0.3" />
+        <file path="images/grey-ceramic-tiles.jpg" />
+        <amplif_factor s="0.05" t="0.05" />
     </TEXTURE>
 
     <TEXTURE id="mountain">
@@ -61,16 +56,19 @@
         <amplif_factor s="1" t="1" />
     </TEXTURE>
 
-    <TEXTURE id="blackCellTexture">
-      <file path="images/blackCellTexture.png" />
+  <TEXTURE id="tabletop">
+      <file path="images/tabletop.jpg" />
       <amplif_factor s="1" t="1" />
-    </TEXTURE>
+  </TEXTURE>
 
-    <TEXTURE id="whiteCellTexture">
-      <file path="images/whiteCellTexture.png" />
+  <TEXTURE id="tablelegs">
+      <file path="images/wood.jpg" />
       <amplif_factor s="1" t="1" />
-    </TEXTURE>
+  </TEXTURE>
+
 </TEXTURES>
+
+
 
 <MATERIALS>
     <!-- A default material -->
@@ -111,11 +109,6 @@
 <!-- The nodes -->
 <NODES>
 
-    <BOARD>
-        <!-- <TRANSLATION x="-10" y="0" z="0" /> -->
-        <!-- <ROTATION axis="z" angle="90" /> -->
-    </BOARD>
-
     <ROOT id="root" />
 
     <!-- The root node -->
@@ -125,149 +118,36 @@
 
         <DESCENDANTS>
             <NODEREF id="ground" />
-            <!-- <NODEREF id="board" /> -->
+            <NODEREF id="board" />
+            <NODEREF id="table" />
         </DESCENDANTS>
     </NODE>
 
-    <!-- <NODE id="board">
+    <NODE id="board">
         <MATERIAL id="defaultMaterial" />
         <TEXTURE id="board" />
-        <TRANSLATION x="0" y="0.3" z="0" />
-        <SCALE sx="20" sy="20" sz="20" />
+        <TRANSLATION x="1.6" y="9.3" z="1.6" />
+        <SCALE sx="8" sy="8" sz="8" />
         <ROTATION axis="x" angle="-90" />
         <ROTATION axis="z" angle="-90" />
 
         <DESCENDANTS>
           <NODEREF id="center"/>
-          <NODEREF id="margins"/>
+          <!-- <NODEREF id="margins"/> -->
         </DESCENDANTS>
-    </NODE> -->
+    </NODE>
 
 
-    <!-- <NODE id="center">
+    <NODE id="center">
         <MATERIAL id="defaultMaterial" />
         <TEXTURE id="board" />
 
         <DESCENDANTS>
           <LEAF type="rectangle" args="0 1 1 0" />
         </DESCENDANTS>
-    </NODE> -->
-
-    <NODE id="whiteCell">
-      <MATERIAL id="null" />
-      <TEXTURE id="whiteCellTexture" />~
-
-      <TRANSLATION x="0" y="0" z="1" />
-      <ROTATION axis="x" angle="-90" />
-
-      <DESCENDANTS>
-        <LEAF type="rectangle" args="0 1 1 0" />
-      </DESCENDANTS>
     </NODE>
-
-    <NODE id="blackCell">
-      <MATERIAL id="null" />
-      <TEXTURE id="blackCellTexture" />
-
-      <TRANSLATION x="0" y="0" z="1" />
-      <ROTATION axis="x" angle="-90" />
-
-      <DESCENDANTS>
-        <LEAF type="rectangle" args="0 1 1 0" />
-      </DESCENDANTS>
-    </NODE>
-
-    <NODE id="blackKing">
-        <MATERIAL id="null" />
-        <TEXTURE id="blackCellTexture" />
-
-        <DESCENDANTS>
-            <NODEREF id="cube" />
-        </DESCENDANTS>
-    </NODE>
-
-    <NODE id="blackQueen">
-        <MATERIAL id="null" />
-        <TEXTURE id="blackCellTexture" />
-
-        <DESCENDANTS>
-            <NODEREF id="cube" />
-        </DESCENDANTS>
-    </NODE>
-
-    <NODE id="blackBishop">
-        <MATERIAL id="null" />
-        <TEXTURE id="blackCellTexture" />
-
-        <DESCENDANTS>
-            <NODEREF id="cube" />
-        </DESCENDANTS>
-    </NODE>
-
-    <NODE id="blackTower">
-        <MATERIAL id="null" />
-        <TEXTURE id="blackCellTexture" />
-
-        <DESCENDANTS>
-            <NODEREF id="cube" />
-        </DESCENDANTS>
-    </NODE>
-
-    <NODE id="blackHorse">
-        <MATERIAL id="null" />
-        <TEXTURE id="blackCellTexture" />
-
-        <DESCENDANTS>
-            <NODEREF id="cube" />
-        </DESCENDANTS>
-    </NODE>
-
-    <NODE id="whiteKing">
-        <MATERIAL id="null" />
-        <TEXTURE id="whiteCellTexture" />
-
-        <DESCENDANTS>
-            <NODEREF id="cube" />
-        </DESCENDANTS>
-    </NODE>
-
-    <NODE id="whiteQueen">
-        <MATERIAL id="null" />
-        <TEXTURE id="whiteCellTexture" />
-
-        <DESCENDANTS>
-            <NODEREF id="cube" />
-        </DESCENDANTS>
-    </NODE>
-
-    <NODE id="whiteBishop">
-        <MATERIAL id="null" />
-        <TEXTURE id="whiteCellTexture" />
-
-        <DESCENDANTS>
-            <NODEREF id="cube" />
-        </DESCENDANTS>
-    </NODE>
-
-    <NODE id="whiteTower">
-        <MATERIAL id="null" />
-        <TEXTURE id="whiteCellTexture" />
-
-        <DESCENDANTS>
-            <NODEREF id="cube" />
-        </DESCENDANTS>
-    </NODE>
-
-    <NODE id="whiteHorse">
-        <MATERIAL id="null" />
-        <TEXTURE id="whiteCellTexture" />
-
-        <DESCENDANTS>
-            <NODEREF id="cube" />
-        </DESCENDANTS>
-    </NODE>
-
-    <!-- <NODE id="margins">
+<!--
+    <NODE id="margins">
         <MATERIAL id="defaultMaterial" />
         <TEXTURE id="null" />
 
@@ -277,11 +157,12 @@
           <NODEREF id="margin3"/>
           <NODEREF id="margin4"/>
         </DESCENDANTS>
-    </NODE> -->
+    </NODE>
 
-    <!-- <NODE id="margin1">
+    <NODE id="margin1">
         <MATERIAL id="defaultMaterial" />
         <TEXTURE id="null" />
+        <TRANSLATION x="0" y="2" z="0" />
 
         <DESCENDANTS>
           <LEAF type="rectangle" args="0 1 1 0" />
@@ -315,12 +196,104 @@
         </DESCENDANTS>
     </NODE> -->
 
+    <NODE id="table">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <DESCENDANTS>
+          <NODEREF id="table_top" />
+          <NODEREF id="table_legs" />
+        </DESCENDANTS>
+
+    </NODE>
+
+    <!-- Table Top -->
+    <NODE id="table_top">
+        <MATERIAL id="null" />
+        <TEXTURE id="tabletop" />
+
+        <TRANSLATION x="0" y="8" z="0" />
+        <SCALE sx="11.5" sy="1.2" sz="11.5" />
+
+        <DESCENDANTS>
+            <NODEREF id="cube" />
+        </DESCENDANTS>
+    </NODE>
+
+    <!-- Table Legs -->
+    <NODE id="table_legs">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <DESCENDANTS>
+            <NODEREF id="table_leg1" />
+            <NODEREF id="table_leg2" />
+            <NODEREF id="table_leg3" />
+            <NODEREF id="table_leg4" />
+        </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="table_leg1">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="0" y="0" z="0" />
+
+        <DESCENDANTS>
+            <NODEREF id="leg" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="table_leg2">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="10.5" y="0" z="0" />
+
+        <DESCENDANTS>
+            <NODEREF id="leg" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="table_leg3">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="10.5" y="0" z="10.5" />
+
+        <DESCENDANTS>
+            <NODEREF id="leg" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="table_leg4">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="0" y="0" z="10.5" />
+
+        <DESCENDANTS>
+            <NODEREF id="leg" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="leg">
+        <MATERIAL id="null" />
+        <TEXTURE id="tablelegs" />
+
+        <SCALE sx="0.8" sy="8" sz="0.8" />
+
+        <DESCENDANTS>
+            <NODEREF id="cube" />
+        </DESCENDANTS>
+    </NODE>
 
     <NODE id="ground" selectable="1">
         <MATERIAL id="fieldMaterial" />
         <TEXTURE id="field" />
 
-       <!--  <SCALE sx="200" sy="1" sz="200" /> -->
+        <SCALE sx="200" sy="1" sz="200" />
         <TRANSLATION x="-0.5" y="0" z="0.5" />
         <ROTATION axis="x" angle="-90" />
 
