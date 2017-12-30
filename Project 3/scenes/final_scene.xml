@@ -328,7 +328,7 @@
         <TEXTURE id="blackCellTexture" />
 
         <DESCENDANTS>
-            <NODEREF id="cube" />
+            <NODEREF id="king" />
         </DESCENDANTS>
     </NODE>
 
@@ -337,7 +337,7 @@
         <TEXTURE id="blackCellTexture" />
 
         <DESCENDANTS>
-            <NODEREF id="cube" />
+            <NODEREF id="queen" />
         </DESCENDANTS>
     </NODE>
 
@@ -346,7 +346,7 @@
         <TEXTURE id="blackCellTexture" />
 
         <DESCENDANTS>
-            <NODEREF id="cube" />
+            <NODEREF id="bishop" />
         </DESCENDANTS>
     </NODE>
 
@@ -355,7 +355,7 @@
         <TEXTURE id="blackCellTexture" />
 
         <DESCENDANTS>
-            <NODEREF id="cube" />
+            <NODEREF id="tower" />
         </DESCENDANTS>
     </NODE>
 
@@ -364,7 +364,7 @@
         <TEXTURE id="blackCellTexture" />
 
         <DESCENDANTS>
-            <NODEREF id="cube" />
+            <NODEREF id="horse" />
         </DESCENDANTS>
     </NODE>
 
@@ -382,7 +382,7 @@
         <TEXTURE id="whiteCellTexture" />
 
         <DESCENDANTS>
-            <NODEREF id="cube" />
+            <NODEREF id="queen" />
         </DESCENDANTS>
     </NODE>
 
@@ -391,7 +391,7 @@
         <TEXTURE id="whiteCellTexture" />
 
         <DESCENDANTS>
-            <NODEREF id="cube" />
+            <NODEREF id="bishop" />
         </DESCENDANTS>
     </NODE>
 
@@ -400,7 +400,7 @@
         <TEXTURE id="whiteCellTexture" />
 
         <DESCENDANTS>
-            <NODEREF id="cube" />
+            <NODEREF id="tower" />
         </DESCENDANTS>
     </NODE>
 
@@ -409,57 +409,203 @@
         <TEXTURE id="whiteCellTexture" />
 
         <DESCENDANTS>
+            <NODEREF id="horse" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="king">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="0.5" y="0" z="0.5" />
+        <SCALE sx="0.7" sy="1" sz="0.7" />
+
+        <DESCENDANTS>
+            <NODEREF id="uprightCylinder" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="queen">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+        
+        <DESCENDANTS>
+            <NODEREF id="queen_section_top" />
+            <NODEREF id="queen_section_middle" />
+            <NODEREF id="queen_section_bottom_left" />
+            <NODEREF id="queen_section_bottom_right" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="bishop">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="0.2" y="0" z="0.2" />
+        <SCALE sx="0.6" sy="1" sz="0.6" />
+
+        <DESCENDANTS>
+            <NODEREF id="bishop_section_horizontal" />
+            <NODEREF id="bishop_section_vertical" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="tower">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="0.5" y="0" z="0.5" />
+        <SCALE sx="0.7" sy="1" sz="0.7" />
+
+        <DESCENDANTS>
+            <NODEREF id="uprightCylinder" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="horse">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="0.2" y="0" z="0.2" />
+        <SCALE sx="0.6" sy="1" sz="0.6" />
+
+        <DESCENDANTS>
+            <NODEREF id="horse_section_1" />
+            <NODEREF id="horse_section_2" />
+            <NODEREF id="horse_section_3" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="queen_section_top">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+        
+        <TRANSLATION x="-0.05" y="0" z="0" />
+        <SCALE sx="1.1" sy="1" sz="0.5" />
+        <TRANSLATION x="0.5" y="0" z="0.5" />
+        <ROTATION axis="y" angle="90" />
+        <ROTATION axis="x" angle="-90" />
+
+        <DESCENDANTS>
+            <LEAF type="cylinder" args="1 0.5 0.5 1 3 1 1" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="queen_section_middle">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+        
+        <TRANSLATION x="0" y="0" z="0.37" />
+        <SCALE sx="1" sy="1" sz="0.3" />
+
+        <DESCENDANTS>
             <NODEREF id="cube" />
         </DESCENDANTS>
     </NODE>
 
-    <!-- <NODE id="margins">
-        <MATERIAL id="defaultMaterial" />
+    <NODE id="queen_section_bottom_left">
+        <MATERIAL id="null" />
         <TEXTURE id="null" />
-
+        
         <DESCENDANTS>
-          <NODEREF id="margin1"/>
-          <NODEREF id="margin2"/>
-          <NODEREF id="margin3"/>
-          <NODEREF id="margin4"/>
-        </DESCENDANTS>
-    </NODE> -->
-
-    <!-- <NODE id="margin1">
-        <MATERIAL id="defaultMaterial" />
-        <TEXTURE id="null" />
-
-        <DESCENDANTS>
-          <LEAF type="rectangle" args="0 1 1 0" />
+            <NODEREF id="queen_section_bottom_common" />
         </DESCENDANTS>
     </NODE>
 
-    <NODE id="margin2">
-        <MATERIAL id="defaultMaterial" />
+    <NODE id="queen_section_bottom_right">
+        <MATERIAL id="null" />
         <TEXTURE id="null" />
+        
+        <TRANSLATION x="0.67" y="0" z="0" />
 
         <DESCENDANTS>
-          <LEAF type="rectangle" args="0 1 1 0" />
+            <NODEREF id="queen_section_bottom_common" />
         </DESCENDANTS>
     </NODE>
 
-    <NODE id="margin3">
-        <MATERIAL id="defaultMaterial" />
+    <NODE id="queen_section_bottom_common">
+        <MATERIAL id="null" />
         <TEXTURE id="null" />
 
+        <TRANSLATION x="0" y="0" z="0.67" />
+        <SCALE sx="0.33" sy="1" sz="0.33" />
+        
         <DESCENDANTS>
-          <LEAF type="rectangle" args="0 1 1 0" />
+            <NODEREF id="cube" />
         </DESCENDANTS>
     </NODE>
 
-    <NODE id="margin4">
-        <MATERIAL id="defaultMaterial" />
+    <NODE id="bishop_section_horizontal">
+        <MATERIAL id="null" />
         <TEXTURE id="null" />
 
+        <TRANSLATION x="0.1" y="0" z="0.2" />
+        <SCALE sx="0.8" sy="0.3" sz="0.3" />
+
         <DESCENDANTS>
-          <LEAF type="rectangle" args="0 1 1 0" />
+            <NODEREF id="cube" />
         </DESCENDANTS>
-    </NODE> -->
+    </NODE>
+
+    <NODE id="bishop_section_vertical">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="0.35" y="0" z="0" />
+        <SCALE sx="0.3" sy="0.3" sz="1" />
+
+        <DESCENDANTS>
+            <NODEREF id="cube" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="horse_section_1">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        
+        <SCALE sx="0.3" sy="0.3" sz="1" />
+
+        <DESCENDANTS>
+            <NODEREF id="cube" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="horse_section_2">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="0" y="0" z="0.7" />
+        <SCALE sx="1" sy="0.3" sz="0.3" />
+
+        <DESCENDANTS>
+            <NODEREF id="cube" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="horse_section_3">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="0.7" y="0" z="0" />
+        <SCALE sx="0.3" sy="0.3" sz="1" />
+
+        <DESCENDANTS>
+            <NODEREF id="cube" />
+        </DESCENDANTS>
+    </NODE>
+
+
+    <NODE id="uprightCylinder">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <ROTATION axis="x" angle="-90" />
+
+        <DESCENDANTS>
+            <LEAF type="cylinder" args="1 0.5 0.5 1 8 1 1" />
+        </DESCENDANTS>
+    </NODE>
 
 
     <NODE id="ground">
