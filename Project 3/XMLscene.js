@@ -21,8 +21,6 @@ XMLscene.prototype.constructor = XMLscene;
 XMLscene.prototype.init = function(application) {
     CGFscene.prototype.init.call(this, application);
 
-    this.initCameras();
-
     this.enableTextures(true);
 
     this.gl.clearDepth(100.0);
@@ -40,10 +38,12 @@ XMLscene.prototype.init = function(application) {
     this.setActiveShader(this.defaultShader);
     
     this.cameraPositions = {
-        'Default': '[0.5, 10, 10]',
-        'Top': '[0.5, 10, 1]'
+        'Default': '[0, 5, 5]',
+        'Top': '[0, 5, 1]'
     };
     this.selectedCameraPos = this.cameraPositions['Default'];
+
+    this.initCameras();
 
     this.selectedMode = "npc";
     this.selectedDifficulty = "1";
@@ -162,7 +162,7 @@ XMLscene.prototype.initLights = function() {
  * Initializes the scene cameras.
  */
 XMLscene.prototype.initCameras = function() {
-    this.camera = new CGFcamera(0.4,0.1,500,vec3.fromValues(0.5, 10, 10),vec3.fromValues(0.5, 0, 0));
+    this.camera = new CGFcamera(0.4,0.1,500,JSON.parse(this.selectedCameraPos),vec3.fromValues(0, 0, 0));
 }
 
 /**
