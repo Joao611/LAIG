@@ -6,7 +6,6 @@ function MyInterface() {
     //call CGFinterface constructor 
     CGFinterface.call(this);
 }
-;
 
 MyInterface.prototype = Object.create(CGFinterface.prototype);
 MyInterface.prototype.constructor = MyInterface;
@@ -50,4 +49,32 @@ MyInterface.prototype.addLightsGroup = function(lights) {
 
 MyInterface.prototype.addSelectableDropdown = function(selectableIds) {
     this.gui.add(this.scene.graph, 'selectedNodeId', selectableIds).name('Select a node:');
+}
+
+MyInterface.prototype.addOptions = function() {
+    let optionsGroup = this.gui.addFolder("Options");
+    optionsGroup.open();
+
+    let cameraOption = optionsGroup.add(this.scene, 'selectedCameraPos', this.scene.cameraPositions).name('Perspective:');
+    cameraOption.onChange((value) => {
+        let array = JSON.parse(value);
+        this.scene.setupMoveCamera(array);
+    });
+}
+
+MyInterface.prototype.addGameControls = function() {
+    let mainGroup = this.gui.addFolder("Main Menu");
+    mainGroup.open();
+    mainGroup.add(this.scene, 'selectedMode', this.scene.selectableModes).name('Mode:');
+    mainGroup.add(this.scene, 'selectedDifficulty', this.scene.selectableDifficulties).name('Difficulty:');
+    mainGroup.add(this.scene, 'playTimeLimit', 1, 20).name('Play Time Limit');
+    mainGroup.add(this.scene, 'startButton').name('Start Game');
+    mainGroup.add(this.scene, 'movieButton').name('Show Last Game');
+
+    let ingameGroup = this.gui.addFolder("In Game");
+    ingameGroup.open();
+    ingameGroup.add(this.scene, 'whiteScore').name('White score:').listen();
+    ingameGroup.add(this.scene, 'blackScore').name('Black score:').listen();
+    ingameGroup.add(this.scene, 'nextTurnButton').name('Next Turn');
+    ingameGroup.add(this.scene, 'undoButton').name('Undo');
 }

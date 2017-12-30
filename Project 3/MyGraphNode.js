@@ -36,14 +36,27 @@ MyGraphNode.prototype.addChild = function(nodeID) {
 
 /**
  * Adds a leaf to this node's leaves array.
+ * @param {MyGraphLeaf}
  */
 MyGraphNode.prototype.addLeaf = function(leaf) {
     this.leaves.push(leaf);
 }
 
+/**
+ * 
+ * @param {string} animId 
+ */
 MyGraphNode.prototype.addAnimation = function(animId) {
     this.animationIds.push(animId);
 }
+
+/**
+ * 
+ * @param {string} animId 
+ */
+/* MyGraphNode.prototype.removeAnimation = function(animId) {
+    this.animations.splice(this.animations.indexOf(animId), 1);
+} */
 
 /**
  * Gets the transformation matrix for the animation being run at a certain time.

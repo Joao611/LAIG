@@ -204,6 +204,9 @@ moveNPC(Color, Difficulty, Board, NewBoard) :-
 	write('\'s turn\n'),
 	write('Please press enter to see the chosen play.\n'),
 	get_char(_Char),
+	moveNPC_Logic(Color, Difficulty, Board, NewBoard, _).
+
+moveNPC_Logic(Color, Difficulty, Board, NewBoard, Play) :-
 	getPlays(Color, Board, Plays),
 	pickPlay(Difficulty, Color, Board, Plays, Play),
 	executePlay(Play, Board, NewBoard).

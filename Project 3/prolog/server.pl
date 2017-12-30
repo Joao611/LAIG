@@ -103,9 +103,54 @@ print_header_line(_).
 
 % Require your Prolog Files here
 
+:- include('game_interface/interface.pl').
+
 parse_input(handshake, handshake).
 parse_input(test(C,N), Res) :- test(C,Res,N).
-parse_input(quit, goodbye).
+
+parse_input(quit, goodbye) :- freeGame.
+
+parse_input(initGame(Mode, Difficulty), ok) :-
+	initGame(Mode, Difficulty).
+
+parse_input(getBoard, B) :- getBoard(B).
+parse_input(getMode, M) :- getMode(M).
+parse_input(getDifficulty, D) :- getDifficulty(D).
+parse_input(getNextToPlay, N) :- getNextToPlay(N).
+
+/**
+ * BotColor is the color assigned to the NPC in singleplayer. This is ignored in other modes.
+ */
+parse_input(npcPlay(BotColor), [RealBotColorStr, Col_Start, Row_Start, Col_Dest, Row_Dest]) :- 
+	getMode(Mode),
+	makeBotPlay(Mode, BotColor, [RealBotColor, Col_Start, Row_Start, Col_Dest, Row_Dest]),
+	atom_codes(RealBotColor, RealBotColorStr).
+
+/**
+ * PlayerColor is the color assigned to the Player in singleplayer. This is ignored in other modes.
+ */
+parse_input(playerPlay(PlayerColor, Col_Start, Row_Start, Col_Dest, Row_Dest), [RealPlayerColorStr, Col_Start, Row_Start, Col_Dest, Row_Dest]) :-
+	getMode(Mode),
+	makePlayerPlay(Mode, PlayerColor, [RealPlayerColor, Col_Start, Row_Start, Col_Dest, Row_Dest]),
+	atom_codes(RealPlayerColor, RealPlayerColorStr).
+
+/**
+ * Meant to undo moves by playing their reverse. Bypasses legality checks.
+ */
+parse_input(forceMove(NextColor, Col_Start, Row_Start, Col_Dest, Row_Dest), [NextColorStr, Col_Start, Row_Start, Col_Dest, Row_Dest]) :-
+	forceMove(NextColor, Col_Start, Row_Start, Col_Dest, Row_Dest),
+	atom_codes(NextColor, NextColorStr).
+
+parse_input(placePiece(Piece, Col, Row), [Col, Row]) :-
+	placePiece(Piece, Col, Row).
+	
+
+parse_input(gameIsOver, [IsDraw, WhiteWon, BlackWon]) :-
+    gameData(Board, _, _, _),
+	gameIsOver(Board, IsDraw, WhiteWon, BlackWon).
+
+parse_input(changePlayer, NewPlayerColor) :-
+	changePlayer(NewPlayerColor).
 
 test(_,[],N) :- N =< 0.
 test(A,[A|Bs],N) :- N1 is N-1, test(A,Bs,N1).
