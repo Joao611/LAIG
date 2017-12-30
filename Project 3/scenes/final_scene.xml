@@ -344,7 +344,7 @@
         <TEXTURE id="blackCellTexture" />
 
         <DESCENDANTS>
-            <NODEREF id="cube" />
+            <NODEREF id="bishop" />
         </DESCENDANTS>
     </NODE>
 
@@ -389,7 +389,7 @@
         <TEXTURE id="whiteCellTexture" />
 
         <DESCENDANTS>
-            <NODEREF id="cube" />
+            <NODEREF id="bishop" />
         </DESCENDANTS>
     </NODE>
 
@@ -423,6 +423,19 @@
         </DESCENDANTS>
     </NODE>
 
+    <NODE id="bishop">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="0.2" y="0" z="0.2" />
+        <SCALE sx="0.6" sy="1" sz="0.6" />
+
+        <DESCENDANTS>
+            <NODEREF id="bishop_section_horizontal" />
+            <NODEREF id="bishop_section_vertical" />
+        </DESCENDANTS>
+    </NODE>
+
     <NODE id="tower">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
@@ -446,6 +459,30 @@
             <NODEREF id="horse_section_1" />
             <NODEREF id="horse_section_2" />
             <NODEREF id="horse_section_3" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="bishop_section_horizontal">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="0.1" y="0" z="0.2" />
+        <SCALE sx="0.8" sy="0.3" sz="0.3" />
+
+        <DESCENDANTS>
+            <NODEREF id="cube" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="bishop_section_vertical">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="0.35" y="0" z="0" />
+        <SCALE sx="0.3" sy="0.3" sz="1" />
+
+        <DESCENDANTS>
+            <NODEREF id="cube" />
         </DESCENDANTS>
     </NODE>
 
