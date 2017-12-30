@@ -80,7 +80,7 @@
         <file path="images/alps_field2.png" />
         <amplif_factor s="0.05" t="0.05" />
     </TEXTURE>
-    
+
     <TEXTURE id="tent_camo">
         <file path="images/tent_camo.png" />
         <amplif_factor s="1" t="1" />
@@ -234,9 +234,9 @@
     <ROOT_ALPS id="root_alps" />
 
     <BOARD>
-        <TRANSLATION x="0" y="0.01" z="2" />
+        <TRANSLATION x="2.55" y="1.9" z="2.55" />
         <!-- <ROTATION axis="z" angle="90" /> -->
-        <SCALE sx="0.1" sy="0.1" sz="0.1" />
+        <SCALE sx="0.15" sy="0.15" sz="0.15" />
     </BOARD>
 
     <!-- The root node for the alps scene -->
@@ -259,6 +259,8 @@
 
         <DESCENDANTS>
             <NODEREF id="ground" />
+            <NODEREF id="room_table" />
+            <NODEREF id="room_chairs" />
         </DESCENDANTS>
     </NODE>
 
@@ -1288,12 +1290,158 @@
 
     <!-- Room Scene -->
 
+
+    <NODE id="room_chairs">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+
+        <DESCENDANTS>
+          <NODEREF id="room_chair1" />
+          <NODEREF id="room_chair2" />
+        </DESCENDANTS>
+
+    </NODE>
+
+
+
+    <NODE id="room_chair1">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <SCALE sx="0.09" sy="0.13" sz="0.09" />
+        <TRANSLATION x="19" y="0" z="10" />
+
+        <DESCENDANTS>
+          <NODEREF id="room_chair_sit" />
+          <NODEREF id="room_chair_legs" />
+          <NODEREF id="room_chair_backrest" />
+        </DESCENDANTS>
+
+    </NODE>
+
+    <!-- Chair Sit -->
+    <NODE id="room_chair_sit">
+        <MATERIAL id="null" />
+        <TEXTURE id="tablelegs" />
+
+        <TRANSLATION x="0" y="8" z="0" />
+        <SCALE sx="12.3" sy="1.2" sz="12.3" />
+
+        <DESCENDANTS>
+            <NODEREF id="cube" />
+        </DESCENDANTS>
+    </NODE>
+
+
+    <NODE id="room_chair_backrest">
+        <MATERIAL id="null" />
+        <TEXTURE id="tablelegs" />
+
+        <TRANSLATION x="0" y="9" z="0" />
+        <SCALE sx="12.3" sy="9.5" sz="1.5" />
+
+        <DESCENDANTS>
+            <NODEREF id="cube" />
+        </DESCENDANTS>
+    </NODE>
+
+    <!-- Chair Legs -->
+    <NODE id="room_chair_legs">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+
+        <DESCENDANTS>
+            <NODEREF id="room_chair_leg1" />
+            <NODEREF id="room_chair_leg2" />
+            <NODEREF id="room_chair_leg3" />
+            <NODEREF id="room_chair_leg4" />
+        </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="room_chair_leg1">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="0" y="0" z="0" />
+        <SCALE sx="2" sy="1" sz="2" />
+
+
+        <DESCENDANTS>
+            <NODEREF id="room_leg" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="room_chair_leg2">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="10.75" y="0" z="0" />
+        <SCALE sx="2" sy="1" sz="2" />
+
+
+        <DESCENDANTS>
+            <NODEREF id="room_leg" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="room_chair_leg3">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="10.75" y="0" z="10.75" />
+        <SCALE sx="2" sy="1" sz="2" />
+
+
+        <DESCENDANTS>
+            <NODEREF id="room_leg" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="room_chair_leg4">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="0" y="0" z="10.75" />
+        <SCALE sx="2" sy="1" sz="2" />
+
+
+        <DESCENDANTS>
+            <NODEREF id="room_leg" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="room_chair2">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <SCALE sx="0.09" sy="0.13" sz="0.09" />
+        <TRANSLATION x="37" y="0" z="10" />
+
+        <DESCENDANTS>
+          <NODEREF id="room_chair_sit" />
+          <NODEREF id="room_chair_legs" />
+          <NODEREF id="room_chair_backrest" />
+        </DESCENDANTS>
+
+    </NODE>
+
+
+
+
+
     <NODE id="room_table">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
+        <SCALE sx="0.3" sy="0.2" sz="0.2" />
+        <TRANSLATION x="4.5" y="0" z="10" />
+
         <DESCENDANTS>
           <NODEREF id="room_table_top" />
+          <NODEREF id="room_table_top_flat" />
           <NODEREF id="room_table_legs" />
         </DESCENDANTS>
 
@@ -1302,10 +1450,22 @@
     <!-- Table Top -->
     <NODE id="room_table_top">
         <MATERIAL id="null" />
-        <TEXTURE id="room_tabletop" />
+        <TEXTURE id="tablelegs" />
 
         <TRANSLATION x="0" y="8" z="0" />
         <SCALE sx="11.5" sy="1.2" sz="11.5" />
+
+        <DESCENDANTS>
+            <NODEREF id="cube" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="room_table_top_flat">
+        <MATERIAL id="null" />
+        <TEXTURE id="room_tabletop" />
+
+        <TRANSLATION x="1.05" y="9.15" z="1.05" />
+        <SCALE sx="9.4" sy="0.1" sz="9.4" />
 
         <DESCENDANTS>
             <NODEREF id="cube" />
@@ -1341,7 +1501,7 @@
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
-        <TRANSLATION x="10.5" y="0" z="0" />
+        <TRANSLATION x="10.75" y="0" z="0" />
 
         <DESCENDANTS>
             <NODEREF id="room_leg" />
@@ -1352,7 +1512,7 @@
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
-        <TRANSLATION x="10.5" y="0" z="10.5" />
+        <TRANSLATION x="10.75" y="0" z="10.75" />
 
         <DESCENDANTS>
             <NODEREF id="room_leg" />
@@ -1363,7 +1523,7 @@
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
-        <TRANSLATION x="0" y="0" z="10.5" />
+        <TRANSLATION x="0" y="0" z="10.75" />
 
         <DESCENDANTS>
             <NODEREF id="room_leg" />
