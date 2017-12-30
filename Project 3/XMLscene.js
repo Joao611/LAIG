@@ -194,6 +194,7 @@ XMLscene.prototype.onGraphLoaded = function()
 
     this.interface.addLightsGroup(this.graph.lights);
     //this.interface.addSelectableDropdown(this.graph.selectableNodeIds);
+    this.interface.addSceneSelector(this.graph.sceneRootIds);
     this.interface.addOptions();
 
     this.selectableShader = new CGFshader(this.gl, "shaders/selectable.vert", "shaders/selectable.frag");

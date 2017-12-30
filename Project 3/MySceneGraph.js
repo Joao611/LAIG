@@ -26,6 +26,7 @@ function MySceneGraph(filename, scene) {
     this.selectableNodeIds = ["None selected"];
 
     this.idRoot = null;                    // The id of the root element.
+    this.sceneRootIds = {};
 
     this.axisCoords = [];
     this.axisCoords['x'] = [1, 0, 0];
@@ -1299,17 +1300,28 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
     // Traverses nodes.
     var children = nodesNode.children;
 
-    for (var i = 0; i < children.length; i++) {
+    for (let i = 0; i < children.length; i++) {
         var nodeName;
-        if ((nodeName = children[i].nodeName) == "ROOT") {
-            // Retrieves root node.
-            if (this.idRoot != null )
-                return "there can only be one root node";
+        if ((nodeName = children[i].nodeName) == "ROOT_ROOM") {
+            // Retrieves root node for the room scene.
+            if (this.sceneRootIds['Room'] != null )
+                return "there can only be one room root node";
             else {
-                var root = this.reader.getString(children[i], 'id');
+                let root = this.reader.getString(children[i], 'id');
                 if (root == null )
-                    return "failed to retrieve root node ID";
+                    return "failed to retrieve room root node ID";
+                this.sceneRootIds['Room'] = root;
                 this.idRoot = root;
+            }
+        } else if (nodeName == "ROOT_ALPS") {
+            // Retrieves root node for the alps scene.
+            if (this.sceneRootIds['Alps'] != null )
+                return "there can only be one alps root node";
+            else {
+                let root = this.reader.getString(children[i], 'id');
+                if (root == null )
+                    return "failed to retrieve alps root node ID";
+                this.sceneRootIds['Alps'] = root;
             }
         } else if (nodeName == "BOARD") {
             if (this.idBoard != null) {

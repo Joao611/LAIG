@@ -230,16 +230,17 @@
 <!-- The nodes -->
 <NODES>
 
+    <ROOT_ROOM id="root_room" />
+    <ROOT_ALPS id="root_alps" />
+
     <BOARD>
         <TRANSLATION x="0" y="0.01" z="2" />
         <!-- <ROTATION axis="z" angle="90" /> -->
         <SCALE sx="0.1" sy="0.1" sz="0.1" />
     </BOARD>
 
-    <ROOT id="root" />
-
     <!-- The root node -->
-    <NODE id="root">
+    <NODE id="root_alps">
         <MATERIAL id="defaultMaterial" />
         <TEXTURE id="null" />
 
@@ -248,9 +249,18 @@
             <NODEREF id="alps_tent1" />
             <NODEREF id="alps_tent2" />
             <NODEREF id="tank1" />
-            <!-- <NODEREF id="board" /> -->
         </DESCENDANTS>
     </NODE>
+
+    <NODE id="root_room">
+        <MATERIAL id="defaultMaterial" />
+        <TEXTURE id="null" />
+
+        <DESCENDANTS>
+            <NODEREF id="ground" />
+        </DESCENDANTS>
+    </NODE>
+
 
     <NODE id="alps_tent1">
         <MATERIAL id="null" />
