@@ -415,8 +415,8 @@
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
-        <TRANSLATION x="0.5" y="0" z="0.5" />
-        <SCALE sx="0.7" sy="1" sz="0.7" />
+        <!-- <TRANSLATION x="0.5" y="0" z="0.5" />
+        <SCALE sx="0.7" sy="1" sz="0.7" /> -->
 
         <DESCENDANTS>
             <NODEREF id="uprightCylinder" />
@@ -427,6 +427,9 @@
         <MATERIAL id="null" />
         <TEXTURE id="null" />
         
+        <TRANSLATION x="0.2" y="0" z="0.2" />
+        <SCALE sx="0.6" sy="0.3" sz="0.6" />
+
         <DESCENDANTS>
             <NODEREF id="queen_section_top" />
             <NODEREF id="queen_section_middle" />
