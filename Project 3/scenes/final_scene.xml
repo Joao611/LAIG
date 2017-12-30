@@ -239,7 +239,7 @@
         <SCALE sx="0.1" sy="0.1" sz="0.1" />
     </BOARD>
 
-    <!-- The root node -->
+    <!-- The root node for the alps scene -->
     <NODE id="root_alps">
         <MATERIAL id="defaultMaterial" />
         <TEXTURE id="null" />
@@ -252,6 +252,7 @@
         </DESCENDANTS>
     </NODE>
 
+    <!-- The root node for the room scene -->
     <NODE id="root_room">
         <MATERIAL id="defaultMaterial" />
         <TEXTURE id="null" />
