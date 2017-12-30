@@ -60,6 +60,8 @@ XMLscene.prototype.init = function(application) {
         this.board = new MyBoard(this, this.playTimeLimit);
         this.whiteScore = 0;
         this.blackScore = 0;
+        this.board.mode = this.selectedMode;
+        this.board.difficulty = 1;
         this.comms.requestGameInitialization(this.selectedMode, 1); // Always choose 'easy' due to a severe memory leak in Prolog.
     }
 
@@ -97,10 +99,29 @@ XMLscene.prototype.init = function(application) {
             return;
         }
 
-        for (let i = 0; i < this.board.playSequence.length; i++) {
-            window.setTimeout(movieMakePlay);
-        }
+        this.moviePlaySequence = this.board.playSequence.slice();
+
+        this.board = new MyBoard(this, this.playTimeLimit);
+        this.whiteScore = 0;
+        this.blackScore = 0;
+        this.comms.requestMovieInitialization('multi', 1); // Movie makes plays as if made by Players, to be able to choose positions.
     }
+}
+
+XMLscene.prototype.setupMovieCallbacks = function() {
+    for (let i = 0; i < this.moviePlaySequence.length; i++) {
+        window.setTimeout(this._movieMakePlay.bind(this), i * 1000, this.moviePlaySequence[i]);
+    }
+}
+
+/**
+ * 
+ * @param {MyPlay} play 
+ */
+XMLscene.prototype._movieMakePlay = function(play) {
+    let startCoords = {'line': play.startLine + 1, 'col': play.startCol + 1};
+    let destCoords = {'line': play.destLine + 1, 'col': play.destCol + 1};
+    this.comms.requestPlayerTurn(play.moveColor, startCoords, destCoords);
 }
 
 /**

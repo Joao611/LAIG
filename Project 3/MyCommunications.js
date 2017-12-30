@@ -14,8 +14,25 @@ class MyCommunications {
         this._requestToProlog("initGame("+mode+","+difficulty+")", this._initGameListener);
     }
 
-    requestBoard() {
-        this._requestToProlog("getBoard", this._updatePiecesListener);
+    /**
+     * 
+     * @param {string} mode npc, single, multi.
+     * @param {number} difficulty 1 for easy, 2 for hard.
+     */
+    requestMovieInitialization(mode, difficulty) {
+        this._requestToProlog("initGame("+mode+","+difficulty+")", this._initMovieListener);
+    }
+
+    /**
+     * 
+     * @param {boolean} isMovie 
+     */
+    requestBoard(isMovie = false) {
+        if (isMovie) {
+            this._requestToProlog("getBoard", this._updatePiecesMovieListener);
+        } else {
+            this._requestToProlog("getBoard", this._updatePiecesListener);
+        }
     }
 
     /**
@@ -88,6 +105,14 @@ class MyCommunications {
         this.comms.requestBoard();
     }
 
+    _initMovieListener(event) {
+        if (this.responseText != "ok") {
+            console.log("Server: Error initializing game.");
+        }
+        this.comms.scene.board.setActiveGame();
+        this.comms.requestBoard(true);
+    }
+
     _updatePiecesListener(event) {
         this.comms.scene.board.updatePieces(this.responseText);
         if (this.comms.commsQueueAfterReqBoard.length > 0) {
@@ -96,6 +121,17 @@ class MyCommunications {
             this.comms.scene.board.secondaryBoard.updateQueued();
         }
         this.comms.requestGameIsOver();
+    }
+
+    _updatePiecesMovieListener(event) {
+        this.comms.scene.board.updatePieces(this.responseText);
+        if (this.comms.commsQueueAfterReqBoard.length > 0) {
+            let requestData = this.comms.commsQueueAfterReqBoard.pop();
+            this.comms._requestToProlog(requestData.requestStr, requestData.listener);
+            this.comms.scene.board.secondaryBoard.updateQueued();
+        }
+        this.comms.requestGameIsOver();
+        this.comms.scene.setupMovieCallbacks();
     }
 
     _nextTurnListener(event) {
