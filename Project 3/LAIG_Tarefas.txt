@@ -36,7 +36,7 @@ X Movimento e animação por imagens chave - Feito dia 28
 X Tabuleiro secundário - Feito dia 29
 X Undo peças apagadas - Feito dia 29
 29:
--Filme do jogo
+X Filme do jogo - Feito dia 29
 X Rotação da câmara entre pontos de vista pré-definidos - Feito dia 29
 -Modelação
 30:
