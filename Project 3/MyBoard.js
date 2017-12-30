@@ -96,8 +96,8 @@ class MyBoard {
    */
   getCoordsOfPickedId(pickedId) {
     let coords = new Object();
-    coords.line = Math.floor(pickedId / this.boardLength);
-    coords.col = pickedId % this.boardLength;
+    coords.line = Math.floor((pickedId - 1) / this.boardLength);
+    coords.col = (pickedId - 1) % this.boardLength;
     return coords;
   }
 
@@ -217,7 +217,7 @@ class MyBoard {
    * @param {number} col 
    */
   _getPickId(line, col) {
-    return line * this.boardLength + col;
+    return line * this.boardLength + col + 1;
   }
 
   /**

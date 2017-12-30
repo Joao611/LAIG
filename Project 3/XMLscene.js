@@ -270,11 +270,6 @@ XMLscene.prototype.display = function() {
 
 		// Draw axis
         this.axis.display();
-        
-        this.pushMatrix();
-            this.multMatrix(this.graph.nodes['board'].transformMatrix);
-            this.board.display();
-        this.popMatrix();
 
         let i = 0;
         for (let key in this.lightValues) {
@@ -295,6 +290,10 @@ XMLscene.prototype.display = function() {
         // Displays the scene.
         this.graph.displayScene();
 
+        this.pushMatrix();
+            this.multMatrix(this.graph.nodes['board'].transformMatrix);
+            this.board.display();
+        this.popMatrix();
     }
 	else
 	{
