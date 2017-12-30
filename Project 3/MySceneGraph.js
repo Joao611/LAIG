@@ -1311,8 +1311,111 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
                     return "failed to retrieve root node ID";
                 this.idRoot = root;
             }
-        }
-        else if (nodeName == "NODE") {
+        } else if (nodeName == "BOARD") {
+            if (this.idBoard != null) {
+                return "there can only be one board node";
+            } else {
+                this.idBoard = "board";
+            }
+
+            // Creates node.
+            this.nodes[this.idBoard] = new MyGraphNode(this, this.idBoard);
+
+            // Gathers child nodes.
+            var nodeSpecs = children[i].children;
+            var specsNames = [];
+            var possibleValues = ["TRANSLATION", "ROTATION", "SCALE"];
+            for (var j = 0; j < nodeSpecs.length; j++) {
+                var name = nodeSpecs[j].nodeName;
+                specsNames.push(nodeSpecs[j].nodeName);
+
+                // Warns against possible invalid tag names.
+                if (possibleValues.indexOf(name) == -1)
+                    this.onXMLMinorError("unknown tag <" + name + ">");
+            }
+
+            // Retrieves possible transformations.
+            for (var j = 0; j < nodeSpecs.length; j++) {
+                switch (nodeSpecs[j].nodeName) {
+                case "TRANSLATION":
+                    // Retrieves translation parameters.
+                    var x = this.reader.getFloat(nodeSpecs[j], 'x');
+                    if (x == null ) {
+                        this.onXMLMinorError("unable to parse x-coordinate of translation; discarding transform");
+                        break;
+                    }
+                    else if (isNaN(x))
+                        return "non-numeric value for x-coordinate of translation (node ID = " + this.idBoard + ")";
+
+                    var y = this.reader.getFloat(nodeSpecs[j], 'y');
+                    if (y == null ) {
+                        this.onXMLMinorError("unable to parse y-coordinate of translation; discarding transform");
+                        break;
+                    }
+                    else if (isNaN(y))
+                        return "non-numeric value for y-coordinate of translation (node ID = " + this.idBoard + ")";
+
+                    var z = this.reader.getFloat(nodeSpecs[j], 'z');
+                    if (z == null ) {
+                        this.onXMLMinorError("unable to parse z-coordinate of translation; discarding transform");
+                        break;
+                    }
+                    else if (isNaN(z))
+                        return "non-numeric value for z-coordinate of translation (node ID = " + this.idBoard + ")";
+
+                    mat4.translate(this.nodes[this.idBoard].transformMatrix, this.nodes[this.idBoard].transformMatrix, [x, y, z]);
+                    break;
+                case "ROTATION":
+                    // Retrieves rotation parameters.
+                    var axis = this.reader.getItem(nodeSpecs[j], 'axis', ['x', 'y', 'z']);
+                    if (axis == null ) {
+                        this.onXMLMinorError("unable to parse rotation axis; discarding transform");
+                        break;
+                    }
+                    var angle = this.reader.getFloat(nodeSpecs[j], 'angle');
+                    if (angle == null ) {
+                        this.onXMLMinorError("unable to parse rotation angle; discarding transform");
+                        break;
+                    }
+                    else if (isNaN(angle))
+                        return "non-numeric value for rotation angle (node ID = " + this.idBoard + ")";
+
+                    mat4.rotate(this.nodes[this.idBoard].transformMatrix, this.nodes[this.idBoard].transformMatrix, angle * DEGREE_TO_RAD, this.axisCoords[axis]);
+                    break;
+                case "SCALE":
+                    // Retrieves scale parameters.
+                    var sx = this.reader.getFloat(nodeSpecs[j], 'sx');
+                    if (sx == null ) {
+                        this.onXMLMinorError("unable to parse x component of scaling; discarding transform");
+                        break;
+                    }
+                    else if (isNaN(sx))
+                        return "non-numeric value for x component of scaling (node ID = " + this.idBoard + ")";
+
+                    var sy = this.reader.getFloat(nodeSpecs[j], 'sy');
+                    if (sy == null ) {
+                        this.onXMLMinorError("unable to parse y component of scaling; discarding transform");
+                        break;
+                    }
+                    else if (isNaN(sy))
+                        return "non-numeric value for y component of scaling (node ID = " + this.idBoard + ")";
+
+                    var sz = this.reader.getFloat(nodeSpecs[j], 'sz');
+                    if (sz == null ) {
+                        this.onXMLMinorError("unable to parse z component of scaling; discarding transform");
+                        break;
+                    }
+                    else if (isNaN(sz))
+                        return "non-numeric value for z component of scaling (node ID = " + this.idBoard + ")";
+
+                    mat4.scale(this.nodes[this.idBoard].transformMatrix, this.nodes[this.idBoard].transformMatrix, [sx, sy, sz]);
+                    break;
+                default:
+                    break;
+                }
+            }
+            
+        } else if (nodeName == "NODE") {
             // Retrieves node ID.
             var nodeID = this.reader.getString(children[i], 'id');
             if (nodeID == null )
@@ -1368,10 +1471,6 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
                 return "unable to parse texture ID (node ID = " + nodeID + ")";
             if (textureID != "null" && textureID != "clear" && this.textures[textureID] == null )
                 return "ID does not correspond to a valid texture (node ID = " + nodeID + ")";
-
-            if (nodeID == "luzes") {
-                let i = 1+1;
-            }
 
             this.nodes[nodeID].textureID = textureID;
 

@@ -106,6 +106,10 @@
 <!-- The nodes -->
 <NODES>
 
+    <BOARD>
+        <TRANSLATION x="-10" y="0" z="0" />
+    </BOARD>
+
     <ROOT id="root" />
 
     <!-- The root node -->

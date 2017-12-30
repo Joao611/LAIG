@@ -48,3 +48,6 @@ X Marcador - Feito dia 29
 
 BUGS:
 - Peças não desaparecem internamente do secondary board quando voltam ao main board. Resulta em duplicação de peças no mesmo sítio, uma do main e outra do secondary animada para o main.
+
+TODO:
+- Material do board.
