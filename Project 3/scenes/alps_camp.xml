@@ -42,7 +42,7 @@
 <TEXTURES>
 	<TEXTURE id="field">
         <file path="images/field3.jpg" />
-        <amplif_factor s="0.3" t="0.3" />
+        <amplif_factor s="0.01" t="0.01" />
     </TEXTURE>
 
     <TEXTURE id="mountain">
@@ -66,6 +66,15 @@
       <amplif_factor s="1" t="1" />
     </TEXTURE>
 
+    <TEXTURE id="alps_field">
+        <file path="images/alps_field.png" />
+        <amplif_factor s="0.05" t="0.05" />
+    </TEXTURE>
+
+    <TEXTURE id="alps_field2">
+        <file path="images/alps_field2.png" />
+        <amplif_factor s="0.05" t="0.05" />
+    </TEXTURE>
     
     <TEXTURE id="tent_camo">
         <file path="images/tent_camo.png" />
@@ -207,7 +216,7 @@
 <NODES>
 
     <BOARD>
-        <TRANSLATION x="0" y="0" z="2" />
+        <TRANSLATION x="0" y="0.01" z="2" />
         <!-- <ROTATION axis="z" angle="90" /> -->
         <SCALE sx="0.1" sy="0.1" sz="0.1" />
     </BOARD>
@@ -220,8 +229,10 @@
         <TEXTURE id="null" />
 
         <DESCENDANTS>
+            <NODEREF id="ground" />
             <NODEREF id="tent1" />
             <NODEREF id="tent2" />
+            <NODEREF id="tank1" />
             <!-- <NODEREF id="board" /> -->
         </DESCENDANTS>
     </NODE>
@@ -245,6 +256,18 @@
 
         <DESCENDANTS>
             <NODEREF id="tent" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="tank1">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="3" y="0" z="1" />
+        <ROTATION axis="y" angle="-90" />
+
+        <DESCENDANTS>
+            <NODEREF id="PzKpfw_Tiger" />
         </DESCENDANTS>
     </NODE>
 
@@ -435,11 +458,11 @@
     </NODE> -->
 
 
-    <NODE id="ground" selectable="1">
+    <NODE id="ground">
         <MATERIAL id="fieldMaterial" />
-        <TEXTURE id="field" />
+        <TEXTURE id="alps_field2" />
 
-       <!--  <SCALE sx="200" sy="1" sz="200" /> -->
+        <SCALE sx="200" sy="1" sz="200" />
         <TRANSLATION x="-0.5" y="0" z="0.5" />
         <ROTATION axis="x" angle="-90" />
 
@@ -541,7 +564,7 @@
         <ROTATION axis="x" angle="-90" />
 
         <DESCENDANTS>
-            <LEAF type="cylinder" args="1 0.8 0 1 6 0 0" />
+            <LEAF type="cylinder" args="1.5 1.3 0 1 6 0 0" />
         </DESCENDANTS>
     </NODE>
 
