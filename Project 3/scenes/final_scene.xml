@@ -230,32 +230,32 @@
 
         <DESCENDANTS>
             <NODEREF id="ground" />
-            <NODEREF id="tent1" />
-            <NODEREF id="tent2" />
+            <NODEREF id="alps_tent1" />
+            <NODEREF id="alps_tent2" />
             <NODEREF id="tank1" />
             <!-- <NODEREF id="board" /> -->
         </DESCENDANTS>
     </NODE>
 
-    <NODE id="tent1">
+    <NODE id="alps_tent1">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
         <TRANSLATION x="0" y="0" z="0" />
 
         <DESCENDANTS>
-            <NODEREF id="tent" />
+            <NODEREF id="alps_tent" />
         </DESCENDANTS>
     </NODE>
 
-    <NODE id="tent2">
+    <NODE id="alps_tent2">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
         <TRANSLATION x="0" y="0" z="5" />
 
         <DESCENDANTS>
-            <NODEREF id="tent" />
+            <NODEREF id="alps_tent" />
         </DESCENDANTS>
     </NODE>
 
@@ -270,30 +270,6 @@
             <NODEREF id="PzKpfw_Tiger" />
         </DESCENDANTS>
     </NODE>
-
-    <!-- <NODE id="board">
-        <MATERIAL id="defaultMaterial" />
-        <TEXTURE id="board" />
-        <TRANSLATION x="0" y="0.3" z="0" />
-        <SCALE sx="20" sy="20" sz="20" />
-        <ROTATION axis="x" angle="-90" />
-        <ROTATION axis="z" angle="-90" />
-
-        <DESCENDANTS>
-          <NODEREF id="center"/>
-          <NODEREF id="margins"/>
-        </DESCENDANTS>
-    </NODE> -->
-
-
-    <!-- <NODE id="center">
-        <MATERIAL id="defaultMaterial" />
-        <TEXTURE id="board" />
-
-        <DESCENDANTS>
-          <LEAF type="rectangle" args="0 1 1 0" />
-        </DESCENDANTS>
-    </NODE> -->
 
     <NODE id="whiteCell">
       <MATERIAL id="null" />
@@ -557,7 +533,8 @@
     </NODE>
 
 
-    <NODE id="tent">
+
+    <NODE id="alps_tent">
         <MATERIAL id="null" />
         <TEXTURE id="tent_camo" />
 
@@ -1278,6 +1255,103 @@
 
         <DESCENDANTS>
 			<NODEREF id="cube" />
+        </DESCENDANTS>
+    </NODE>
+
+
+
+    <!-- Room Scene -->
+
+    <NODE id="room_table">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <DESCENDANTS>
+          <NODEREF id="room_table_top" />
+          <NODEREF id="room_table_legs" />
+        </DESCENDANTS>
+
+    </NODE>
+
+    <!-- Table Top -->
+    <NODE id="room_table_top">
+        <MATERIAL id="null" />
+        <TEXTURE id="room_tabletop" />
+
+        <TRANSLATION x="0" y="8" z="0" />
+        <SCALE sx="11.5" sy="1.2" sz="11.5" />
+
+        <DESCENDANTS>
+            <NODEREF id="cube" />
+        </DESCENDANTS>
+    </NODE>
+
+    <!-- Table Legs -->
+    <NODE id="room_table_legs">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <DESCENDANTS>
+            <NODEREF id="room_table_leg1" />
+            <NODEREF id="room_table_leg2" />
+            <NODEREF id="room_table_leg3" />
+            <NODEREF id="room_table_leg4" />
+        </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="room_table_leg1">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="0" y="0" z="0" />
+
+        <DESCENDANTS>
+            <NODEREF id="room_leg" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="room_table_leg2">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="10.5" y="0" z="0" />
+
+        <DESCENDANTS>
+            <NODEREF id="room_leg" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="room_table_leg3">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="10.5" y="0" z="10.5" />
+
+        <DESCENDANTS>
+            <NODEREF id="room_leg" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="room_table_leg4">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="0" y="0" z="10.5" />
+
+        <DESCENDANTS>
+            <NODEREF id="room_leg" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="room_leg">
+        <MATERIAL id="null" />
+        <TEXTURE id="tablelegs" />
+
+        <SCALE sx="0.8" sy="8" sz="0.8" />
+
+        <DESCENDANTS>
+            <NODEREF id="cube" />
         </DESCENDANTS>
     </NODE>
 </NODES>
