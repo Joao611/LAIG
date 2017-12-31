@@ -50,6 +50,41 @@
         <amplif_factor s="0.3" t="0.3" />
     </TEXTURE>
 
+    <TEXTURE id="room_floor">
+          <file path="images/room_floor.jpg" />
+          <amplif_factor s="0.4" t="0.4" />
+      </TEXTURE>
+
+      <TEXTURE id="room_wall_x">
+            <file path="images/room_wall_x.jpg" />
+            <amplif_factor s="1" t="1" />
+        </TEXTURE>
+
+        <TEXTURE id="room_wall_cork">
+              <file path="images/room_wall_cork.jpg" />
+              <amplif_factor s="1" t="1" />
+          </TEXTURE>
+
+        <TEXTURE id="room_wall_rock">
+              <file path="images/room_wall_rock.jpg" />
+              <amplif_factor s="1" t="1" />
+        </TEXTURE>
+
+        <TEXTURE id="room_wall_canvas">
+              <file path="images/canvas.jpg" />
+              <amplif_factor s="1" t="1" />
+        </TEXTURE>
+
+        <TEXTURE id="room_wall_bright">
+              <file path="images/room_wall_bright.jpg" />
+              <amplif_factor s="1" t="1" />
+          </TEXTURE>
+
+          <TEXTURE id="room_wall_rock2">
+                <file path="images/room_wall_rock2.jpg" />
+                <amplif_factor s="1" t="1" />
+            </TEXTURE>
+
     <TEXTURE id="mountain">
         <file path="images/mountain.jpg" />
         <amplif_factor s="1" t="1" />
@@ -252,7 +287,7 @@
     <ROOT_ALPS id="root_alps" />
 
     <BOARD>
-        <TRANSLATION x="2.55" y="1.9" z="2.55" />
+        <TRANSLATION x="1.5" y="1.9" z="0.6" />
         <!-- <ROTATION axis="z" angle="90" /> -->
         <SCALE sx="0.15" sy="0.15" sz="0.15" />
     </BOARD>
@@ -279,6 +314,9 @@
             <NODEREF id="ground" />
             <NODEREF id="room_table" />
             <NODEREF id="room_chairs" />
+            <NODEREF id="room_walls" />
+            <NODEREF id="room_floor" />
+            <NODEREF id="room_canvas" />
         </DESCENDANTS>
     </NODE>
 
@@ -449,7 +487,7 @@
     <NODE id="queen">
         <MATERIAL id="pieceMaterial" />
         <TEXTURE id="null" />
-        
+
         <TRANSLATION x="0.2" y="0" z="0.2" />
         <SCALE sx="0.6" sy="0.3" sz="0.6" />
 
@@ -530,7 +568,7 @@
             <NODEREF id="king_section_top_pointy" />
         </DESCENDANTS>
     </NODE>
-    
+
     <NODE id="king_section_bottom">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
@@ -560,7 +598,7 @@
     <NODE id="queen_section_top">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
-        
+
         <TRANSLATION x="-0.05" y="0" z="0" />
         <SCALE sx="1.1" sy="1" sz="0.5" />
         <TRANSLATION x="0.5" y="0" z="0.5" />
@@ -575,7 +613,7 @@
     <NODE id="queen_section_middle">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
-        
+
         <TRANSLATION x="0" y="0" z="0.37" />
         <SCALE sx="1" sy="1" sz="0.3" />
 
@@ -587,7 +625,7 @@
     <NODE id="queen_section_bottom_left">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
-        
+
         <DESCENDANTS>
             <NODEREF id="queen_section_bottom_common" />
         </DESCENDANTS>
@@ -596,7 +634,7 @@
     <NODE id="queen_section_bottom_right">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
-        
+
         <TRANSLATION x="0.67" y="0" z="0" />
 
         <DESCENDANTS>
@@ -610,7 +648,7 @@
 
         <TRANSLATION x="0" y="0" z="0.67" />
         <SCALE sx="0.33" sy="1" sz="0.33" />
-        
+
         <DESCENDANTS>
             <NODEREF id="cube" />
         </DESCENDANTS>
@@ -644,7 +682,7 @@
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
-        
+
         <SCALE sx="0.3" sy="0.3" sz="1" />
 
         <DESCENDANTS>
@@ -1537,7 +1575,7 @@
         <TEXTURE id="null" />
 
         <SCALE sx="0.09" sy="0.13" sz="0.09" />
-        <TRANSLATION x="19" y="0" z="10" />
+        <TRANSLATION x="4" y="0" z="22" />
 
         <DESCENDANTS>
           <NODEREF id="room_chair_sit" />
@@ -1565,7 +1603,7 @@
         <MATERIAL id="null" />
         <TEXTURE id="tablelegs" />
 
-        <TRANSLATION x="0" y="9" z="0" />
+        <TRANSLATION x="0" y="9" z="10.8" />
         <SCALE sx="12.3" sy="9.5" sz="1.5" />
 
         <DESCENDANTS>
@@ -1645,7 +1683,7 @@
         <TEXTURE id="null" />
 
         <SCALE sx="0.09" sy="0.13" sz="0.09" />
-        <TRANSLATION x="37" y="0" z="10" />
+        <TRANSLATION x="22" y="0" z="22" />
 
         <DESCENDANTS>
           <NODEREF id="room_chair_sit" />
@@ -1656,15 +1694,11 @@
     </NODE>
 
 
-
-
-
     <NODE id="room_table">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
         <SCALE sx="0.3" sy="0.2" sz="0.2" />
-        <TRANSLATION x="4.5" y="0" z="10" />
 
         <DESCENDANTS>
           <NODEREF id="room_table_top" />
@@ -1767,6 +1801,95 @@
             <NODEREF id="cube" />
         </DESCENDANTS>
     </NODE>
+
+
+    <NODE id="room_walls">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+
+        <DESCENDANTS>
+            <NODEREF id="room_wall1" />
+            <NODEREF id="room_wall2" />
+            <NODEREF id="room_wall3" />
+            <NODEREF id="room_wall4" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="room_wall1">
+        <MATERIAL id="null" />
+        <TEXTURE id="room_wall_bright" />
+
+        <TRANSLATION x="-10" y="0" z="-10" />
+        <SCALE sx="25" sy="7" sz="0.1" />
+
+        <DESCENDANTS>
+            <NODEREF id="cube" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="room_wall2">
+        <MATERIAL id="null" />
+        <TEXTURE id="room_wall_rock" />
+
+        <TRANSLATION x="-10" y="0" z="-10" />
+        <SCALE sx="0.1" sy="7" sz="25" />
+
+        <DESCENDANTS>
+            <NODEREF id="cube" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="room_wall3">
+        <MATERIAL id="null" />
+        <TEXTURE id="room_wall_cork" />
+
+        <TRANSLATION x="-10" y="0" z="15" />
+        <SCALE sx="25" sy="7" sz="0.1" />
+
+        <DESCENDANTS>
+            <NODEREF id="cube" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="room_wall4">
+        <MATERIAL id="null" />
+        <TEXTURE id="room_wall_bright" />
+
+          <TRANSLATION x="15" y="0" z="-10" />
+          <SCALE sx="0.1" sy="7" sz="25" />
+
+        <DESCENDANTS>
+            <NODEREF id="cube" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="room_canvas">
+        <MATERIAL id="null" />
+        <TEXTURE id="room_wall_canvas" />
+
+        <TRANSLATION x="0" y="2" z="14.9" />
+        <SCALE sx="7" sy="4" sz="0.1" />
+
+        <DESCENDANTS>
+            <NODEREF id="cube" />
+        </DESCENDANTS>
+    </NODE>
+
+
+    <NODE id="room_floor">
+        <MATERIAL id="null" />
+        <TEXTURE id="room_floor" />
+
+          <TRANSLATION x="-10" y="0" z="-10" />
+          <SCALE sx="25" sy="0.1" sz="25" />
+
+        <DESCENDANTS>
+            <NODEREF id="cube" />
+        </DESCENDANTS>
+    </NODE>
+
+
 </NODES>
 
 </SCENE>
