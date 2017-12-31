@@ -293,7 +293,6 @@
 
     <BOARD>
         <TRANSLATION x="-0.28" y="0.95" z="2.18" />
-        <!-- <ROTATION axis="z" angle="90" /> -->
         <SCALE sx="0.1" sy="0.1" sz="0.1" />
     </BOARD>
 
@@ -321,12 +320,12 @@
         <TEXTURE id="null" />
 
         <DESCENDANTS>
-            <NODEREF id="ground" />
             <NODEREF id="room_table" />
             <NODEREF id="room_chairs" />
             <NODEREF id="room_walls" />
             <NODEREF id="room_floor" />
             <NODEREF id="room_canvas" />
+            <NODEREF id="room_ceiling" />
         </DESCENDANTS>
     </NODE>
 
@@ -1969,6 +1968,18 @@
         <TEXTURE id="room_floor" />
 
           <TRANSLATION x="-10" y="0" z="-10" />
+          <SCALE sx="25" sy="0.1" sz="25" />
+
+        <DESCENDANTS>
+            <NODEREF id="cube" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="room_ceiling">
+        <MATERIAL id="null" />
+        <TEXTURE id="room_wall_bright" />
+
+          <TRANSLATION x="-10" y="7" z="-10" />
           <SCALE sx="25" sy="0.1" sz="25" />
 
         <DESCENDANTS>
