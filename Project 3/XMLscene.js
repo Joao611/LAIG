@@ -173,8 +173,11 @@ XMLscene.prototype.initCameras = function() {
  * @param {vec3} newPosition 
  */
 XMLscene.prototype.setupMoveCamera = function(newCameraData) {
-    this.delta = [];
-    this.delta = vec3.subtract(this.delta, newCameraData.position, this.camera.position);
+    this.deltaCamPos = [];
+    this.deltaCamTarget = [];
+    this.deltaCamPos = vec3.subtract(this.deltaCamPos, newCameraData.position, this.camera.position);
+    this.deltaCamTarget = vec3.subtract(this.deltaCamTarget, newCameraData.target, this.camera.target);
+
     this.totalCameraMovementTime = 500;
     this.remainingCameraMs = this.totalCameraMovementTime;
 }
@@ -327,7 +330,7 @@ XMLscene.prototype.update = function(currTime) {
 }
 
 XMLscene.prototype._cameraIncrement = function(deltaMs) {
-    if (this.delta == null) {
+    if (this.deltaCamPos == null) {
         return;
     }
 
@@ -341,9 +344,12 @@ XMLscene.prototype._cameraIncrement = function(deltaMs) {
         msToMove = 0;
     }
 
-    let deltaInc = [];
-    deltaInc = vec3.scale(deltaInc, this.delta, msToMove / this.totalCameraMovementTime);
+    let deltaCamPosInc = [];
+    let deltaCamTargetInc = [];
+    deltaCamPosInc = vec3.scale(deltaCamPosInc, this.deltaCamPos, msToMove / this.totalCameraMovementTime);
+    deltaCamTargetInc = vec3.scale(deltaCamTargetInc, this.deltaCamTarget, msToMove / this.totalCameraMovementTime);
     let res = [];
-    this.camera.setPosition(vec3.add(res, this.camera.position, deltaInc));
+    this.camera.setPosition(vec3.add(res, this.camera.position, deltaCamPosInc));
+    this.camera.setTarget(vec3.add(res, this.camera.target, deltaCamTargetInc));
     this.remainingCameraMs -= msToMove;
 }
