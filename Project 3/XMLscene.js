@@ -38,11 +38,11 @@ XMLscene.prototype.init = function(application) {
     this.setActiveShader(this.defaultShader);
     
     this.cameraPerspectives = {
-        'Free camera': JSON.stringify({"fov": 0.4, "position": vec3.fromValues(-3, 4, 4), "target": vec3.fromValues(-1, 0, 0.2), "freeCamera": 1}),
+        'Free camera': JSON.stringify({"fov": 0.4, "position": vec3.fromValues(0, 2, -1), "target": vec3.fromValues(-1, 2, 4), "freeCamera": 1}),
         'Top': JSON.stringify({"fov": 0.4, "position": vec3.fromValues(-1, 2, 1), "target": vec3.fromValues(-1, 0, 0.2), "freeCamera": 0}),
-        'Landscape': JSON.stringify({"fov": 0.8, "position": vec3.fromValues(0, 2, -1), "target": vec3.fromValues(-1, 1, 4), "freeCamera": 0})
+        'Landscape': JSON.stringify({"fov": 1, "position": vec3.fromValues(0, 2, -1), "target": vec3.fromValues(-1, 1, 4), "freeCamera": 0})
     };
-    this.selectedCameraPerspective = this.cameraPerspectives['Free camera'];
+    this.selectedCameraPerspective = this.cameraPerspectives['Landscape'];
     this.initCameras();
 
     this.selectedMode = "npc";
@@ -166,7 +166,7 @@ XMLscene.prototype.initLights = function() {
  */
 XMLscene.prototype.initCameras = function() {
     let perspective = JSON.parse(this.selectedCameraPerspective);
-    this.camera = new CGFcamera(0.4,0.1,500,perspective.position,perspective.target);
+    this.camera = new CGFcamera(perspective.fov, 0.1, 500, perspective.position, perspective.target);
     if (perspective.freeCamera) {
         this.interface.setActiveCamera(this.camera);
     }
