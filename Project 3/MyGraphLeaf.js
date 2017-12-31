@@ -2,7 +2,6 @@
  * MyGraphLeaf class, representing a leaf in the scene graph.
  * @constructor
 **/
-
 function MyGraphLeaf(graph, xmlelem) {
     this.type = graph.reader.getItem(xmlelem, 'type', ['rectangle', 'cylinder', 'sphere', 'triangle', 'patch']);
     let args = graph.reader.getString(xmlelem, 'args');
