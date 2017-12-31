@@ -38,11 +38,11 @@ XMLscene.prototype.init = function(application) {
     this.setActiveShader(this.defaultShader);
     
     this.cameraPositions = {
-        'Default': JSON.stringify({"fov": 0.4, "position": vec3.fromValues(-3, 4, 4), "target": vec3.fromValues(-1, 0, 0.2)}),
-        'Top': JSON.stringify({"fov": 0.4, "position": vec3.fromValues(-1, 2, 1), "target": vec3.fromValues(-1, 0, 0.2)}),
-        'Landscape': JSON.stringify({"fov": 0.8, "position": vec3.fromValues(0, 2, -1), "target": vec3.fromValues(-1, 1, 4)})
+        'Free camera': JSON.stringify({"fov": 0.4, "position": vec3.fromValues(-3, 4, 4), "target": vec3.fromValues(-1, 0, 0.2), "freeCamera": 1}),
+        'Top': JSON.stringify({"fov": 0.4, "position": vec3.fromValues(-1, 2, 1), "target": vec3.fromValues(-1, 0, 0.2), "freeCamera": 0}),
+        'Landscape': JSON.stringify({"fov": 0.8, "position": vec3.fromValues(0, 2, -1), "target": vec3.fromValues(-1, 1, 4), "freeCamera": 0})
     };
-    this.selectedCameraPos = this.cameraPositions['Default'];
+    this.selectedCameraPos = this.cameraPositions['Free camera'];
     this.initCameras();
 
     this.selectedMode = "npc";
@@ -167,13 +167,22 @@ XMLscene.prototype.initLights = function() {
 XMLscene.prototype.initCameras = function() {
     let perspective = JSON.parse(this.selectedCameraPos);
     this.camera = new CGFcamera(0.4,0.1,500,perspective.position,perspective.target);
+    if (perspective.freeCamera) {
+        this.interface.setActiveCamera(this.camera);
+    }
 }
 
 /**
  * Smoothly move the camera to a new position.
- * @param {vec3} newPosition 
+ * @param {*} newCameraData 
  */
 XMLscene.prototype.setupMoveCamera = function(newCameraData) {
+    if (newCameraData.freeCamera) {
+        this.interface.setActiveCamera(this.camera);
+    } else {
+        this.interface.setActiveCamera(null);
+    }
+
     this.deltaCamPos = [];
     this.deltaCamTarget = [];
     this.deltaCamPos = vec3.subtract(this.deltaCamPos, newCameraData.position, this.camera.position);
