@@ -90,6 +90,11 @@
         <amplif_factor s="1" t="1" />
     </TEXTURE>
 
+    <TEXTURE id="alps_mountain">
+        <file path="images/alps_forested_mountain.jpg" />
+        <amplif_factor s="0.001" t="0.001" />
+    </TEXTURE>
+
 
     <TEXTURE id="board">
         <file path="images/board.jpg" />
@@ -299,6 +304,10 @@
 
         <DESCENDANTS>
             <NODEREF id="ground" />
+            <NODEREF id="alps_mountain1" />
+            <NODEREF id="alps_mountain2" />
+            <NODEREF id="alps_mountain3" />
+            <NODEREF id="alps_mountain4" />
             <NODEREF id="room_table" />
             <NODEREF id="alps_tent1" />
             <NODEREF id="alps_tent2" />
@@ -727,6 +736,74 @@
         </DESCENDANTS>
     </NODE>
 
+    <NODE id="alps_mountain1">
+        <MATERIAL id="mountainMaterial" />
+        <TEXTURE id="alps_mountain" />
+
+        <TRANSLATION x="-130" y="-2" z="100" />
+
+        <DESCENDANTS>
+            <NODEREF id="alps_mountain" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="alps_mountain2">
+        <MATERIAL id="mountainMaterial" />
+        <TEXTURE id="alps_mountain" />
+
+        <TRANSLATION x="-130" y="-2" z="-100" />
+
+        <DESCENDANTS>
+            <NODEREF id="alps_mountain" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="alps_mountain3">
+        <MATERIAL id="mountainMaterial" />
+        <TEXTURE id="alps_mountain" />
+
+        <TRANSLATION x="-90" y="-2" z="100" />
+        <ROTATION axis="y" angle="90" />
+
+        <DESCENDANTS>
+            <NODEREF id="alps_mountain" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="alps_mountain4">
+        <MATERIAL id="mountainMaterial" />
+        <TEXTURE id="alps_mountain" />
+
+        <TRANSLATION x="90" y="-2" z="100" />
+        <ROTATION axis="y" angle="90" />
+
+        <DESCENDANTS>
+            <NODEREF id="alps_mountain" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="alps_mountain">
+        <MATERIAL id="mountainMaterial" />
+        <TEXTURE id="alps_mountain" />
+
+        <ROTATION axis="y" angle="90" />
+        <SCALE sx="2" sy="4" sz="50" />
+
+        <DESCENDANTS>
+            <LEAF type="patch" args="10 10">
+                <CPLINE>
+					<CPOINT xx="0" yy="0" zz="0" ww="1" />
+					<CPOINT xx="5" yy="12" zz="0" ww="5" />
+					<CPOINT xx="10" yy="0" zz="0" ww="1" />
+				</CPLINE>
+				<CPLINE>
+					<CPOINT xx="0" yy="0" zz="5" ww="1" />
+					<CPOINT xx="5" yy="12" zz="5" ww="5" />
+					<CPOINT xx="10" yy="0" zz="5" ww="1" />
+				</CPLINE>
+			</LEAF>
+        </DESCENDANTS>
+    </NODE>
 
     <NODE id="ground">
         <MATERIAL id="fieldMaterial" />
