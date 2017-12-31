@@ -53,9 +53,9 @@ MyGraphLeaf.prototype.display = function() {
  * this.texCoords is not modified.
  */
 MyGraphLeaf.prototype.updateTexCoords = function(ampS, ampT) {
-    /* if (this.type == "patch") {
+    if (this.type == "patch") {
         return;
-    } */
+    }
     this.originalTexCoords = this.primitive.texCoords.slice();
     for (let i = 0; i < this.primitive.texCoords.length; i += 2) {
         this.primitive.texCoords[i] /= ampS;
