@@ -62,8 +62,8 @@ MyInterface.prototype.addOptions = function() {
 
     let cameraOption = optionsGroup.add(this.scene, 'selectedCameraPos', this.scene.cameraPositions).name('Perspective:');
     cameraOption.onChange((value) => {
-        let array = JSON.parse(value);
-        this.scene.setupMoveCamera(array);
+        let parsedData = JSON.parse(value);
+        this.scene.setupMoveCamera(parsedData);
     });
 }
 

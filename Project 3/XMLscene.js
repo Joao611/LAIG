@@ -38,8 +38,8 @@ XMLscene.prototype.init = function(application) {
     this.setActiveShader(this.defaultShader);
     
     this.cameraPositions = {
-        'Default': '[-3, 4, 4]',
-        'Top': '[-1, 2, 1]'
+        'Default': JSON.stringify({"position": vec3.fromValues(-3, 4, 4), "target": vec3.fromValues(-1, 0, 0.2)}),
+        'Top': JSON.stringify({"position": vec3.fromValues(-1, 2, 1), "target": vec3.fromValues(-1, 0, 0.2)})
     };
     this.selectedCameraPos = this.cameraPositions['Default'];
     this.initCameras();
@@ -164,16 +164,17 @@ XMLscene.prototype.initLights = function() {
  * Initializes the scene cameras.
  */
 XMLscene.prototype.initCameras = function() {
-    this.camera = new CGFcamera(0.4,0.1,500,JSON.parse(this.selectedCameraPos),vec3.fromValues(-1, 0, 0.2));
+    let perspective = JSON.parse(this.selectedCameraPos);
+    this.camera = new CGFcamera(0.4,0.1,500,perspective.position,perspective.target);
 }
 
 /**
  * Smoothly move the camera to a new position.
  * @param {vec3} newPosition 
  */
-XMLscene.prototype.setupMoveCamera = function(newPosition) {
+XMLscene.prototype.setupMoveCamera = function(newCameraData) {
     this.delta = [];
-    this.delta = vec3.subtract(this.delta, newPosition, this.camera.position);
+    this.delta = vec3.subtract(this.delta, newCameraData.position, this.camera.position);
     this.totalCameraMovementTime = 500;
     this.remainingCameraMs = this.totalCameraMovementTime;
 }
