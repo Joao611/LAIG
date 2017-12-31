@@ -10,7 +10,7 @@ function MyGraphLeaf(graph, xmlelem) {
     let argList = args.match(regex).map(function(v) { return parseFloat(v); }); //regex magic
     switch (this.type) {
         case "rectangle":
-            this.primitive = new MyQuad(graph.scene, argList[0], argList[1], argList[2], argList[3]); //TODO
+            this.primitive = new MyQuad(graph.scene, argList[0], argList[1], argList[2], argList[3]);
             break;
         case "cylinder":
             this.primitive = new MyCylinder(graph.scene, argList[0], argList[1], argList[2], argList[3], argList[4], argList[5], argList[6]);
