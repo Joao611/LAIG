@@ -40,7 +40,7 @@ XMLscene.prototype.init = function(application) {
     this.cameraPositions = {
         'Default': JSON.stringify({"fov": 0.4, "position": vec3.fromValues(-3, 4, 4), "target": vec3.fromValues(-1, 0, 0.2)}),
         'Top': JSON.stringify({"fov": 0.4, "position": vec3.fromValues(-1, 2, 1), "target": vec3.fromValues(-1, 0, 0.2)}),
-        'Landscape': JSON.stringify({"fov": 0.8, "position": vec3.fromValues(-3, 4, 4), "target": vec3.fromValues(-1, 0, 0.2)})
+        'Landscape': JSON.stringify({"fov": 0.8, "position": vec3.fromValues(0, 2, -1), "target": vec3.fromValues(-1, 1, 4)})
     };
     this.selectedCameraPos = this.cameraPositions['Default'];
     this.initCameras();
