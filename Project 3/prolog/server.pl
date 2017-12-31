@@ -103,7 +103,7 @@ print_header_line(_).
 
 % Require your Prolog Files here
 
-:- include('game_interface/interface.pl').
+:- include('interface.pl').
 
 parse_input(handshake, handshake).
 parse_input(test(C,N), Res) :- test(C,Res,N).

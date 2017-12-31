@@ -1,4 +1,4 @@
-:- include('../game_logic/main.pl').
+:- include('game_logic/main.pl').
 
 
 % gameData(Board, Mode, Difficulty, NextToPlay).
