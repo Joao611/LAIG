@@ -40,11 +40,6 @@
 
 <!-- Textures -->
 <TEXTURES>
-	<TEXTURE id="field">
-        <file path="images/field3.jpg" />
-        <amplif_factor s="0.01" t="0.01" />
-    </TEXTURE>
-
     <TEXTURE id="room_ground">
         <file path="images/grey_ceramic_tiles.jpg" />
         <amplif_factor s="0.3" t="0.3" />
@@ -95,12 +90,6 @@
         <amplif_factor s="0.2" t="1" />
     </TEXTURE>
 
-
-    <TEXTURE id="board">
-        <file path="images/board.jpg" />
-        <amplif_factor s="1" t="1" />
-    </TEXTURE>
-
     <TEXTURE id="blackCellTexture">
       <file path="images/blackCellTexture.png" />
       <amplif_factor s="1" t="1" />
@@ -123,11 +112,6 @@
 
     <TEXTURE id="alps_field">
         <file path="images/alps_field.png" />
-        <amplif_factor s="0.05" t="0.05" />
-    </TEXTURE>
-
-    <TEXTURE id="alps_field2">
-        <file path="images/alps_field2.png" />
         <amplif_factor s="0.05" t="0.05" />
     </TEXTURE>
 
@@ -797,7 +781,7 @@
 
     <NODE id="ground">
         <MATERIAL id="fieldMaterial" />
-        <TEXTURE id="alps_field2" />
+        <TEXTURE id="alps_field" />
 
         <SCALE sx="200" sy="1" sz="200" />
         <TRANSLATION x="-0.5" y="0" z="0.5" />
