@@ -38,8 +38,9 @@ XMLscene.prototype.init = function(application) {
     this.setActiveShader(this.defaultShader);
     
     this.cameraPositions = {
-        'Default': JSON.stringify({"position": vec3.fromValues(-3, 4, 4), "target": vec3.fromValues(-1, 0, 0.2)}),
-        'Top': JSON.stringify({"position": vec3.fromValues(-1, 2, 1), "target": vec3.fromValues(-1, 0, 0.2)})
+        'Default': JSON.stringify({"fov": 0.4, "position": vec3.fromValues(-3, 4, 4), "target": vec3.fromValues(-1, 0, 0.2)}),
+        'Top': JSON.stringify({"fov": 0.4, "position": vec3.fromValues(-1, 2, 1), "target": vec3.fromValues(-1, 0, 0.2)}),
+        'Landscape': JSON.stringify({"fov": 0.8, "position": vec3.fromValues(-3, 4, 4), "target": vec3.fromValues(-1, 0, 0.2)})
     };
     this.selectedCameraPos = this.cameraPositions['Default'];
     this.initCameras();
@@ -177,6 +178,7 @@ XMLscene.prototype.setupMoveCamera = function(newCameraData) {
     this.deltaCamTarget = [];
     this.deltaCamPos = vec3.subtract(this.deltaCamPos, newCameraData.position, this.camera.position);
     this.deltaCamTarget = vec3.subtract(this.deltaCamTarget, newCameraData.target, this.camera.target);
+    this.deltaCamFov = newCameraData.fov - this.camera.fov;
 
     this.totalCameraMovementTime = 500;
     this.remainingCameraMs = this.totalCameraMovementTime;
@@ -344,11 +346,14 @@ XMLscene.prototype._cameraIncrement = function(deltaMs) {
         msToMove = 0;
     }
 
+    let deltaFov = this.deltaCamFov * msToMove / this.totalCameraMovementTime;
     let deltaCamPosInc = [];
     let deltaCamTargetInc = [];
     deltaCamPosInc = vec3.scale(deltaCamPosInc, this.deltaCamPos, msToMove / this.totalCameraMovementTime);
     deltaCamTargetInc = vec3.scale(deltaCamTargetInc, this.deltaCamTarget, msToMove / this.totalCameraMovementTime);
+
     let res = [];
+    this.camera.fov += deltaFov;
     this.camera.setPosition(vec3.add(res, this.camera.position, deltaCamPosInc));
     this.camera.setTarget(vec3.add(res, this.camera.target, deltaCamTargetInc));
     this.remainingCameraMs -= msToMove;
