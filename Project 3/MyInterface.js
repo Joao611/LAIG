@@ -72,7 +72,7 @@ MyInterface.prototype.addGameControls = function() {
     mainGroup.open();
     mainGroup.add(this.scene, 'selectedMode', this.scene.selectableModes).name('Mode:');
     mainGroup.add(this.scene, 'selectedDifficulty', this.scene.selectableDifficulties).name('Difficulty:');
-    mainGroup.add(this.scene, 'playTimeLimit', 5, 60).step(5).name('Play Time Limit');
+    mainGroup.add(this.scene, 'playTimeLimit', 5, 60).step(5).listen().name('Play Time Limit');
     mainGroup.add(this.scene, 'startButton').name('Start Game');
     mainGroup.add(this.scene, 'movieButton').name('Show Last Game');
 
